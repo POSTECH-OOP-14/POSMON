@@ -1,0 +1,26 @@
+using UnityEngine;
+using System.Collections;
+
+public class Event : MonoBehaviour {
+
+	// Use this for initialization
+	void Start () {
+	
+	}
+	
+	// Update is called once per frame
+	void Update () {
+	
+	}
+    void OnCollisionEnter(Collision othe)
+    {
+        if(othe.transform.tag == "Battle")
+        {
+            Application.LoadLevel(2);
+        }
+        else if(othe.transform.tag == "Inside")
+        {
+            Application.LoadLevel(1);
+        }
+    }
+}
