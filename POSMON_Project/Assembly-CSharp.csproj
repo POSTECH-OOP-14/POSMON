@@ -48,6 +48,7 @@
      <Compile Include="Assets\CameraFollow.cs" />
      <Compile Include="Assets\CharacterKeyInput.cs" />
      <Compile Include="Assets\GameLoad.cs" />
+     <Compile Include="Assets\MoveToMain.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
