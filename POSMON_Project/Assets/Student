@@ -1,0 +1,92 @@
+using UnityEngine;
+using System.Collections;
+
+public class Student : MonoBehaviour {
+    private string[] skill=new string[4];//스킬배열
+    private string department;//학과
+    private int[] stat;//능력치배열
+    private int index;//포스몬의 번호
+    private string status;//상태(정상, 마비, 잠, 독)
+    private int level;
+    private int exp;
+    private int HP;
+
+    public Student(string[] skill, string department, int[] stat)
+    {
+        this.skill = skill;
+        this.department = department;
+        this.stat = stat;
+        status = "정상";
+        level = 1;
+        exp = 0;
+        HP = 1000;
+    }
+
+    void setIndex(int index)
+    {
+        this.index = index;
+    }
+
+    void levelUP()
+    {
+        level++;
+    }
+
+    void setExp(int exp)
+    {
+        this.exp += exp;
+        if (this.exp > 100)
+        {
+            levelUP();
+            this.exp -= 100;
+        }
+    }
+
+    void setHP(int amount)
+    {
+        HP += amount;
+        if (HP > 1000)
+            HP = 1000;
+        if (amount == (int)cure.all)
+            HP = 1000;
+    }
+
+    void setStatus(string cure)
+    {
+        if (status == "마비" || cure == "마비")
+            status = "정상";
+        if (status == "잠" || cure == "잠")
+            status = "정상";
+        if (status == "독" || cure == "독")
+            status = "정상";
+        if(cure == "만병통치약")
+            status = "정상";
+    }
+
+    // Use this for initialization
+    void Start()
+    {
+
+	}
+
+    public void changeSkill(Item it) {
+        int index_skill = 0;
+        this.skill[index_skill] = it.getName();
+    }
+
+    public void changeStatus(Item it)
+    {
+        it.getAmount();
+
+        if (amount >= 10)//체력을 회복시키는 아이템
+            setHP(amount);
+        else//포스몬의 상태를 바꾸어주는 아이템
+            setStatus(cure);
+    }
+
+	// Update is called once per frame
+	void Update () {
+
+	}
+}
+
