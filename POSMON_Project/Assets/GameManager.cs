@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GameLoad : MonoBehaviour {
+public class GameManager : MonoBehaviour {
 
-    
+    /* For the purpose of Global Variables */
     static public GameObject pl_stored = null;
+    static public int PrevSceneNumber = 0;
+
     public GameObject player;
 
 	// Use this for initialization
@@ -17,15 +19,17 @@ public class GameLoad : MonoBehaviour {
             DontDestroyOnLoad(pl_stored);
         }
 	}
-	
+
 	// Update is called once per frame
 	void Update ()
     {
 	}
 
-    void ChangeScene()
+    /* Start Game */
+    public void StartGame()
     {
         pl_stored.SetActive(true);
+        PrevSceneNumber = Application.loadedLevel;
         Application.LoadLevel(1);
     }
 }

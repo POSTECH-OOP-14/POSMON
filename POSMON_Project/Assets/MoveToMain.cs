@@ -15,7 +15,7 @@ public class MoveToMain : MonoBehaviour {
 
     public void ChangeScene()
     {
-        GameLoad.pl_stored.SetActive(false);
+        GameManager.pl_stored.SetActive(false);
         Application.LoadLevel(0);
     }
 }

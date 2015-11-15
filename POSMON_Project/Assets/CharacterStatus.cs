@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CharacterKeyInput : MonoBehaviour
+public class CharacterStatus : MonoBehaviour
 {
 
     enum status
@@ -33,6 +33,26 @@ public class CharacterKeyInput : MonoBehaviour
     /* inventory information */
     private int[] inventory = new int[256];
 
+
+    /**** methods related to inventory ****/
+    void setInventory(int item, int index)
+    {
+        if (inventory[index] != 0)
+            return;
+        else
+            inventory[index] = item;
+    }
+
+    int getInventory(int i)
+    {
+        return inventory[i];
+    }
+
+    void useItem(int index)
+    {
+
+    }
+    /*****************************************/
 	// Use this for initialization
 	void Start ()
     {
@@ -120,15 +140,6 @@ public class CharacterKeyInput : MonoBehaviour
 
         /* Move */
         UpdateMovement();
-
-        /* Get Function Key Input */
-        if (Input.GetKey(KeyCode.Z))
-        {
-            
-        }
-        else if (Input.GetKey(KeyCode.X))
-        {
-        }
 	}
 
     void OnCollisionEnter2D(Collision2D other)
@@ -144,9 +155,15 @@ public class CharacterKeyInput : MonoBehaviour
             moving_status = status.IDLE;
         }
 
-        /* When Collide with NPC Instance */
+        /* When Collide with NPC Instance, check the object's tag "NPC" and if
+         * the object's tag is "NPC" then call NPC's method */
         if (other.gameObject.tag == "NPC")
         {
+            /* When Collision occurred, if keyinput existed.... */
+            if (Input.GetKey(KeyCode.Z))
+            {
+                
+            }
         }
     }
 }

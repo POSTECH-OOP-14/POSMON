@@ -11,8 +11,8 @@ public class CameraFollow : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        GameObject cam = GameLoad.pl_stored;
-        if (GameLoad.pl_stored.activeSelf)
+        GameObject cam = GameManager.pl_stored;
+        if (GameManager.pl_stored.activeSelf)
         {
             gameObject.transform.position = new Vector3(cam.GetComponent<Transform>().position.x,
                                                         cam.GetComponent<Transform>().position.y,
