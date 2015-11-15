@@ -1,25 +1,52 @@
 using UnityEngine;
 using System.Collections;
 
-public class Student : MonoBehaviour {
+public enum stu_no
+{
+    MATH1=0,MATH2,MATH3,MATH4,
+    PHYS1=10,PHYS2,PHYS3,PHYS4,
+    CSE1=20,CSE2,CSE3,CSE4,
+    IME1=30,IME2,IME3,IME4,
+    CITE1=40,CITE2,CITE3,CITE4,
+    CHEM1=50,CHEM2,CHEM3,CHEM4,
+    CME1=60,CME2,CME3,CME4,
+    MSE1=70,MSE2,MSE3,MSE4,
+    BIO1=80,BIO2,BIO3,BIO4,
+    EE1=90,EE2,EE3,EE4
+}
+
+static class Constants
+{
+    public const int MAXHP = 100;
+}
+
+public class Student{
     private string[] skill=new string[4];//스킬배열
     private string department;//학과
-    private int[] stat;//능력치배열
+    private int[] stat=new int[6];//능력치배열
     private int index;//포스몬의 번호
-    private string status;//상태(정상, 마비, 잠, 독)
+    private status st;//상태(정상, 마비, 잠, 독)
     private int level;
     private int exp;
     private int HP;
 
-    public Student(string[] skill, string department, int[] stat)
+    public Student(stu_no n)
     {
-        this.skill = skill;
-        this.department = department;
-        this.stat = stat;
-        status = "정상";
-        level = 1;
-        exp = 0;
-        HP = 1000;
+        switch (n)
+        {
+            case stu_no.MATH1:
+                {
+                    skill[4] = "s1,s2,s3,s4";
+                    department = "수학과";
+                    st = status.none;
+                    level = 1;
+                    exp = 0;
+                    HP = Constants.MAXHP;
+                    break;
+                }
+
+
+        }
     }
 
     void setIndex(int index)
@@ -45,44 +72,60 @@ public class Student : MonoBehaviour {
     void setHP(int amount)
     {
         HP += amount;
-        if (HP > 1000)
-            HP = 1000;
-        if (amount == (int)cure.all)
-            HP = 1000;
+        if (HP > Constants.MAXHP)
+            HP = Constants.MAXHP;
+        if (amount == (int)status.all)
+            HP = Constants.MAXHP;
     }
 
-    void setStatus(string cure)
+    void setStatus(status st)
     {
-        if (status == "마비" || cure == "마비")
-            status = "정상";
-        if (status == "잠" || cure == "잠")
-            status = "정상";
-        if (status == "독" || cure == "독")
-            status = "정상";
-        if(cure == "만병통치약")
-            status = "정상";
+        if (this.st == status.paralysis && st == status.paralysis)
+            st = status.none;
+        if (this.st == status.sleep && st == status.sleep)
+            st = status.none;
+        if (this.st == status.poison && st == status.poison)
+            st = status.none;
+        if (st == status.all)
+            st = status.none;
     }
 
-    // Use this for initialization
-    void Start()
+    public int getIndexSkill()
     {
-
-	}
+        int i=0;
+        while (!Input.GetKey(KeyCode.Z))
+        {
+            if (Input.GetKey(KeyCode.DownArrow))
+                i++;
+            if(Input.GetKey(KeyCode.UpArrow))
+                i--;
+            if (Input.GetKey(KeyCode.Z))
+                break;
+        }
+        return i;
+    }
 
     public void changeSkill(Item it) {
-        int index_skill = 0;
+        int index_skill = getIndexSkill();
         this.skill[index_skill] = it.getName();
     }
 
     public void changeStatus(Item it)
     {
-        it.getAmount();
+        int amount=it.getAmount();
+        status st_it = it.getStatus();
 
-        if (amount >= 10)//체력을 회복시키는 아이템
+        if (amount > 0)//체력을 회복시키는 아이템
             setHP(amount);
         else//포스몬의 상태를 바꾸어주는 아이템
-            setStatus(cure);
+            setStatus(st_it);
     }
+
+        // Use this for initialization
+    void Start()
+    {
+
+	}
 
 	// Update is called once per frame
 	void Update () {
