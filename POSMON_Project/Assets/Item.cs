@@ -1,5 +1,4 @@
-﻿/*
- using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public enum item_no
@@ -211,18 +210,4 @@ public class Item
 
         return ind;
     }
-
-
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }
-*/

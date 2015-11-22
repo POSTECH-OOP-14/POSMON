@@ -31,41 +31,50 @@ public class CharacterStatus : MonoBehaviour
     private face_direction direction = face_direction.DOWN;
 
     /* inventory information */
-    private int[] inventory = new int[256];
-
+    private Item[] inventory = new Item[256];
 
     /**** methods related to inventory ****/
-    void setInventory(int item, int index)
+    void setInventory(Item item, int index)
     {
-        if (inventory[index] != 0)
+        if (inventory[index] != null)
             return;
         else
             inventory[index] = item;
     }
 
-    int getInventory(int i)
+    Item getInventory(int i)
     {
         return inventory[i];
     }
+    /*****************************************/
 
-    void useItem(int index)
+    /* Students information */
+    private Student[] student_list = new Student[6];
+
+    /**** methods related to Student list ****/
+    void setStudent(Student student, int index)
     {
+        if (student_list[index] != null)
+            return;
+        else
+            student_list[index] = student;
+    }
 
+    Student getStudent(int i)
+    {
+        return student_list[i];
     }
     /*****************************************/
+
 	// Use this for initialization
 	void Start ()
     {
         walk_remaining = 0;
         moving_status = status.IDLE;
         direction = face_direction.DOWN;
-
-        /* initialize inventory */
-        for (int i = 0; i < 256; i++)   // For now, inventory's entry data type is int (not implemented yet)
-            inventory[i] = 0;
 	}
 
-    void SetMovement()
+    private void SetMovement()
     {
         if (moving_status == status.IDLE)
         {
@@ -92,7 +101,7 @@ public class CharacterStatus : MonoBehaviour
         }
     }
 
-    void UpdateMovement()
+    private void UpdateMovement()
     {
         switch (moving_status)
         {
