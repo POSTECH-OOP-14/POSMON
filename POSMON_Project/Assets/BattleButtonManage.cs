@@ -19,13 +19,15 @@ public class BattleButtonManage : MonoBehaviour
     Rect SecondPos;
     Rect ThirdPos;
     Rect ForthPos;
-    StudentInfo Mine = new StudentInfo();
-    StudentInfo Enemy = new StudentInfo();
+    public StudentInfo Mine;
+    public StudentInfo Enemy;
     BattleScene a = new BattleScene();
     string alphahah = "fire blast";
     // Use this for initialization
     void Start()
     {
+        Mine = new StudentInfo();
+        Enemy = new StudentInfo();
     }
 
     // Update is called once per frame
@@ -62,9 +64,8 @@ public class BattleButtonManage : MonoBehaviour
 
             if (GUI.Button(ForthPos, "Run"))
             {
-                print("pixel width" + cam.pixelWidth);
-                print("pixel Height" + cam.pixelHeight);
                 Battle = BattleButtonState.RunState;
+                Application.LoadLevel(1);
             }
         }
         if (Battle == BattleButtonState.AttackState)
@@ -72,7 +73,9 @@ public class BattleButtonManage : MonoBehaviour
             int alived = 0;
             if (GUI.Button(FirstPos,alphahah))
             {
-                
+                int damage = a.BattleDamageCalculate(Mine.skillList[0], Mine, Enemy);
+                alived = Mine.getDamage(damage);
+                Battle = BattleButtonState.DefaultState;
             }
             if (GUI.Button(SecondPos, Mine.skillList[1].skillName))
             {
