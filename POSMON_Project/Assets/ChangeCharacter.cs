@@ -49,16 +49,11 @@ public class ChangeCharacter : MonoBehaviour {
 
     void OnGUI()
     {
-      OpponentStudentImage = new Rect(cam.pixelWidth *3/4, cam.pixelHeight*1/4, cam.pixelWidth/8, cam.pixelHeight/8);
-      OurStudentImage = new Rect(cam.pixelWidth * 1/4, cam.pixelHeight * 3/4, cam.pixelWidth/8, cam.pixelHeight/8);
-      Rect OpponentStudentState = new Rect(cam.pixelWidth * 1 / 4, cam.pixelHeight * 1 / 4,400, 200);
-      Rect OurStudentState = new Rect(cam.pixelWidth * 2 / 4, cam.pixelHeight * 3 / 4, 400,200);
-
+      OpponentStudentImage = new Rect(cam.pixelWidth * 3 / 4, cam.pixelHeight * 1 / 8, cam.pixelWidth / 8, cam.pixelWidth / 8);
+      OurStudentImage = new Rect(cam.pixelWidth * 1 / 8, cam.pixelHeight * 2 / 4, cam.pixelWidth / 8, cam.pixelWidth / 8);
+      
 
       Graphics.DrawTexture(OpponentStudentImage, opponentTexture);
-      Graphics.DrawTexture(OpponentStudentState, Statement);
       Graphics.DrawTexture(OurStudentImage, myTexture);
-      Graphics.DrawTexture(OurStudentState, Statement);
-      
-    }
+      }
 }

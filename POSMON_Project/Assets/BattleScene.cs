@@ -5,7 +5,7 @@ using System.Collections;
     
 public class BattleScene {
     int menuState;
-    AttributeMatrix Attribute;
+    AttributeMatrix Attribute = new AttributeMatrix();
     // Use this for initialization
 
 
@@ -28,7 +28,7 @@ public class BattleScene {
         if(usedSkill.type == attacker.type) //if Attacker type and used Skill type is same, get bonus damage 
         {AttributeCal *= 1.5f;}
         
-        int RandomRate  = Random.Range(217,255)*100/255;    //make random damage;
+        int RandomRate  = (int)Random.Range(217,255)*100/255;    //make random damage;
         
         if(usedSkill.AtkType == 0)       {
             AttackRate = (usedSkill.damage)*(attacker.retStudentAttack())/(defenser.retStudentDefense());

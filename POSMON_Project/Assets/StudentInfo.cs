@@ -12,7 +12,7 @@ public class StudentInfo
     int StudentDefense;
     int StudentSpecialDefense;
     int StudentSpeed;
-    public SkillInfo[] skillList = new SkillInfo[4];
+    public SkillInfo[] skillList;
     public int type;
     
 
@@ -36,10 +36,16 @@ public class StudentInfo
         StudentDefense = 50;
         StudentSpecialDefense = 50;
         StudentSpeed = 50;
-        StudentAttack = 50;
         type = 3;
+        skillList = new SkillInfo[4];
+        skillList[0] = new SkillInfo();
+        skillList[1] = new SkillInfo();
+        skillList[2] = new SkillInfo();
+        skillList[3] = new SkillInfo();
+
     }
     public int retStudentCurHealth() { return StudentCurHealth; }
+    public int retStudentMaxHealth() { return StudentMaxHealth; }
     public int retStudentLevel() { return StudentLevel; }
     public int retStudentAttack() { return StudentAttack; }
     public int retStudentSpecialAttack() { return StudentSpecialAttack; }
