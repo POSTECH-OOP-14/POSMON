@@ -1,58 +1,52 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using System.Collections;
 
-public class BattleScene : MonoBehaviour {
-    int menuState;
-    StudentInfo Mine;
-    StudentInfo Enemy;
-	int[,] attribute = new int[10,10];
-    // Use this for initialization
-	void Start () {
-        
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        
-	}
     
-    //draw game field
-    void drawStudentInfo() 
-    {
-        
+public class BattleScene {
+    int menuState;
+    AttributeMatrix Attribute;
+    // Use this for initialization
+
+
+    
+
+    //give animation to object
+    public void moveAnimation(Vector3 a)
+    { 
+    
     }
 
-    void drawMenuState(int i)
-    { 
-        
-    }
-    void moveAnimation(Vector3 a)
-    { 
-    
-    }
-    int BattleDamageCalculate(SkillInfo usedSkill, StudentInfo attacker, StudentInfo defenser)
+
+    //If player attack, calculate damage
+    public int BattleDamageCalculate(SkillInfo usedSkill, StudentInfo attacker, StudentInfo defenser)
     {
-        float AttackRate = 1;
-        float damage = 0;
-        float AttributeCal = 1;
-        if(usedSkill.type == attacker.type)
-        {AttributeCal = 1.5f;}
-        int RandomRate  = Random.Range(217,255)*100/255;
+        float AttackRate = 1;   //find attack is special attack or normal attack
+        float damage = 0;       //return total damage that defenser have to take
+        float AttributeCal = 1; //Calculate damage Changed by AttributeCal
+
+        if(usedSkill.type == attacker.type) //if Attacker type and used Skill type is same, get bonus damage 
+        {AttributeCal *= 1.5f;}
+        
+        int RandomRate  = Random.Range(217,255)*100/255;    //make random damage;
+        
         if(usedSkill.AtkType == 0)       {
             AttackRate = (usedSkill.damage)*(attacker.retStudentAttack())/(defenser.retStudentDefense());
         }else        {
             AttackRate = (usedSkill.damage)*(attacker.retStudentSpecialAttack())/(defenser.retStudentSpecialDefense());
         }
+
         damage =(((   
                     (
-                        (attacker.retStudentLevel()*2/5)+2
+                        (attacker.retStudentLevel()*2/5)+2  //attackers level
                     )
-                    *usedSkill.damage*AttackRate/50
+                    *AttackRate/50                          //used skill damage * attacker,defensers ability
                 )+2)
-                *RandomRate/100*AttributeCal*attribute[attacker.type,defenser.type]
+                *RandomRate/100                             //random damage
+                *AttributeCal*Attribute.attribute[attacker.type,defenser.type] //attribute;
                 );
 
           
-        return 0;
+        return (int)damage;
     }
 }
