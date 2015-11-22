@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GameLoad : MonoBehaviour {
+public class MoveToMain : MonoBehaviour {
 
 	// Use this for initialization
 	void Start ()
@@ -9,12 +9,13 @@ public class GameLoad : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update ()
-    {
+	void Update () {
+	
 	}
 
     public void ChangeScene()
     {
-        Application.LoadLevel(1);
+        GameManager.pl_stored.SetActive(false);
+        Application.LoadLevel(0);
     }
 }
