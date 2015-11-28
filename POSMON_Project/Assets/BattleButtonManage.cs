@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//manage game menu and game background and game object, battle flow
 public class BattleButtonManage : MonoBehaviour
 {
-    //manage game menu and game background and game object
+    // get the screen info.
     public Camera cam;
-    enum BattleButtonState
+
+    //save the battle state.
+    enum BattleButtonState  
     {
         DefaultState,
         AttackState,
@@ -14,20 +17,44 @@ public class BattleButtonManage : MonoBehaviour
         RunState,
         NextState
     };
+
+    //save temporay stat. 
+    //my students int(atk), str(spcial atk), mental(def), guard(special def), sense(speed), health
+    //opponent students "same" 
+    // each data save integer. applyed by (n+2)/n ~ 2/(n+2)
+    public int[] battleTempStat =new int[12]; 
+
+    // battle starts with default state
     private BattleButtonState Battle = BattleButtonState.DefaultState;
+    
+    // set the postion of buttons.
     Rect FirstPos;
     Rect SecondPos;
     Rect ThirdPos;
     Rect ForthPos;
-    public StudentInfo Mine;
-    public StudentInfo Enemy;
+
+    //set the infomation of student who will came out to battle.
+    public Student CurrentMine;
+    public Student CurrentEnemy;
+
+    //set the information of 
+    public ChangeCharacter studentInfo;
+    public Student[] EnemyStudentList;
+
+    // get the every battle 
     BattleScene a = new BattleScene();
+
+    // testing GUI button
     string alphahah = "fire blast";
-    // Use this for initialization
+    
+    // Use this for initialization. get information from 
     void Start()
     {
-        Mine = new StudentInfo();
-        Enemy = new StudentInfo();
+        //init battleTempStat
+        for (int i = 0; i < 12; i++)
+            battleTempStat[i] = 0;
+        //   Mine = new StudentInfo();
+       // Enemy = new StudentInfo();
     }
 
     // Update is called once per frame
@@ -48,7 +75,10 @@ public class BattleButtonManage : MonoBehaviour
 
     void OnGUI()
     {
-        int damage = 0;
+        int damage = 0; //save the damage that student give to opponent.
+        int MyStudentAlived = 0; //save the info wether player student is dead.
+        int OppoStudentAlived = 0; // save the info wether opponent student is dead.
+
         Rect FirstPos = new Rect(cam.pixelWidth * 5/7 - 10, cam.pixelHeight * 5 / 7 - 10, cam.pixelWidth / 7, cam.pixelHeight / 7);
         Rect SecondPos = new Rect(cam.pixelWidth * 6/7 - 10, cam.pixelHeight * 5 / 7 - 10, cam.pixelWidth / 7, cam.pixelHeight / 7);
         Rect ThirdPos = new Rect(cam.pixelWidth * 5/7 - 10, cam.pixelHeight *6/ 7 - 10, cam.pixelWidth / 7, cam.pixelHeight / 7);
@@ -98,8 +128,14 @@ public class BattleButtonManage : MonoBehaviour
                 alived = Enemy.getDamage(damage);
             }
         }
+
+        //if player give input, the battle proceed.
         if (Battle == BattleButtonState.NextState)
         {
+            //npc select its move.
+            //
+            //calculate who is first to move.
+
 /*            if (alived != 0)    //my student is dead
             {
                 //change pokemon;

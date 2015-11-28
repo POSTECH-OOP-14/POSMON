@@ -120,5 +120,35 @@ public class Student{
         else//포스몬의 상태를 바꾸어주는 아이템
             setStatus(st_it);
     }
+    
+    //song Si Ho 작성
+
+    //return the index of student. could be change to return image of stu.
+    public int retStuIndex()
+    {
+        return this.index;
+    }
+
+    public int retStuDept()
+    {
+        return this.index / 10;
+    }
+
+    //return stat of student
+    //0 is atk, 1 is special atk, 2 is def, 3 is special def, 4 is speed, 5 is hp
+    //6 is level
+    public int retStuStat(int i)
+    {
+        if (i < 6)
+        {
+            int a;
+            a = this.stat[i] / this.level * 10;
+            return a;
+        }
+        else
+            return this.level;
+
+        
+    }
 }
 

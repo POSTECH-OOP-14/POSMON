@@ -22,6 +22,11 @@ public class ChangeCharacter : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        /*
+         //the code will save index of posmon. set texture to current index student.
+         
+         */
         if (Input.GetKey(KeyCode.UpArrow))
         {   
             if (i == 0){

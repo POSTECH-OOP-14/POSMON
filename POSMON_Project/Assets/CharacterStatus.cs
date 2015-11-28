@@ -64,6 +64,22 @@ public class CharacterStatus : MonoBehaviour
     {
         return student_list[i];
     }
+
+    //SongSiHo. this function change the index of student.
+    void ChangeStudent(int first, int second)
+    {
+        if (student_list[first] == null || student_list[second] == null)
+        {
+            return;
+        }
+        else
+        {
+            Student temp;
+            temp = student_list[first]; //maybe get errored by temp didn't duplicate content of student list;
+            student_list[first] = student_list[second];
+            student_list[second] = temp;
+        }
+    }
     /*****************************************/
 
 	// Use this for initialization
