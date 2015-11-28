@@ -20,6 +20,7 @@ public enum stu_no
 public class Student
 {
     private string[] skill = new string[4];//스킬배열
+    private int[] skillNumberList = new int[4]; //tempory skill list
     private string department;//학과
     private int[] stat = new int[6];//능력치배열
     private int index;//포스몬의 번호
@@ -29,6 +30,7 @@ public class Student
     private int HP;
     private int MAXHP;
     private int skillNum;//스킬 개수
+    private Texture StuImage;
 
     public Student(stu_no n)
     {
@@ -157,6 +159,91 @@ public class Student
     void Update()
     {
 
+    }
+    
+    //song Si Ho 작성
+
+    //return the index of student. could be change to return image of stu.
+    public int retStuIndex()
+    {
+        return this.index;
+    }
+
+    public int retStuDept()
+    {
+        return this.index / 10;
+    }
+
+    //return stat of student
+    //0 is atk, 1 is special atk, 2 is def, 3 is special def, 4 is speed, 5 is hp
+    //6 is level
+    public int retStuStat(int i)
+    {
+        if (i < 6)
+        {
+            int a;
+            a = this.stat[i] / this.level * 10;
+            return a;
+        }
+        else
+            return this.level;
+    }
+    //set status 
+    public int giveAStatus(status state)
+    {
+        if (this.st == status.none)
+            this.st = state;
+        else if (state == status.faint)
+            this.st = state;
+        else 
+        {
+            //this state, student cannot change its state
+            return 1;
+        }
+        return 0;
+    }
+    //return stuStatus
+    public status retStuStatus()
+    {
+        return this.st;
+    }
+
+    //give damage to student
+    public int getDamage(int damage)
+    {
+        HP -= damage;
+        if (HP < 0)
+        {
+            HP = 0;
+
+            return 1;
+        }
+
+        return 0;
+    }
+    public int getExp()
+    {
+        return this.exp;
+    }
+
+    public int getLevel()
+    {
+        return this.level;
+    }
+
+    public int getMAXHP()
+    {
+        return this.MAXHP;
+    }
+
+    public string getDept()
+    {
+        return this.department;
+    }
+
+    public int[] retSkillList()
+    {
+        return skillNumberList;
     }
 }
 
