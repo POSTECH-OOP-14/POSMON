@@ -19,21 +19,23 @@ public class BattleScene {
 
 
     //If player attack, calculate damage
-    public int BattleDamageCalculate(SkillInfo usedSkill, Student attacker, Student defenser, int[] battleTempStat)
+    public int BattleDamageCalculate(SkillInfo usedSkill, Student attacker, Student defenser, int[] _battleTempStat)
     {
         float AttackRate = 1;   //find attack is special attack or normal attack
         float damage = 0;       //return total damage that defenser have to take
         float AttributeCal = 1; //Calculate damage Changed by AttributeCal
+        float[] battleTempStat = new float[12];
 
-        if(usedSkill.type == attacker.retStuDept()) //if Attacker type and used Skill type is same, get bonus damage 
+        if(usedSkill.retType() == attacker.retStuDept()) //if Attacker type and used Skill type is same, get bonus damage 
         {AttributeCal *= 1.5f;}
         
         int RandomRate  = (int)Random.Range(217,255)*100/255;    //make random damage;
-        
-        if(usedSkill.AtkType == 0)       {  //calculate the 
-            AttackRate = (usedSkill.damage)*(attacker.retStuStat(0))/(defenser.retStuStat(2));
+
+        if (usedSkill.retAtkType() == 0)
+        {  //calculate the damage of 
+            AttackRate = (usedSkill.retDamage())*(attacker.retStuStat(0))/(defenser.retStuStat(2));
         }else        {
-            AttackRate = (usedSkill.damage)*(attacker.retStuStat(1))/(defenser.retStuStat(3));
+            AttackRate = (usedSkill.retDamage())*(attacker.retStuStat(1))/(defenser.retStuStat(3));
         }
 
         damage =(((   
@@ -55,12 +57,27 @@ public class BattleScene {
     //intput 0 is someone changed student or use item,
     public int CalFirstGo(int mySpeed, int EnemySpeed, int[] battletempStat)
     {
+        float mySpeedCal=1.0f;
+        float enemySpeedCal = 1.0f;
+
+
+        //calculate the change by tempStat;
+        if (battletempStat[4] < 1)
+            mySpeedCal = mySpeedCal * 2 / (battletempStat[4] + 2);
+        else
+            mySpeedCal = mySpeedCal * (2 + battletempStat[4]) / 2;
+        if (battletempStat[4] < 1)
+            enemySpeedCal = enemySpeedCal * 2 / (battletempStat[4] + 2);
+        else
+            enemySpeedCal = enemySpeedCal * (2 + battletempStat[4]) / 2;
+
+
         if (mySpeed == 0)
             return 0;
         else if (EnemySpeed == 0)
             return 1;
         else{
-            if (mySpeed * battletempStat[4] >= EnemySpeed * battletempStat[10])
+            if (mySpeed * mySpeedCal >= EnemySpeed * enemySpeedCal)
                 return 1;
             else
                 return 0;

@@ -42,7 +42,7 @@ public class BattleButtonManage : MonoBehaviour
     public Student[] EnemyStudentList;
 
     //information about skill
-    public SkillInfo SkillData;
+    SkillInfo SkillData;
 
     // get the battle related code 
     BattleScene a = new BattleScene();
@@ -83,13 +83,13 @@ public class BattleButtonManage : MonoBehaviour
         int MyStudentAlived = 0; //save the info wether player student is dead.
         int OppoStudentAlived = 0; // save the info wether opponent student is dead.
         int alived = 0; //check wther student get faint.
-        //get speed, use for check whos first.
-        int MyMoveSpeed;
-        int EnemyMoveSpeed;
+ 
+        int MyMoveSpeed = 0;//get speed, use for check whos first. 
+        int EnemyMoveSpeed = 0;
         
         //get what people selected to do. 0 is attack, 1 is item, 2 is change, 3 is run.
-        int myMove;
-        int enemyMove;
+        int myMove=0;
+        int enemyMove=0;
         
 
         Rect FirstPos = new Rect(cam.pixelWidth * 5/7 - 10, cam.pixelHeight * 5 / 7 - 10, cam.pixelWidth / 7, cam.pixelHeight / 7);
@@ -118,28 +118,28 @@ public class BattleButtonManage : MonoBehaviour
         if (Battle == BattleButtonState.AttackState)
         {
             alived = 0;
-            if (GUI.Button(FirstPos,skillCurrentMine.retSkillList()[0]))
+            if (GUI.Button(FirstPos,SkillData.retSkillName(CurrentMine.retSkillList()[0])))
             {
-                damage = a.BattleDamageCalculate(Mine.skillList[0], Mine, Enemy);
+                damage = a.BattleDamageCalculate(SkillData.retSkillInfo(CurrentMine.retSkillList()[0]), CurrentMine, CurrentEnemy,battleTempStat);
                 Battle = BattleButtonState.NextState;
                 myMove = 0;
             }
-            if (GUI.Button(SecondPos, Mine.skillList[1].skillName))
+            if (GUI.Button(SecondPos, SkillData.retSkillName(CurrentMine.retSkillList()[1])))
             {
-                damage = a.BattleDamageCalculate(Mine.skillList[1], Mine, Enemy);
+                damage = a.BattleDamageCalculate(SkillData.retSkillInfo(CurrentMine.retSkillList()[1]), CurrentMine, CurrentEnemy, battleTempStat);
                 Battle = BattleButtonState.NextState;
                 myMove = 0;
             }
-            if (GUI.Button(ThirdPos, Mine.skillList[2].skillName))
+            if (GUI.Button(ThirdPos, SkillData.retSkillName(CurrentMine.retSkillList()[2])))
             {
-                damage = a.BattleDamageCalculate(Mine.skillList[2], Mine, Enemy);
+                damage = a.BattleDamageCalculate(SkillData.retSkillInfo(CurrentMine.retSkillList()[2]), CurrentMine, CurrentEnemy, battleTempStat);
                 Battle = BattleButtonState.NextState;
                 myMove = 0;
             }
 
-            if (GUI.Button(ForthPos, Mine.skillList[3].skillName))
+            if (GUI.Button(ForthPos, SkillData.retSkillName(CurrentMine.retSkillList()[3])))
             {
-                damage = a.BattleDamageCalculate(Mine.skillList[3], Mine, Enemy);
+                damage = a.BattleDamageCalculate(SkillData.retSkillInfo(CurrentMine.retSkillList()[3]), CurrentMine, CurrentEnemy, battleTempStat);
                 Battle = BattleButtonState.NextState;
                 myMove = 0;
             }
@@ -155,7 +155,7 @@ public class BattleButtonManage : MonoBehaviour
             
             //int b = (int)Random.value;  //random으로 0에서 3의 값을 구한다.
             int b = 0;
-            myToOppoDamage = a.BattleDamageCalculate(Enemy.skillList[b], Enemy, Mine);
+            myToOppoDamage = a.BattleDamageCalculate(SkillData.retSkillInfo(CurrentEnemy.retSkillList()[b]), CurrentEnemy, CurrentMine, battleTempStat);
                 
             
 

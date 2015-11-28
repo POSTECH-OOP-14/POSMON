@@ -55,6 +55,7 @@
      <Compile Include="Assets\Item.cs" />
      <Compile Include="Assets\MoveToMain.cs" />
      <Compile Include="Assets\SkillInfo.cs" />
+     <Compile Include="Assets\SkillInfoList.cs" />
      <Compile Include="Assets\Student.cs" />
      <Compile Include="Assets\StudentInfo.cs" />
      <Compile Include="Assets\showLifeScr.cs" />

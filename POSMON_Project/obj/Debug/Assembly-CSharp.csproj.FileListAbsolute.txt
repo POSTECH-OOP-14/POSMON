@@ -22,3 +22,4 @@ C:\Users\MoonCall\Desktop\작업실\객체\POSMON_Project\POSMON_Project\obj\Deb
 C:\Users\MoonCall\Desktop\작업실\객체\POSMON_Project\POSMON_Project\obj\Debug\Assembly-CSharp.pdb
 C:\Users\MoonCall\Desktop\WorkShop\OOP\POSMON_PROJECT_GIT\POSMON_Project\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
 C:\Users\MoonCall\Desktop\WorkShop\OOP\POSMON_PROJECT_GIT\POSMON_Project\obj\Debug\Assembly-CSharp.dll
+C:\Users\LG\Documents\POSMON\POSMON_Project\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
