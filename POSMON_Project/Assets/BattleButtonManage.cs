@@ -41,6 +41,9 @@ public class BattleButtonManage : MonoBehaviour
     public CharacterStatus studentInfo;
     public Student[] EnemyStudentList;
 
+    //information about skill
+    public SkillInfo SkillData;
+
     // get the battle related code 
     BattleScene a = new BattleScene();
 
@@ -114,8 +117,8 @@ public class BattleButtonManage : MonoBehaviour
         }
         if (Battle == BattleButtonState.AttackState)
         {
-            int alived = 0;
-            if (GUI.Button(FirstPos,Mine.skillList[0].skillName))
+            alived = 0;
+            if (GUI.Button(FirstPos,CurrentMine.retSkillList[0]))
             {
                 damage = a.BattleDamageCalculate(Mine.skillList[0], Mine, Enemy);
                 Battle = BattleButtonState.NextState;
@@ -212,19 +215,20 @@ public class BattleButtonManage : MonoBehaviour
                 }
 
                 //player attacks
-            
-
+                if (myMove == 0)
+                {
+                    alived = CurrentEnemy.getDamage(damage);
+                    if (alived == 1) //if enemy student fainted.
+                    {
+                        //give exp;
+                        CurrentMine.setExp(CurrentEnemy.getExp());
+                        //change student;
+                        //
+                        Battle = BattleButtonState.DefaultState;
+                    }
+                }
+                Battle = BattleButtonState.DefaultState;
             }
-/*            if (alived != 0)    //my student is dead
-            {
-                //change pokemon;
-            }
-            if (alived != 0)    // my student is dead.
-            {
-                //change pokemon;
-            }
-        
-   */     
         
         }
 

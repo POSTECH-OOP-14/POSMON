@@ -22,6 +22,7 @@ static class Constants
 
 public class Student{
     private string[] skill=new string[4];//스킬배열
+    private int[] skillNumberList = new int[4]; //tempory skill list
     private string department;//학과
     private int[] stat=new int[6];//능력치배열
     private int index;//포스몬의 번호
@@ -30,6 +31,18 @@ public class Student{
     private int exp;
     private int HP;
     private Texture StuImage;
+
+    public Student(int[] _skill,string _department,int[] _stat,int _level, int _Hp, Texture image)
+    {
+     skillNumberList = _skill;
+        department = _department;
+        stat = _stat;
+        level = _level;
+        HP = _Hp;
+        StuImage = image;
+    }
+
+
     public Student(stu_no n)
     {
         switch (n)
@@ -184,6 +197,11 @@ public class Student{
     public int getExp()
     {
         return this.exp;
+    }
+
+    public int[] retSkillList()
+    {
+        return skillNumberList;
     }
 }
 
