@@ -5,9 +5,11 @@ using System.Collections;
 public class GUIbuttonsho : MonoBehaviour
 {
     public Camera cam;
+    bool menuToggle = false;
+    int toggleDelay = 0;
 
     private List<Item> myList = new List<Item>();
-    private GUIText guiConsole;
+    private GUIText guiConsole = new GUIText();
     private int index = 0;
     private bool isClicked=false;
     private int selected = 0;
@@ -31,6 +33,24 @@ public class GUIbuttonsho : MonoBehaviour
         it = new Item(item_no.CURE2);
         myList.Add(it);
         index++;
+        it = new Item(item_no.CURE6);
+        myList.Add(it);
+        index++;
+        it = new Item(item_no.CURE11);
+        myList.Add(it);
+        index++;
+        it = new Item(item_no.CURE8);
+        myList.Add(it);
+        index++;
+        it = new Item(item_no.CAPTURE1);
+        myList.Add(it);
+        index++;
+        it = new Item(item_no.CAPTURE4);
+        myList.Add(it);
+        index++;
+        it = new Item(item_no.CAPTURE2);
+        myList.Add(it);
+        index++;
     }
 
     // Use this for initialization
@@ -42,49 +62,81 @@ public class GUIbuttonsho : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        toggleDelay++;
+        if (Input.GetKey(KeyCode.Z) && toggleDelay > 30)
+        {
+            menuToggle = !menuToggle;
+            toggleDelay = 0;
+        }
+        if (Input.GetKey(KeyCode.X) && toggleDelay > 30)
+        {
+            GameObject.Find("GameObject (1)").GetComponent<GUIbuttonsbat>().setMenuToggle();
+            toggleDelay = 0;
+        }
     }
 
     void OnGUI()
     {
+        
+        GUI.skin.button.fontSize = 16;
+        GUI.skin.box.fontSize = 20;        
+
         Rect info = new Rect(45 + cam.pixelWidth / 4, 10, cam.pixelWidth / 3, cam.pixelHeight - 20);
         Rect purchase = new Rect(60+cam.pixelWidth/4+cam.pixelWidth/3, cam.pixelHeight/2, cam.pixelWidth/3, cam.pixelHeight/2-10);
 
-        if (isClicked)
+        if (menuToggle)
         {
-            GUI.Box(info, text);
-            GUI.Box(purchase, text2);
-            if(GUI.Button(new Rect(90+cam.pixelWidth/12*7, cam.pixelHeight/4*3, cam.pixelWidth/8, cam.pixelHeight/8), "YES")){
-                //player inventory와 소지하고 있는 돈 업데이트
-            }
-            else if (GUI.Button(new Rect(115 + cam.pixelWidth / 24 * 17, cam.pixelHeight / 4 * 3, cam.pixelWidth / 8, cam.pixelHeight / 8), "NO"))
+            if (isClicked)
             {
-                isClicked = !isClicked;
-            }
-        }
 
-        for (int i = 0; i < index; i++)
-        {
-            if (GUI.Button(new Rect(15, 10 + cam.pixelWidth / 30 * i, cam.pixelWidth / 8, cam.pixelHeight / 20), myList[i].getName()))
-            {
-                text = "아이템 설명";
-                text2 = "\n";
-                isClicked = !isClicked;
-                selected = i;
-                text = text + "\n\n 아이템 이름 : " + myList[selected].getName();
-                text = text + "\n\n 아이템 종류 : ";
-                if (myList[selected].getType() == type.skill)
-                    text = text + "기술 머신";
-                else if (myList[selected].getType() == type.cure)
-                    text = text + "치료 아이템";
-                else if (myList[selected].getType() == type.capture)
-                    text = text + "포획 아이템";
-                text = text + "\n\n 설명 : " + myList[selected].getInfo();
-                text = text + "\n\n 가격: " + myList[selected].getPrice();
-                text2 = text2 + "아이템  \"" + myList[selected].getName() + "\" 을/를 선택하셨습니다. ";
-                text2 = text2 + "\n\n 구매하시겠습니까? "; 
+                GUIStyle style = new GUIStyle(GUI.skin.box);
+                Texture2D texture = new Texture2D(cam.pixelWidth / 3, cam.pixelHeight - 20);
+                for (int x = 0; x < cam.pixelWidth / 3; x++)
+                {
+                    for (int y = 0; y < cam.pixelHeight - 20; y++)
+                    {
+                        texture.SetPixel(x + 45 + cam.pixelWidth / 4, y+10, Color.yellow);
+                    }
+                }
+                texture.Apply();
+                style.normal.background = texture;
+
+                GUI.Box(info, text, style);
+                GUI.Box(purchase, text2);
+                if (GUI.Button(new Rect(90 + cam.pixelWidth / 12 * 7, cam.pixelHeight / 4 * 3, cam.pixelWidth / 8, cam.pixelHeight / 8), "YES"))
+                {
+                    //player inventory와 소지하고 있는 돈 업데이트
+
+                }
+                else if (GUI.Button(new Rect(115 + cam.pixelWidth / 24 * 17, cam.pixelHeight / 4 * 3, cam.pixelWidth / 8, cam.pixelHeight / 8), "NO"))
+                {
+                    isClicked = !isClicked;
+                }
             }
 
+            for (int i = 0; i < index; i++)
+            {
+                if (GUI.Button(new Rect(15, 10 + cam.pixelWidth / 30 * i, cam.pixelWidth / 8, cam.pixelHeight / 20), myList[i].getName()))
+                {
+                    text = "\n아이템 설명";
+                    text2 = "\n";
+                    isClicked = !isClicked;
+                    selected = i;
+                    text = text + "\n\n 아이템 이름 : " + myList[selected].getName();
+                    text = text + "\n\n 아이템 종류 : ";
+                    if (myList[selected].getType() == type.skill)
+                        text = text + "기술 머신";
+                    else if (myList[selected].getType() == type.cure)
+                        text = text + "치료 아이템";
+                    else if (myList[selected].getType() == type.capture)
+                        text = text + "포획 아이템";
+                    text = text + "\n\n 설명 : " + myList[selected].getInfo();
+                    text = text + "\n\n 가격: " + myList[selected].getPrice();
+                    text2 = text2 + "아이템  \"" + myList[selected].getName() + "\" 을/를 선택하셨습니다. ";
+                    text2 = text2 + "\n\n 구매하시겠습니까? ";
+                }
+
+            }
         }
     }
 }
