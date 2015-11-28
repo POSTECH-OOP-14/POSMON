@@ -9,7 +9,7 @@ public enum item_no
     QUEST1 = 10000, QUEST2, QUEST3, QUEST4, QUEST5, QUEST6, QUEST7, QUEST8, QUEST9
 };
 
-public enum status { paralysis, sleep, poison, none, all };
+public enum status { paralysis, sleep, poison, none, faint, all };
 
 public enum type { skill, cure, capture, quest };
 

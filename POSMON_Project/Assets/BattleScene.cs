@@ -49,4 +49,48 @@ public class BattleScene {
           
         return (int)damage;
     }
+
+    //calculate who will gonna act first at battle,
+    //normally this will determine by speed of 
+    //intput 0 is someone changed student or use item,
+    public int CalFirstGo(int mySpeed, int EnemySpeed, int[] battletempStat)
+    {
+        if (mySpeed == 0)
+            return 0;
+        else if (EnemySpeed == 0)
+            return 1;
+        else{
+            if (mySpeed * battletempStat[4] >= EnemySpeed * battletempStat[10])
+                return 1;
+            else
+                return 0;
+        }
+    }
+    public Student changeStudent(Student[] a)
+    {
+        int repeat = 0;
+        int i = 0;
+        while (repeat == 0)
+        {
+            while (i == 0)
+            {
+                if (Input.GetKey(KeyCode.Alpha1))
+                    i = 1;
+                if (Input.GetKey(KeyCode.Alpha2))
+                    i = 2;
+                if (Input.GetKey(KeyCode.Alpha3))
+                    i = 3;
+                if (Input.GetKey(KeyCode.Alpha4))
+                    i = 4;
+                if (Input.GetKey(KeyCode.Alpha5))
+                    i = 5;
+                if (Input.GetKey(KeyCode.Alpha6))
+                    i = 6;
+            }
+            if (a[i] != null || a[i].retStuStatus() != status.faint)
+                repeat = 1;
+        }
+        return a[i];
+    }
+
 }

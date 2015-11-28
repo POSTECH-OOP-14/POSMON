@@ -60,7 +60,7 @@ public class CharacterStatus : MonoBehaviour
             student_list[index] = student;
     }
 
-    Student getStudent(int i)
+    public Student getStudent(int i)
     {
         return student_list[i];
     }
@@ -80,6 +80,8 @@ public class CharacterStatus : MonoBehaviour
             student_list[second] = temp;
         }
     }
+
+    
     /*****************************************/
 
 	// Use this for initialization

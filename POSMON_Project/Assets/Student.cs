@@ -29,7 +29,7 @@ public class Student{
     private int level;
     private int exp;
     private int HP;
-
+    private Texture StuImage;
     public Student(stu_no n)
     {
         switch (n)
@@ -59,7 +59,7 @@ public class Student{
         level++;
     }
 
-    void setExp(int exp)
+    public void setExp(int exp)
     {
         this.exp += exp;
         if (this.exp > 100)
@@ -147,8 +147,43 @@ public class Student{
         }
         else
             return this.level;
+    }
+    //set status 
+    public int giveAStatus(status state)
+    {
+        if (this.st == status.none)
+            this.st = state;
+        else if (state == status.faint)
+            this.st = state;
+        else 
+        {
+            //this state, student cannot change its state
+            return 1;
+        }
+        return 0;
+    }
+    //return stuStatus
+    public status retStuStatus()
+    {
+        return this.st;
+    }
 
-        
+    //give damage to student
+    public int getDamage(int damage)
+    {
+        HP -= damage;
+        if (HP < 0)
+        {
+            HP = 0;
+
+            return 1;
+        }
+
+        return 0;
+    }
+    public int getExp()
+    {
+        return this.exp;
     }
 }
 

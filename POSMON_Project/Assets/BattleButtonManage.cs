@@ -20,7 +20,7 @@ public class BattleButtonManage : MonoBehaviour
 
     //save temporay stat. 
     //my students int(atk), str(spcial atk), mental(def), guard(special def), sense(speed), health
-    //opponent students "same" 
+    //opponent students int(atk), str(spcial atk), mental(def), guard(special def), sense(speed), health
     // each data save integer. applyed by (n+2)/n ~ 2/(n+2)
     public int[] battleTempStat =new int[12]; 
 
@@ -38,10 +38,10 @@ public class BattleButtonManage : MonoBehaviour
     public Student CurrentEnemy;
 
     //set the information of 
-    public ChangeCharacter studentInfo;
+    public CharacterStatus studentInfo;
     public Student[] EnemyStudentList;
 
-    // get the every battle 
+    // get the battle related code 
     BattleScene a = new BattleScene();
 
     // testing GUI button
@@ -75,9 +75,19 @@ public class BattleButtonManage : MonoBehaviour
 
     void OnGUI()
     {
-        int damage = 0; //save the damage that student give to opponent.
+        int myToOppoDamage = 0; //save the damage that student give to opponent.
+        int damage = 0;
         int MyStudentAlived = 0; //save the info wether player student is dead.
         int OppoStudentAlived = 0; // save the info wether opponent student is dead.
+        int alived = 0; //check wther student get faint.
+        //get speed, use for check whos first.
+        int MyMoveSpeed;
+        int EnemyMoveSpeed;
+        
+        //get what people selected to do. 0 is attack, 1 is item, 2 is change, 3 is run.
+        int myMove;
+        int enemyMove;
+        
 
         Rect FirstPos = new Rect(cam.pixelWidth * 5/7 - 10, cam.pixelHeight * 5 / 7 - 10, cam.pixelWidth / 7, cam.pixelHeight / 7);
         Rect SecondPos = new Rect(cam.pixelWidth * 6/7 - 10, cam.pixelHeight * 5 / 7 - 10, cam.pixelWidth / 7, cam.pixelHeight / 7);
@@ -98,6 +108,7 @@ public class BattleButtonManage : MonoBehaviour
             if (GUI.Button(ForthPos, "Run"))
             {
                 Battle = BattleButtonState.RunState;
+                //text message 
                 Application.LoadLevel(1);
             }
         }
@@ -107,25 +118,27 @@ public class BattleButtonManage : MonoBehaviour
             if (GUI.Button(FirstPos,Mine.skillList[0].skillName))
             {
                 damage = a.BattleDamageCalculate(Mine.skillList[0], Mine, Enemy);
-                alived = Mine.getDamage(damage);
                 Battle = BattleButtonState.NextState;
+                myMove = 0;
             }
             if (GUI.Button(SecondPos, Mine.skillList[1].skillName))
             {
                 damage = a.BattleDamageCalculate(Mine.skillList[1], Mine, Enemy);
-                alived = Mine.getDamage(damage);
                 Battle = BattleButtonState.NextState;
+                myMove = 0;
             }
             if (GUI.Button(ThirdPos, Mine.skillList[2].skillName))
             {
                 damage = a.BattleDamageCalculate(Mine.skillList[2], Mine, Enemy);
-                alived = Enemy.getDamage(damage);
+                Battle = BattleButtonState.NextState;
+                myMove = 0;
             }
 
             if (GUI.Button(ForthPos, Mine.skillList[3].skillName))
             {
                 damage = a.BattleDamageCalculate(Mine.skillList[3], Mine, Enemy);
-                alived = Enemy.getDamage(damage);
+                Battle = BattleButtonState.NextState;
+                myMove = 0;
             }
         }
 
@@ -135,16 +148,76 @@ public class BattleButtonManage : MonoBehaviour
             //npc select its move.
             //
             //calculate who is first to move.
+            // enemy attacks
+            
+            //int b = (int)Random.value;  //random으로 0에서 3의 값을 구한다.
+            int b = 0;
+            myToOppoDamage = a.BattleDamageCalculate(Enemy.skillList[b], Enemy, Mine);
+                
+            
 
+            int whoFirst = a.CalFirstGo(CurrentMine.retStuStat(4),CurrentEnemy.retStuStat(4),battleTempStat);
+
+            if (whoFirst == 0)  //player go first
+            {
+                if (myMove == 0)
+                {
+                    alived = CurrentEnemy.getDamage(damage);
+                    if (alived == 1) //if enemy student fainted.
+                    {
+                        //give exp;
+                        CurrentMine.setExp(CurrentEnemy.getExp());
+                        //change student;
+                        //
+                        Battle = BattleButtonState.DefaultState;
+                    }
+                }
+
+                //enemy attacks.
+                alived = CurrentMine.getDamage(myToOppoDamage);
+                if (alived == 1)    // if our student dead.
+                {
+                    CurrentMine.giveAStatus(status.faint);
+                    //check battle end;
+                    if (0 == 0)
+                    {
+                        //battle ended.
+                    }
+                    else
+                    {
+                        //changeStudent.
+                        //currentMine = a.changeStudent(studentInfo.getStudent());
+
+                    }
+                }
+                Battle = BattleButtonState.DefaultState;
+            }
+            else //enemy go first
+            {
+                //enemy attacks.
+                alived = CurrentMine.getDamage(myToOppoDamage);
+                if (alived == 1)    // if our student dead.
+                {
+                    CurrentMine.giveAStatus(status.faint);
+                    //check battle end;
+                    if (0 == 0)
+                    {
+                        //battle ended.
+                    }
+                    else
+                    {
+                        //changeStudent.
+                        //currentMine = a.changeStudent(studentInfo.getStudent());
+                    }
+                }
+
+                //player attacks
+            
+
+            }
 /*            if (alived != 0)    //my student is dead
             {
                 //change pokemon;
-            }
-            else // enemy attacks
-            {
-                int b = (int)Random.value;  //random으로 0에서 3의 값을 구한다.
-                damage = a.BattleDamageCalculate(Enemy.skillList[b], Enemy, Mine);
-                alived = Mine.getDamage(damage);
             }
             if (alived != 0)    // my student is dead.
             {
