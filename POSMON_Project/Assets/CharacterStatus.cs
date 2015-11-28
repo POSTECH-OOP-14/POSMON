@@ -26,6 +26,7 @@ public class CharacterStatus : MonoBehaviour
     private const float WALK_DIST = 1.0f / WALK_SLICE;
 
     /* movement information */
+    private bool blocked = false;
     private int walk_remaining = 0;
     private status moving_status = status.IDLE;
     private face_direction direction = face_direction.DOWN;
@@ -34,7 +35,7 @@ public class CharacterStatus : MonoBehaviour
     private Item[] inventory = new Item[256];
 
     /**** methods related to inventory ****/
-    void setInventory(Item item, int index)
+    public void setInventory(Item item, int index)
     {
         if (inventory[index] != null)
             return;
@@ -42,7 +43,21 @@ public class CharacterStatus : MonoBehaviour
             inventory[index] = item;
     }
 
-    Item getInventory(int i)
+    public bool setInventory(Item item)
+    {
+        for (int i = 0; i < 256; i++)
+        {
+            if (inventory[i] == null)
+            {
+                inventory[i] = item;
+                return true;
+            }
+        }
+        /* No available inventory */
+        return false;
+    }
+
+    public Item getInventory(int i)
     {
         return inventory[i];
     }
@@ -52,7 +67,7 @@ public class CharacterStatus : MonoBehaviour
     private Student[] student_list = new Student[6];
 
     /**** methods related to Student list ****/
-    void setStudent(Student student, int index)
+    public void setStudent(Student student, int index)
     {
         if (student_list[index] != null)
             return;
@@ -60,11 +75,72 @@ public class CharacterStatus : MonoBehaviour
             student_list[index] = student;
     }
 
-    Student getStudent(int i)
+    public bool setStudent(Student student)
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            if (student_list[i] == null)
+            {
+                student_list[i] = student;
+                return true;
+            }
+        }
+        /* no available space for additional student */
+        return false;
+    }
+
+    public Student getStudent(int i)
     {
         return student_list[i];
     }
     /*****************************************/
+
+
+    private Quest[] quest_list = new Quest[100];
+    /**** methods related to Quest ****/
+    public bool addQuest(ref Quest q)
+    {
+        for (int i = 0; i < 100; i++)
+        {
+            if (quest_list[i] == null)
+                quest_list[i] = q;
+            return true;
+        }
+        return false;
+    }
+
+    public Quest getQuest(int index)
+    {
+        return quest_list[index];
+    }
+
+    public Quest isTarget(int NPCNumber)
+    {
+        for (int i = 0; i < 100; i++)
+        {
+            if (quest_list[i] != null)
+            {
+                if (quest_list[i].getTarget() == NPCNumber)
+                    return quest_list[i];
+            }
+        }
+        return null;
+    }
+
+    public bool deleteQuest(ref Quest q)
+    {
+        for (int i = 0; i < 100; i++)
+        {
+            if (quest_list[i] == q)
+            {
+                quest_list[i] = null;
+                return true;
+            }
+        }
+        return false;
+    }
+    /**********************************/
+    
 
 	// Use this for initialization
 	void Start ()
@@ -73,6 +149,24 @@ public class CharacterStatus : MonoBehaviour
         moving_status = status.IDLE;
         direction = face_direction.DOWN;
 	}
+
+    public int getStudentCount()
+    {
+        int count = 0;
+        for (int i = 0; i < 6; i++)
+            if (student_list[i] != null)
+                count++;
+        return count;
+    }
+
+    public int getItemCount()
+    {
+        int count = 0;
+        for (int i = 0; i < 256; i++)
+            if (inventory[i] != null)
+                count++;
+        return count;
+    }
 
     private void SetMovement()
     {
@@ -144,11 +238,14 @@ public class CharacterStatus : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        /* Set Movement Mode */
-        SetMovement();
+        if (blocked != true)
+        {
+            /* Set Movement Mode */
+            SetMovement();
 
-        /* Move */
-        UpdateMovement();
+            /* Move */
+            UpdateMovement();
+        }
 	}
 
     void OnCollisionEnter2D(Collision2D other)
@@ -169,10 +266,15 @@ public class CharacterStatus : MonoBehaviour
         if (other.gameObject.tag == "NPC")
         {
             /* When Collision occurred, if keyinput existed.... */
-            if (Input.GetKey(KeyCode.Z))
+            if (true)
             {
-                
+                other.gameObject.GetComponent<NPCStatus>().interaction(this.gameObject);                
             }
         }
+    }
+
+    public void setBlocked(bool block)
+    {
+        blocked = block;
     }
 }

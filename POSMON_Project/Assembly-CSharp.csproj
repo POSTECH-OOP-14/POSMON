@@ -51,12 +51,16 @@
      <Compile Include="Assets\CameraFollow.cs" />
      <Compile Include="Assets\ChangeCharacter.cs" />
      <Compile Include="Assets\CharacterStatus.cs" />
+     <Compile Include="Assets\Dialogue.cs" />
      <Compile Include="Assets\GameManager.cs" />
      <Compile Include="Assets\Item.cs" />
      <Compile Include="Assets\MoveToMain.cs" />
+     <Compile Include="Assets\NPCStatus.cs" />
+     <Compile Include="Assets\Quest.cs" />
      <Compile Include="Assets\SkillInfo.cs" />
      <Compile Include="Assets\Student.cs" />
      <Compile Include="Assets\StudentInfo.cs" />
+     <Compile Include="Assets\new_gui_menu.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
