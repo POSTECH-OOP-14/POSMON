@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CharacterStatus : MonoBehaviour
 {
-
+    public Camera cam;
     enum status
     {
         IDLE,
@@ -142,6 +142,7 @@ public class CharacterStatus : MonoBehaviour
     }
 	
 	// Update is called once per frame
+    private bool show = false;
 	void Update ()
     {
         /* Set Movement Mode */
@@ -149,6 +150,8 @@ public class CharacterStatus : MonoBehaviour
 
         /* Move */
         UpdateMovement();
+        if (Input.GetKeyDown("i"))
+            show = !show;
 	}
 
     void OnCollisionEnter2D(Collision2D other)
@@ -173,6 +176,87 @@ public class CharacterStatus : MonoBehaviour
             {
                 
             }
+        }
+    }
+    private string[] toolbar_str = { "Character", "Student", "Item" };
+    private int toolbarint = 0;
+    private Vector2 scroll = Vector2.zero;
+    private string[]  stu_toolbar;
+    private int stu_toolbarint = 0;
+    private string[] item_grid;
+    private int item_gridint =0;
+    private int k = 0;
+    void OnGUI()
+    {
+        if (show)
+        {
+
+            GUI.Box(new Rect(Screen.width / 8, Screen.height / 8, (Screen.width * 6) / 8, (Screen.height * 6) / 7), "Info");
+            toolbarint = GUI.Toolbar(new Rect(Screen.width / 6, Screen.height / 5, (Screen.width * 3) / 10, (Screen.height * 3) / 40), toolbarint, toolbar_str);
+            scroll = GUI.BeginScrollView(new Rect(Screen.width / 5, Screen.height / 3, (Screen.width * 3) / 5, (Screen.height * 3) / 5), scroll, new Rect(0, 0, Screen.width, Screen.height));
+            if (toolbarint == 1 && student_list[0] != null)
+            {
+                for (int i = 0; student_list[i] != null; i++)
+                {
+                    stu_toolbar[i] = student_list[i].getDept();
+                }
+                stu_toolbarint = GUI.Toolbar(new Rect(Screen.width / 20, (Screen.height / 20), 25, 10), stu_toolbarint, stu_toolbar);
+                for (int i = 0; student_list[i] != null; i++)
+                {
+                    if (stu_toolbarint == i)
+                    {
+                        GUI.Box(new Rect(Screen.width / 20, (Screen.height / 20) + 30, (Screen.width * 9) / 10, Screen.height / 2),
+                            "Level : " + student_list[i].getLevel().ToString() + "\n" +
+                            "HP : " + student_list[i].getHP().ToString() + "/" + student_list[i].getMAXHP().ToString() + "\n" +
+                            "Exp : " + student_list[i].getExp().ToString() + "/" + "100" + "\n" +
+                            "Status : " + student_list[i].retStuStatus().ToString() + "\n" +
+                            "Attack : " + student_list[i].retStuStat(0).ToString() + "\n" +
+                            "Special Attack : " + student_list[i].retStuStat(1).ToString() + "\n" +
+                            "Defence : " + student_list[i].retStuStat(2).ToString() + "\n" +
+                            "Special Defence : " + student_list[i].retStuStat(3).ToString() + "\n" +
+                            "Speed : " + student_list[i].retStuStat(4).ToString() + "\n");
+                    }
+                }
+            }
+            else if (toolbarint == 2 && inventory[0] != null)
+            {
+                for (k = 0; inventory[k] != null; k++)
+                {
+                    item_grid[k] = inventory[k].getName();
+                }
+                item_gridint = GUI.SelectionGrid(new Rect(Screen.width / 20, (Screen.height / 20), 25, 10), item_gridint, item_grid, (k + 1) / 4);
+                for (int i = 0; inventory[i] != null; i++)
+                {
+                    if (item_gridint == i)
+                    {
+                        if (GUI.Button(new Rect(Screen.width / 20, (Screen.height / 20) + 30, 25, 10), "Use"))
+                        {
+                            for (int j = 0; student_list[j] != null; j++)
+                            {
+                                stu_toolbar[j] = student_list[j].getDept();
+                            }
+                            stu_toolbarint = GUI.Toolbar(new Rect(Screen.width / 20, (Screen.height / 20) + 30, 25, 10), stu_toolbarint, stu_toolbar);
+                            for (int j = 0; student_list[j] != null; j++)
+                            {
+                                if (stu_toolbarint == j)
+                                {
+                                    inventory[i].useItem(inventory[i], student_list[j]);
+                                }
+                            }
+                        }
+                        GUI.Box(new Rect((Screen.width / 20) + 30, (Screen.height / 20) + 30, (Screen.width * 9) / 10, Screen.height / 2),
+                            "Type " + inventory[i].getType().ToString() + "\n" +
+                            "Status " + inventory[i].getStatus().ToString() + "\n" +
+                            "Amount " + inventory[i].getAmount().ToString() + "\n");
+                    }
+                }
+            }
+
+            GUI.EndScrollView();
+
+
+
+
         }
     }
 }
