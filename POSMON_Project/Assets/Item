@@ -24,6 +24,7 @@ public class Item
     private type type;//아이템 종류
     private double possibility;//포획 아이템 성공률
     private string info;//아이템 설명
+    private SkillInfo skillinfo;//기술머신의 스킬
 
     public Item(item_no n)
     {
@@ -38,6 +39,7 @@ public class Item
                     type = type.skill;
                     info = "안면강타 기술을 배웁니다.";
                     info = info + "\n\n 과에 상관없이 배울 수 있습니다.";
+                    skillinfo = new SkillInfo(23,name,30,0,1,new int[12]{0,0,0,0,0,0,0,0,0,0,0,0},status.none,10,10);
                     break;
                 }
             case item_no.SKILL2:
@@ -49,6 +51,7 @@ public class Item
                     type = type.skill;
                     info = "씨뿌리기 기술을 배웁니다.";
                     info = info + "\n\n상태이상 마비를 일으킬 수 있습니다.";
+                    skillinfo = new SkillInfo(24, name, 10, 0, 1, new int[12] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, status.paralysis, 10, 10);
                     break;
                 }
             case item_no.SKILL3:
@@ -60,6 +63,7 @@ public class Item
                     type = type.skill;
                     info = "날개펼치기 기술을 배웁니다.";
                     info = info + "\n\n날개를 펼쳐 술을 마시게 만듭니다.";
+                    skillinfo = new SkillInfo(25, name, 40, 0, 0, new int[12] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, status.none, 5, 5);
                     break;
                 }
             case item_no.SKILL4:
@@ -72,6 +76,7 @@ public class Item
                     st = status.sleep;
                     info = "오후2시수업 기술을 배웁니다.";
                     info = info + "\n\n상태이상 잠을 일으킵니다.";
+                    skillinfo = new SkillInfo(26, name, 20, 0, 1, new int[12] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, status.sleep, 10, 10);
                     break;
                 }
             case item_no.SKILL5:
@@ -82,6 +87,7 @@ public class Item
                     battle = false;
                     type = type.skill;
                     info = "수학퀴즈 기술을 배웁니다.";
+                    skillinfo = new SkillInfo(27, name, 20, 0, 0, new int[12] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, status.none, 10, 10);
                     break;
                 }
             case item_no.CURE1:
@@ -309,6 +315,11 @@ public class Item
 
         }
 
+    }
+
+    public SkillInfo getSkillInfo()
+    {
+        return skillinfo;
     }
 
     public string getInfo()
