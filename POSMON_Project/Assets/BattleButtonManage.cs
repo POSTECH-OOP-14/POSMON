@@ -38,11 +38,11 @@ public class BattleButtonManage : MonoBehaviour
     public Student CurrentEnemy;
 
     //set the information of 
-    public CharacterStatus studentInfo;
+    public Student[] MineStudentList;
     public Student[] EnemyStudentList;
 
     //information about skill
-    SkillInfo SkillData;
+    SkillList SkillData;
 
     // get the battle related code 
     BattleScene a = new BattleScene();
@@ -56,8 +56,12 @@ public class BattleButtonManage : MonoBehaviour
         //init battleTempStat
         for (int i = 0; i < 12; i++)
             battleTempStat[i] = 0;
-        //   Mine = new StudentInfo();
-       // Enemy = new StudentInfo();
+        //MineStudentList = GetComponent<CharacterStatus>().getStuList();
+        StudentInfo forDebug = new StudentInfo();
+        MineStudentList = forDebug.myDebugStuList;
+        EnemyStudentList = gameObject.GetComponent<StudentInfo>().enemyDebugStuList;
+        CurrentMine = gameObject.GetComponent<StudentInfo>().retStuData(0, 0);
+        CurrentEnemy = gameObject.GetComponent<StudentInfo>().retStuData(1, 0);
     }
 
     // Update is called once per frame
@@ -114,6 +118,8 @@ public class BattleButtonManage : MonoBehaviour
                 //text message 
                 Application.LoadLevel(1);
             }
+            if (CurrentMine == null)
+                Debug.Log("current mine is empty");
         }
         if (Battle == BattleButtonState.AttackState)
         {
@@ -144,32 +150,45 @@ public class BattleButtonManage : MonoBehaviour
                 myMove = 0;
             }
         }
-
+        else if (Battle == BattleButtonState.ExchangeState)
+        {
+            int i= 0;
+            i = DrawStudentGUI(MineStudentList);
+            if(i == 1){
+                myMove = 2;
+                Battle = BattleButtonState.NextState;
+            }
+        }
         //if player give input, the battle proceed.
-        if (Battle == BattleButtonState.NextState)
+        else if (Battle == BattleButtonState.NextState)
         {
             //npc select its move.
             //
             //calculate who is first to move.
             // enemy attacks
-            
             //int b = (int)Random.value;  //random으로 0에서 3의 값을 구한다.
             int b = 0;
             myToOppoDamage = a.BattleDamageCalculate(SkillData.retSkillInfo(CurrentEnemy.retSkillList()[b]), CurrentEnemy, CurrentMine, battleTempStat);
-                
-            
+
+
+            // 명령을 내리고 나서 배틀을 시작하기 전에 상태이상이나 특수효과로 공격하는지 마는지 확인한다.
+            int battleStartMove = a.checkBattleTurnStartEvent(CurrentMine); 
 
             int whoFirst = a.CalFirstGo(CurrentMine.retStuStat(4),CurrentEnemy.retStuStat(4),battleTempStat);
 
             if (whoFirst == 0)  //player go first
             {
-                if (myMove == 0)
+                if (battleStartMove != 0)
+                { 
+                    //여기서 상태이상으로 행동이 종료되었을 때 메세지를 출력하면 된다.,
+                }
+                else if (myMove == 0)
                 {
                     alived = CurrentEnemy.getDamage(damage);
                     if (alived == 1) //if enemy student fainted.
                     {
-                        //give exp;
-                        CurrentMine.setExp(CurrentEnemy.getExp());
+                        CurrentMine.setExp(CurrentEnemy.getExp()); //give exp;
+                        
                         //change student;
                         //
                         Battle = BattleButtonState.DefaultState;
@@ -178,10 +197,15 @@ public class BattleButtonManage : MonoBehaviour
 
                 //enemy attacks.
                 alived = CurrentMine.getDamage(myToOppoDamage);
-                if (alived == 1)    // if our student dead.
+                battleStartMove = a.checkBattleTurnStartEvent(CurrentEnemy); 
+                if (battleStartMove != 0)
+                {
+                    //여기서 상태이상으로 행동이 종료되었을 때 메세지를 출력하면 된다.,
+                }
+                else if (alived == 1)    // if our student dead.
                 {
                     CurrentMine.giveAStatus(status.faint);
-                    //check battle end;
+                        //check battle end;
                     if (0 == 0)
                     {
                         //battle ended.
@@ -215,6 +239,10 @@ public class BattleButtonManage : MonoBehaviour
                 }
 
                 //player attacks
+                if (battleStartMove != 0)
+                {
+                    //여기서 상태이상으로 행동이 종료되었을 때 메세지를 출력하면 된다.,
+                }
                 if (myMove == 0)
                 {
                     alived = CurrentEnemy.getDamage(damage);
@@ -227,10 +255,30 @@ public class BattleButtonManage : MonoBehaviour
                         Battle = BattleButtonState.DefaultState;
                     }
                 }
+
+
+                a.checkBattleTurnEndEvent(CurrentMine);
+                a.checkBattleTurnEndEvent(CurrentEnemy);
+
                 Battle = BattleButtonState.DefaultState;
             }
-        
         }
+    }
+
+    int DrawStudentGUI(Student[] list)
+    {
+        Rect StuPos1 = new Rect(cam.pixelWidth * 1 / 3, cam.pixelHeight / 9, cam.pixelWidth / 3, cam.pixelHeight / 9);
+        Rect StuPos2 = new Rect(cam.pixelWidth * 1 / 3, cam.pixelHeight * 2 / 9 + 20, cam.pixelWidth / 3, cam.pixelHeight / 9);
+        Rect StuPos3 = new Rect(cam.pixelWidth * 1 / 3, cam.pixelHeight * 3 / 9 + 40, cam.pixelWidth / 3, cam.pixelHeight / 9);
+        Rect StuPos4 = new Rect(cam.pixelWidth * 1 / 3, cam.pixelHeight * 4 / 9 + 60, cam.pixelWidth / 3, cam.pixelHeight / 9);
+        Rect StuPos5 = new Rect(cam.pixelWidth * 1 / 3, cam.pixelHeight * 5 / 9 + 80, cam.pixelWidth / 3, cam.pixelHeight / 9);
+        Rect StuPos6 = new Rect(cam.pixelWidth * 1 / 3, cam.pixelHeight * 6 / 9 + 100, cam.pixelWidth / 3, cam.pixelHeight / 9);
+
+        if (GUI.Button(StuPos1, list[0].retStuIndex().ToString()))
+            return 1;
+
+        return 0;
 
     }
+
 }

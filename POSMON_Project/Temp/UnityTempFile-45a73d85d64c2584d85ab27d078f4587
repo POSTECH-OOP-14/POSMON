@@ -85,6 +85,7 @@ Assets/GameManager.cs
 Assets/Item.cs
 Assets/MoveToMain.cs
 Assets/SkillInfo.cs
+Assets/SkillList.cs
 Assets/Student.cs
 Assets/StudentInfo.cs
 Assets/showLifeScr.cs

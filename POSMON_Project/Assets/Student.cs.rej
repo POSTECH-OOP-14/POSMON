@@ -1,0 +1,9 @@
+diff a/POSMON_Project/Assets/Student.cs b/POSMON_Project/Assets/Student.cs	(rejected hunks)
+@@ -198,6 +198,7 @@
+     {
+         return this.exp;
+     }
++
+     public int[] retSkillList()
+     {
+         return skillNumberList;

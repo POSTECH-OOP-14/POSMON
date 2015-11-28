@@ -4,25 +4,30 @@ using System.Collections;
 public class showLifeScr : MonoBehaviour {
     GameObject mineStu;
     GUIText guiTt;
-    public Texture alpha;
+    public Texture lifebar;
+    public Texture background;
+    int tempCurHp;
+    int tempLvl;
+    int tempMaxHp;
+    Student a;
     // Use this for initialization
 	
     
     void Start () {
-        mineStu = GameObject.Find("battleBackground");
+        a = GameObject.Find("battleBackground").GetComponent<BattleButtonManage>().CurrentMine;
         guiTt = gameObject.GetComponent<GUIText>();
 	}
 		// Update is called once per frame
 	void Update () {
-        int tempCurHp = mineStu.GetComponent<BattleButtonManage>().Mine.retStudentCurHealth();
-        int tempLvl = mineStu.GetComponent<BattleButtonManage>().Mine.retStudentLevel();
-        int tempMaxHp = mineStu.GetComponent<BattleButtonManage>().Mine.retStudentMaxHealth();
+        tempCurHp = a.retHp();
+        tempLvl = mineStu.GetComponent<BattleButtonManage>().CurrentMine.retLevel();
+        tempMaxHp = mineStu.GetComponent<BattleButtonManage>().CurrentMine.retMaxHp();
         guiTt.text = "Lv "+tempLvl.ToString()+" "+tempCurHp+"/"+tempMaxHp;
     }
 
-    void OnGUI() { 
-        
+    void OnGUI() {
 
+       // Rect block = new Rect(gameObject.transform.position.x,gameObject.transform.position.y, 100,50);
 
     }
 }

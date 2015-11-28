@@ -80,6 +80,10 @@ public class CharacterStatus : MonoBehaviour
             student_list[second] = temp;
         }
     }
+    public Student[] getStuList()
+    {
+        return student_list;
+    }
 
     
     /*****************************************/

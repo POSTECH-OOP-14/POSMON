@@ -24,6 +24,7 @@ public class Student{
     private string[] skill=new string[4];//스킬배열
     private int[] skillNumberList = new int[4]; //tempory skill list
     private string department;//학과
+    //0 is atk, 1 is special atk, 2 is def, 3 is special def, 4 is speed, 5 is hp
     private int[] stat=new int[6];//능력치배열
     private int index;//포스몬의 번호
     private status st;//상태(정상, 마비, 잠, 독)
@@ -155,7 +156,7 @@ public class Student{
         if (i < 6)
         {
             int a;
-            a = this.stat[i] / this.level * 10;
+            a = this.stat[i] *(this.level+5) /15;
             return a;
         }
         else
@@ -176,32 +177,24 @@ public class Student{
         return 0;
     }
     //return stuStatus
-    public status retStuStatus()
-    {
-        return this.st;
-    }
+    public status retStuStatus()    { return this.st; }
 
-    //give damage to student
+    //give damage to student, if student die set faint and return 1. else return 0
     public int getDamage(int damage)
     {
         HP -= damage;
         if (HP < 0)
         {
             HP = 0;
-
+            this.setStatus(status.faint);
             return 1;
         }
-
         return 0;
     }
-    public int getExp()
-    {
-        return this.exp;
-    }
-
-    public int[] retSkillList()
-    {
-        return skillNumberList;
-    }
+    public int getExp() {   return this.exp; }
+    public int[] retSkillList() { return skillNumberList;   }
+    public int retHp()  {   return this.HP; }
+    public int retLevel() { return this.level; }
+    public int retMaxHp() { return this.retStuStat(5) * 5; }
 }
 

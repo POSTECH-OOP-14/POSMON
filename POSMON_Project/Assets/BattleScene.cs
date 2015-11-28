@@ -6,8 +6,7 @@ using System.Collections;
 public class BattleScene {
     int menuState;
     AttributeMatrix Attribute = new AttributeMatrix();
-    // Use this for initialization
-
+    
 
     
 
@@ -110,4 +109,38 @@ public class BattleScene {
         return a[i];
     }
 
+    public void checkBattleTurnEndEvent(Student stu)
+    {
+        if (stu.retStuStatus() == status.poison)
+            stu.getDamage((int)(stu.retStuStat(5)*5.0/8));
+    }
+
+    //student doesn't move on this turn when return 1(by sleep), 2(by paralyze). 0 is normal.
+    public int checkBattleTurnStartEvent(Student stu)
+    {
+        if (stu.retStuStatus() == status.sleep)
+        {
+            float value = Random.value;
+            if (value <= 0.2f)    {
+                stu.giveAStatus(status.none);
+                return 0;
+            }
+            else {
+                return 1;
+            }
+        }
+        if (stu.retStuStatus() == status.paralysis)
+        {
+            float value = Random.value;
+            if (value <= 0.25f)
+            {
+                return 0;
+            }
+            else
+            {
+                return 2;
+            }
+        }
+        return 0;
+    }
 }

@@ -3,10 +3,8 @@
 -nowarn:0169
 -out:Temp/Assembly-CSharp.dll
 -r:"D:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll"
--r:"D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll"
 -r:"D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll"
 -r:"D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll"
--r:"D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll"
 -r:"D:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll"
 -r:"D:/Program Files/Unity/Editor/Data\Managed/Mono.Cecil.dll"
 -r:"D:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll"
@@ -87,6 +85,7 @@ Assets/GameManager.cs
 Assets/Item.cs
 Assets/MoveToMain.cs
 Assets/SkillInfo.cs
+Assets/SkillList.cs
 Assets/Student.cs
 Assets/StudentInfo.cs
 Assets/showLifeScr.cs
