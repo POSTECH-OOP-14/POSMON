@@ -20,6 +20,16 @@ public class SkillInfo {
         effect = _effect;
         giveStatus = _status;
     }
+    public SkillInfo(int _number)
+    {
+        skillName = SkillList[_number].retSkillName();
+        number = _number;
+        damage = SkillList[_number].retDamage();
+        type = SkillList[_number].retType();
+        AtkType = SkillList[_number].retAtkType();
+        effect = SkillList[_number].retEffect();
+        giveStatus = SkillList[_number].retGiveStatus();
+    }
     public SkillInfo[] SkillList = new SkillInfo[5]
         {
             //

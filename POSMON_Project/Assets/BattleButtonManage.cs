@@ -118,7 +118,7 @@ public class BattleButtonManage : MonoBehaviour
         if (Battle == BattleButtonState.AttackState)
         {
             alived = 0;
-            if (GUI.Button(FirstPos,CurrentMine.retSkillList[0]))
+            if (GUI.Button(FirstPos,skillCurrentMine.retSkillList()[0]))
             {
                 damage = a.BattleDamageCalculate(Mine.skillList[0], Mine, Enemy);
                 Battle = BattleButtonState.NextState;
