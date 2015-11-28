@@ -9,7 +9,7 @@ public enum item_no
     QUEST1 = 10000, QUEST2, QUEST3, QUEST4, QUEST5, QUEST6, QUEST7, QUEST8, QUEST9
 };
 
-public enum status { paralysis, sleep, poison, none, all };
+public enum status { paralysis, sleep, poison, none, all,faint };
 
 public enum type { skill, cure, capture, quest };
 
@@ -22,6 +22,8 @@ public class Item
     private int amount;//회복 아이템이 회복시키는 HP
     private status st;//회복 아이템이 회복시키는 상태
     private type type;//아이템 종류
+    private double possibility;//포획 아이템 성공률
+    private string info;//아이템 설명
 
     public Item(item_no n)
     {
@@ -67,33 +69,36 @@ public class Item
                 {
                     name = "나무열매";
                     index = (int)n;
-                    price = 50;
-                    amount = 5;
+                    price = 500;
+                    amount = 15;
                     battle = true;
                     type = type.cure;
                     st = status.none;
+                    info = "폭풍의 언덕의 나무에서 직접 채취한 나무열매! 향긋향긋~ ";
                     break;
                 }
             case item_no.CURE2:
                 {
-                    name = "학식";
+                    name = "콜라";
                     index = (int)n;
-                    price = 120;
-                    amount = 7;
+                    price = 1200;
+                    amount = 30;
                     battle = true;
                     type = type.cure;
                     st = status.none;
+                    info = "탄산은 역시 콜라! 꿀꺾꿀꺾 끄어어어억";
                     break;
                 }
             case item_no.CURE3:
                 {
-                    name = "초코에몽";
+                    name = "몬스터 드링크";
                     index = (int)n;
-                    price = 200;
-                    amount = 20;
+                    price = 2000;
+                    amount = 50;
                     battle = true;
                     type = type.cure;
                     st = status.none;
+                    info = "공대생의 필수품! 에너지 드링크!";
                     break;
                 }
             case item_no.CURE4:
@@ -109,15 +114,26 @@ public class Item
                 }
             case item_no.CAPTURE1:
                 {
+                    name = "몬스터볼";
+                    index = (int)n;
+                    price = 200;
+                    battle = true;
+                    type = type.capture;
+                    possibility = 1.5;
                     break;
                 }
-            case item_no.QUEST1:
-                {
-                    break;
-                }
-
         }
 
+    }
+
+    public string getInfo()
+    {
+        return info;
+    }
+
+    public double getPossibility()
+    {
+        return possibility;
     }
 
     public int getPrice()
@@ -143,24 +159,21 @@ public class Item
         return st;
     }
 
-    public void useItem(Item it, Student s)
+    public bool useItem(Item it, Student s)
     {
         if (it.getType() == type.skill)
         {
-            s.changeSkill(it);
+            return true;// s.addSkill(it);
         }
         else if (it.getType() == type.cure)
         {
-            s.changeStatus(it);
+            return true;// s.changeStatus(it);
         }
         else if (it.getType() == type.capture)
         {
-
+            return true;//s.capture(it);
         }
-        else
-        {
-
-        }
+        return false;
     }
 
     public int getIndex()
@@ -168,46 +181,15 @@ public class Item
         return index;
     }
 
-    public int chooseIndex()//키입력을 통해 고른 아이템의 번호를 반환
+    // Use this for initialization
+    void Start()
     {
-        int ind = -1;//아이템 고르는 것을 취소하면 -1 반환
-        int row = 0;
-        int col = 0;
 
-        while (!Input.GetKey(KeyCode.Z) && !Input.GetKey(KeyCode.X))
-        {
-            if (Input.GetKey(KeyCode.RightArrow))
-            {
-                row++;
-            }
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                row--;
-            }
-            if (Input.GetKey(KeyCode.X))
-            {
-                return ind;
-            }
-        }
-        row = row % 4;
-        while (!Input.GetKey(KeyCode.Z) && !Input.GetKey(KeyCode.X))
-        {
-            if (Input.GetKey(KeyCode.DownArrow))
-            {
-                col++;
-            }
-            if (Input.GetKey(KeyCode.UpArrow))
-            {
-                col--;
-            }
-            if (Input.GetKey(KeyCode.X))
-            {
-                return ind;
-            }
-        }
-        col = col % 10;
-        ind = row * 10 + col;
+    }
 
-        return ind;
+    // Update is called once per frame
+    void Update()
+    {
+
     }
 }
