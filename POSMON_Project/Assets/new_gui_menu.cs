@@ -34,24 +34,18 @@ public class new_gui_menu : MonoBehaviour {
 
     public void hide()
     {
-        visible(false);
         bshow = false;
     }
 
     public void show()
     {
-        visible(true);
         bshow = true;
+        
     }
 
     
 
-    private void visible(bool bs)
-    {
-        Time.timeScale = (bs) ? 0 : 1;
-//        Game_Manager.Instance.input_allow = !bs;
-        //gameObject.SetActive(bs);
-    }
+  
 
     // Update is called once per frame
     void Update () {
