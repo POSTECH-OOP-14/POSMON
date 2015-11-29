@@ -15,6 +15,7 @@ public class MoveToMain : MonoBehaviour {
 
     public void ChangeScene()
     {
+        GameManager.PrevSceneNumber = Application.loadedLevel;
         GameManager.pl_stored.SetActive(false);
         Application.LoadLevel(0);
     }

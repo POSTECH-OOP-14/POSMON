@@ -1,4 +1,5 @@
-Say, Hello This is Quest START Message! 1
+﻿Say, Hello This is Quest START Message! 1
 Say, Hello This is Quest START Message! 2
 Say, Hello This is Quest START Message! 3
 Say, Hello This is Quest START Message! 4
+안녕 이건 한글이야

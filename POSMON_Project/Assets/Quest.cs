@@ -9,6 +9,11 @@ public class Quest
     private bool progressing;
     private bool complete;
 
+    /* informatino for BattleQuest */
+    private float warp_position_x;
+    private float warp_position_y;
+    private int warp_map_scene;
+
     public Quest(int hostNumber, int targetNum, int _reward)
     {
         hostNPCNumber = hostNumber;

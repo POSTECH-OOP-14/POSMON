@@ -13,7 +13,11 @@ public class Dialogue : MonoBehaviour {
     {
         if (bshow)
         {
-            GUI.Box(new Rect(1, Screen.height - 90, 500, 50), dialoge1 + "\n" + dialoge2);
+            GUIStyle myStyle = new GUIStyle(GUI.skin.box);
+            myStyle.fontSize = 25;
+            myStyle.font = (Font)Resources.Load("NANUMBARUNGOTHICBOLD", typeof(Font));
+            myStyle.normal.textColor = Color.white;
+            GUI.Box(new Rect(1, Screen.height - 90, Screen.width, 90), dialoge1 + "\n" + dialoge2, myStyle);
         }
     }
 
@@ -28,20 +32,7 @@ public class Dialogue : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (bshow == true && Input.GetKey(KeyCode.Z))
-        {
-            if (!bshow)
-            {
-                bshow = true;
-            }
-            else
-            {
-                bshow = false;
-            }
-            GameManager.pl_stored.GetComponent<CharacterStatus>().setBlocked(false);
-
-        }
-        else if (Input.GetKeyDown(KeyCode.Space) && bshow == true)
+        if (Input.GetKeyDown(KeyCode.Space) && bshow == true || bshow == true && Input.GetKey(KeyCode.Z))
         {
             if (sr.Peek() >= 0)
             {
@@ -50,7 +41,11 @@ public class Dialogue : MonoBehaviour {
                 i++;
                 dialoge2 = sr.ReadLine();
             }
-            else bshow = false;
+            else
+            {
+                bshow = false;
+                GameManager.pl_stored.GetComponent<CharacterStatus>().setBlocked(false);
+            }
         }
 
     }
