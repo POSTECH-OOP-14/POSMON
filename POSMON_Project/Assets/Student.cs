@@ -21,6 +21,7 @@ static class Constants
 }
 
 public class Student{
+    private stu_no number;
     private string[] skill=new string[4];//스킬배열
     private int[] skillNumberList = new int[4]; //tempory skill list
     private string department;//학과
@@ -31,16 +32,16 @@ public class Student{
     private int level;
     private int exp;
     private int HP;
-    private Texture StuImage;
 
-    public Student(int[] _skill,string _department,int[] _stat,int _level, int _Hp, Texture image)
+    public Student(stu_no Stunumber, int[] _skill,string _department,int[] _stat,int _level, int _Hp)
     {
+        number = Stunumber;
      skillNumberList = _skill;
         department = _department;
         stat = _stat;
         level = _level;
         HP = _Hp;
-        StuImage = image;
+//        StuImage = image;
     }
 
 
@@ -196,5 +197,7 @@ public class Student{
     public int retHp()  {   return this.HP; }
     public int retLevel() { return this.level; }
     public int retMaxHp() { return this.retStuStat(5) * 5; }
+    public stu_no retStuNum() { return this.number; }
+    //  public Texture retStuTexture() { return this.StuImage; }
 }
 

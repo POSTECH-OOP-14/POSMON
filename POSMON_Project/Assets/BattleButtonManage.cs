@@ -42,7 +42,7 @@ public class BattleButtonManage : MonoBehaviour
     public Student[] EnemyStudentList;
 
     //information about skill
-    SkillList SkillData;
+    SkillList SkillData = new SkillList();
 
     // get the battle related code 
     BattleScene a = new BattleScene();
@@ -57,8 +57,8 @@ public class BattleButtonManage : MonoBehaviour
         for (int i = 0; i < 12; i++)
             battleTempStat[i] = 0;
         //MineStudentList = GetComponent<CharacterStatus>().getStuList();
-        StudentInfo forDebug = new StudentInfo();
-        MineStudentList = forDebug.myDebugStuList;
+    //    StudentInfo getnew = new StudentInfo(); doesn't used
+        MineStudentList = gameObject.GetComponent<StudentInfo>().myDebugStuList;
         EnemyStudentList = gameObject.GetComponent<StudentInfo>().enemyDebugStuList;
         CurrentMine = gameObject.GetComponent<StudentInfo>().retStuData(0, 0);
         CurrentEnemy = gameObject.GetComponent<StudentInfo>().retStuData(1, 0);
@@ -104,47 +104,38 @@ public class BattleButtonManage : MonoBehaviour
         //cam.pixelwidth = 956, cam.pixelheight = 426 
         if (Battle == BattleButtonState.DefaultState)
         {
-            if (GUI.Button(FirstPos, "Attack"))
-            { Battle = BattleButtonState.AttackState; }
-            if (GUI.Button(SecondPos, "Change"))
-            { Battle = BattleButtonState.ExchangeState; }
-
-            if (GUI.Button(ThirdPos, "Item"))
-            { Battle = BattleButtonState.ItemState; }
-
-            if (GUI.Button(ForthPos, "Run"))
-            {
+            if (GUI.Button(FirstPos, "Attack")) { Battle = BattleButtonState.AttackState; }
+            if (GUI.Button(SecondPos, "Change")) { Battle = BattleButtonState.ExchangeState; }
+            if (GUI.Button(ThirdPos, "Item")) { Battle = BattleButtonState.ItemState; }
+            if (GUI.Button(ForthPos, "Run")) {
                 Battle = BattleButtonState.RunState;
                 //text message 
                 Application.LoadLevel(1);
             }
             if (CurrentMine == null)
                 Debug.Log("current mine is empty");
+            if (MineStudentList == null)
+                Debug.Log("current mine is empty");
         }
         if (Battle == BattleButtonState.AttackState)
         {
             alived = 0;
-            if (GUI.Button(FirstPos,SkillData.retSkillName(CurrentMine.retSkillList()[0])))
-            {
+            if (GUI.Button(FirstPos,SkillData.retSkillName(CurrentMine.retSkillList()[0])))  {
                 damage = a.BattleDamageCalculate(SkillData.retSkillInfo(CurrentMine.retSkillList()[0]), CurrentMine, CurrentEnemy,battleTempStat);
                 Battle = BattleButtonState.NextState;
                 myMove = 0;
             }
-            if (GUI.Button(SecondPos, SkillData.retSkillName(CurrentMine.retSkillList()[1])))
-            {
+            if (GUI.Button(SecondPos, SkillData.retSkillName(CurrentMine.retSkillList()[1]))) {
                 damage = a.BattleDamageCalculate(SkillData.retSkillInfo(CurrentMine.retSkillList()[1]), CurrentMine, CurrentEnemy, battleTempStat);
                 Battle = BattleButtonState.NextState;
                 myMove = 0;
             }
-            if (GUI.Button(ThirdPos, SkillData.retSkillName(CurrentMine.retSkillList()[2])))
-            {
+            if (GUI.Button(ThirdPos, SkillData.retSkillName(CurrentMine.retSkillList()[2]))) {
                 damage = a.BattleDamageCalculate(SkillData.retSkillInfo(CurrentMine.retSkillList()[2]), CurrentMine, CurrentEnemy, battleTempStat);
                 Battle = BattleButtonState.NextState;
                 myMove = 0;
             }
-
-            if (GUI.Button(ForthPos, SkillData.retSkillName(CurrentMine.retSkillList()[3])))
-            {
+            if (GUI.Button(ForthPos, SkillData.retSkillName(CurrentMine.retSkillList()[3]))) {
                 damage = a.BattleDamageCalculate(SkillData.retSkillInfo(CurrentMine.retSkillList()[3]), CurrentMine, CurrentEnemy, battleTempStat);
                 Battle = BattleButtonState.NextState;
                 myMove = 0;

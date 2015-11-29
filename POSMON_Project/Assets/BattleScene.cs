@@ -30,11 +30,21 @@ public class BattleScene {
         
         int RandomRate  = (int)Random.Range(217,255)*100/255;    //make random damage;
 
+        for (int i = 0; i < 12; i++)
+        {
+            if (_battleTempStat[i] > 0)
+                battleTempStat[i] = (2 + _battleTempStat[i]) / (float)(_battleTempStat[i]);
+            else if (_battleTempStat[i] < 0)
+                battleTempStat[i] = (float)(2) / (2 + _battleTempStat[i]);
+            else
+                battleTempStat[i] = 1;
+        }
+
         if (usedSkill.retAtkType() == 0)
         {  //calculate the damage of 
-            AttackRate = (usedSkill.retDamage())*(attacker.retStuStat(0))/(defenser.retStuStat(2));
+            AttackRate = (usedSkill.retDamage())*(attacker.retStuStat(0))*battleTempStat[0]/(defenser.retStuStat(2)/battleTempStat[8]);
         }else        {
-            AttackRate = (usedSkill.retDamage())*(attacker.retStuStat(1))/(defenser.retStuStat(3));
+            AttackRate = (usedSkill.retDamage())*(attacker.retStuStat(1))*battleTempStat[1]/(defenser.retStuStat(3)/battleTempStat[9]);
         }
 
         damage =(((   
@@ -53,7 +63,7 @@ public class BattleScene {
 
     //calculate who will gonna act first at battle,
     //normally this will determine by speed of 
-    //intput 0 is someone changed student or use item,
+    //intput 0 is someone changed student or use item. its player act first.
     public int CalFirstGo(int mySpeed, int EnemySpeed, int[] battletempStat)
     {
         float mySpeedCal=1.0f;

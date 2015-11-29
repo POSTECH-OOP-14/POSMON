@@ -6,40 +6,40 @@ public class ChangeCharacter : MonoBehaviour {
     public Camera cam;
     public Texture Bunchi;
     public Texture Assin;
-    public Texture Statement;
     Texture myTexture;
     Texture opponentTexture;
-
-    int i=0;
+    GameObject mineStu;
+    Student myStudent;
+    Student enemyStudent;
+    StudentTextureList textureList = new StudentTextureList();
+    int i = 0;
 
     Rect OpponentStudentImage;
     Rect OurStudentImage;
     // Use this for initialization
 	void Start () {
-        myTexture = Bunchi;
-        opponentTexture = Assin;
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        mineStu = GameObject.Find("battleBackground");
+        myStudent = GameObject.Find("battleBackground").GetComponent<BattleButtonManage>().CurrentMine;
+        enemyStudent = GameObject.Find("battleBackground").GetComponent<BattleButtonManage>().CurrentEnemy;
 
-        /*
-         //the code will save index of posmon. set texture to current index student.
+        if (myStudent == null)
+            Debug.Log("myStu is null");
+
+        if (myStudent.retHp() == null)
+            Debug.Log("myStu. ret HP is null");
+        if (myStudent.retSkillList() == null)
+            Debug.Log("mySkillList is null");
+     
+	}
+    
+    void Update () {
+
+        myTexture = GameObject.Find("Main Camera").GetComponent<StudentTextureList>().retTexture(myStudent.retStuNum());
+        opponentTexture = GameObject.Find("Main Camera").GetComponent<StudentTextureList>().retTexture(enemyStudent.retStuNum());
+  /*
+  //the code will save index of posmon. set texture to current index student.
          
-         */
-        if (Input.GetKey(KeyCode.UpArrow))
-        {   
-            if (i == 0){
-                i = 1;
-                opponentTexture = Bunchi;
-                myTexture = Assin;
-            }
-            else{
-                i=0;
-                opponentTexture = Assin;
-                myTexture = Bunchi;
-            }
-        }
+  */
     }
 
     void moveGameObject(GameObject alpha, Vector2 vector)
