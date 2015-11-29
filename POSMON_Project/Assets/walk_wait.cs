@@ -4,12 +4,13 @@ using System.Collections;
 public class walk_wait : MonoBehaviour {
     protected Animator anim;
     private float x = 0;
-    private float y = 0;
+    private float y = -0.1f;
     private bool w = false;
 
     // Use this for initialization
     void Start() {
         anim = GetComponent<Animator>();
+        
 
     }
 
