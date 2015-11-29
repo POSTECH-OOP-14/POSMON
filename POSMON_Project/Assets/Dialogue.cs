@@ -55,22 +55,39 @@ public class Dialogue : MonoBehaviour {
 
     }
 
-    public void ChangeDialogueToDefault()
+    public bool ChangeDialogueToDefault()
     {
-        file = new System.IO.FileInfo(System.IO.Directory.GetCurrentDirectory() + "/" + this.gameObject.name + ".txt");
-        sr = file.OpenText();
-        i = 1;
-        dialoge1 = sr.ReadLine();
-        dialoge2 = sr.ReadLine();
+        if (bshow == false)
+        {
+            sr.Close();
+            file = new System.IO.FileInfo(System.IO.Directory.GetCurrentDirectory() + "/" + this.gameObject.name + ".txt");
+            sr = file.OpenText();
+            i = 1;
+            dialoge1 = sr.ReadLine();
+            dialoge2 = sr.ReadLine();
+            return true;
+        }
+        return false;
     }
 
-    public void ChangeDialogue(string file_name)
+    public bool ChangeDialogue(string file_name)
     {
-        file = new System.IO.FileInfo(System.IO.Directory.GetCurrentDirectory() + "/" + this.gameObject.name + "_" + file_name + ".txt");
-        sr = file.OpenText();
-        i = 1;
-        dialoge1 = sr.ReadLine();
-        dialoge2 = sr.ReadLine();
+        if (bshow == false)
+        {
+            sr.Close();
+            file = new System.IO.FileInfo(System.IO.Directory.GetCurrentDirectory() + "/" + this.gameObject.name + "_" + file_name + ".txt");
+            sr = file.OpenText();
+            i = 1;
+            dialoge1 = sr.ReadLine();
+            dialoge2 = sr.ReadLine();
+            return true;
+        }
+        return false;
+    }
+
+    public bool getDialogueOnOff()
+    {
+        return bshow;
     }
 
     public void TurnOnDialogue()

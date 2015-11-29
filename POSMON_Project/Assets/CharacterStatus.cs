@@ -98,12 +98,11 @@ public class CharacterStatus : MonoBehaviour
 
     private Quest[] quest_list = new Quest[100];
     /**** methods related to Quest ****/
-    public bool addQuest(ref Quest q)
+    public bool addQuest(Quest q)
     {
-        for (int i = 0; i < 100; i++)
+        if (quest_list[q.getHostNPCNumber()] != null)
         {
-            if (quest_list[i] == null)
-                quest_list[i] = q;
+            quest_list[q.getHostNPCNumber()] = q;
             return true;
         }
         return false;
@@ -127,14 +126,17 @@ public class CharacterStatus : MonoBehaviour
         return null;
     }
 
-    public bool deleteQuest(ref Quest q)
+    public bool deleteQuest(int hostnum)
     {
         for (int i = 0; i < 100; i++)
         {
-            if (quest_list[i] == q)
+            if (quest_list[i] != null)
             {
-                quest_list[i] = null;
-                return true;
+                if (quest_list[i].getHostNPCNumber() == hostnum)
+                {
+                    quest_list[i] = null;
+                    return true;
+                }
             }
         }
         return false;
@@ -276,11 +278,17 @@ public class CharacterStatus : MonoBehaviour
         }
     }
 
+    public bool getBlocked()
+    {
+        return blocked;
+    }
+
     public void setBlocked(bool block)
     {
         blocked = block;
     }
 
+    /* Character Status Information */
     private string[] toolbar_str = { "Character", "Student", "Item" };
     private int toolbarint = 0;
     private Vector2 scroll = Vector2.zero;

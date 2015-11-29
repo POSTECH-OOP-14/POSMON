@@ -3,15 +3,15 @@ using System.Collections;
 
 public class Quest
 {
-    private string hostNPCName;
+    private int hostNPCNumber;
     private int targetNPCNum;
     private int reward;
     private bool progressing;
     private bool complete;
 
-    public Quest(string hostName, int targetNum, int _reward)
+    public Quest(int hostNumber, int targetNum, int _reward)
     {
-        hostNPCName = hostName;
+        hostNPCNumber = hostNumber;
         targetNPCNum = targetNum;
         reward = _reward;
         progressing = false;
@@ -22,7 +22,6 @@ public class Quest
     {
         complete = true;
         progressing = false;
-        GameObject.Find(hostNPCName).GetComponent<Dialogue>().ChangeDialogueToDefault();
     }
 
     public bool isCompleted()
@@ -45,9 +44,9 @@ public class Quest
         return reward;
     }
 
-    public string getHostNPCName()
+    public int getHostNPCNumber()
     {
-        return hostNPCName;
+        return hostNPCNumber;
     }
 
     public bool getProgress()

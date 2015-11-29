@@ -1,3 +1,4 @@
-퀘스트시작1
-퀘스트시작2
-퀘스트시작3
+Say, Hello This is Quest START Message! 1
+Say, Hello This is Quest START Message! 2
+Say, Hello This is Quest START Message! 3
+Say, Hello This is Quest START Message! 4
