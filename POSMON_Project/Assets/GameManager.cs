@@ -32,4 +32,9 @@ public class GameManager : MonoBehaviour {
         PrevSceneNumber = Application.loadedLevel;
         Application.LoadLevel(1);
     }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }
