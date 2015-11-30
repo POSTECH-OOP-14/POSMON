@@ -23,7 +23,7 @@ public class Dialogue : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        file = new System.IO.FileInfo( System.IO.Directory.GetCurrentDirectory() + "/"+ this.gameObject.name + ".txt");
+        file = new System.IO.FileInfo(System.IO.Directory.GetCurrentDirectory() + "/NPCDialogue/" + gameObject.GetComponent<NPCStatus>().NPC_number.ToString() + ".txt");
         sr = file.OpenText();
         i = 1;
         dialoge1 = sr.ReadLine();
@@ -45,9 +45,26 @@ public class Dialogue : MonoBehaviour {
             {
                 bshow = false;
                 GameManager.pl_stored.GetComponent<CharacterStatus>().setBlocked(false);
+                TriggerNPCEvent();
             }
         }
+        else if (Input.GetKeyDown(KeyCode.X))
+        {
+            bshow = false;
+        }
 
+    }
+
+    private void TriggerNPCEvent()
+    {
+        /* Trigger Shop Interface */
+        if (gameObject.GetComponent<NPCStatus>().type == NPCStatus.NPCType.SHOPPER)
+        {
+        }
+        /* Trigger Battle Interface */
+        else if (gameObject.GetComponent<NPCStatus>().type == NPCStatus.NPCType.TRAINER)
+        {
+        }
     }
 
     public bool ChangeDialogueToDefault()
@@ -55,7 +72,7 @@ public class Dialogue : MonoBehaviour {
         if (bshow == false)
         {
             sr.Close();
-            file = new System.IO.FileInfo(System.IO.Directory.GetCurrentDirectory() + "/" + this.gameObject.name + ".txt");
+            file = new System.IO.FileInfo(System.IO.Directory.GetCurrentDirectory() + "/NPCDialogue/" + gameObject.GetComponent<NPCStatus>().NPC_number.ToString() + ".txt");
             sr = file.OpenText();
             i = 1;
             dialoge1 = sr.ReadLine();
@@ -70,7 +87,7 @@ public class Dialogue : MonoBehaviour {
         if (bshow == false)
         {
             sr.Close();
-            file = new System.IO.FileInfo(System.IO.Directory.GetCurrentDirectory() + "/" + this.gameObject.name + "_" + file_name + ".txt");
+            file = new System.IO.FileInfo(System.IO.Directory.GetCurrentDirectory() + "/NPCDialogue/" + gameObject.GetComponent<NPCStatus>().NPC_number.ToString() + "_" + file_name + ".txt");
             sr = file.OpenText();
             i = 1;
             dialoge1 = sr.ReadLine();

@@ -41,7 +41,7 @@ public class NPCStatus : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        if (QuestTargetNPCNumber != 0)
+        if (QuestTargetNPCNumber != 0 && type == NPCType.TALKER)
             quest = new Quest(NPC_number, QuestTargetNPCNumber, QuestReward);
 	}
 	
@@ -59,106 +59,84 @@ public class NPCStatus : MonoBehaviour {
     /* when got collision + Activate Input(Z) from Player, it would be executed */
     public void interaction(GameObject player)
     {
-        if (gameObject.GetComponent<Dialogue>().getDialogueOnOff() == false)
+        bool dialogue_occurence = false;
+        GameObject pl = GameManager.pl_stored;
+
+        if (type != NPCType.WARP)
         {
-            bool dialogue_occurence = false;
-            GameObject pl = GameManager.pl_stored;
-
-            /* Facing Direction Update */
-            if (gameObject.transform.position.x < player.transform.position.x && Mathf.Abs(gameObject.transform.position.y - player.transform.position.y) < 0.5)
+            if (gameObject.GetComponent<Dialogue>().getDialogueOnOff() == false)
             {
-                Facing = FaceDirection.RIGHT;
-            }
-            else if (gameObject.transform.position.x > player.transform.position.x && Mathf.Abs(gameObject.transform.position.y - player.transform.position.y) < 0.5)
-            {
-                Facing = FaceDirection.LEFT;
-            }
-            else if (gameObject.transform.position.y < player.transform.position.y && Mathf.Abs(gameObject.transform.position.x - player.transform.position.x) < 0.5)
-            {
-                Facing = FaceDirection.UP;
-            }
-            else if (gameObject.transform.position.y > player.transform.position.y && Mathf.Abs(gameObject.transform.position.x - player.transform.position.x) < 0.5)
-            {
-                Facing = FaceDirection.DOWN;
-            }
-
-            /* if quest is not given */
-            if (GameManager.QuestGiven[NPC_number] == false)
-            {
-                Debug.Log("here!");
-                /* give new quest */
-                if (this.gameObject.GetComponent<Dialogue>().ChangeDialogue("queststart"))
+                /* Facing Direction Update */
+                if (gameObject.transform.position.x < player.transform.position.x && Mathf.Abs(gameObject.transform.position.y - player.transform.position.y) < 0.5)
                 {
-                    player.GetComponent<CharacterStatus>().setBlocked(true);
-                    this.gameObject.GetComponent<Dialogue>().TurnOnDialogue();
-                    dialogue_occurence = true;
-                    quest.setProgress(true);
-                    player.GetComponent<CharacterStatus>().addQuest(quest);
-                    GameManager.QuestGiven[NPC_number] = true;
+                    Facing = FaceDirection.RIGHT;
                 }
-                Debug.Log("Got Quest");
-            }
-            /* Dialogue in quest progressing */
-            else if (GameManager.QuestGiven[NPC_number] == true && pl.GetComponent<CharacterStatus>().getQuest(NPC_number) != null)
-            {
-                if (pl.GetComponent<CharacterStatus>().getQuest(NPC_number).getProgress() == true)
+                else if (gameObject.transform.position.x > player.transform.position.x && Mathf.Abs(gameObject.transform.position.y - player.transform.position.y) < 0.5)
                 {
-                    // Dialogue for hurry up
+                    Facing = FaceDirection.LEFT;
                 }
-            }
-
-            /* check if the NPC is target NPC */
-            else
-            {
-                Quest qst;
-                if ((qst = pl.GetComponent<CharacterStatus>().isTarget(NPC_number)) != null)
+                else if (gameObject.transform.position.y < player.transform.position.y && Mathf.Abs(gameObject.transform.position.x - player.transform.position.x) < 0.5)
                 {
-                    Debug.Log("I am quest Target ! ");
-                    if (this.gameObject.GetComponent<Dialogue>().ChangeDialogue("questend"))
+                    Facing = FaceDirection.UP;
+                }
+                else if (gameObject.transform.position.y > player.transform.position.y && Mathf.Abs(gameObject.transform.position.x - player.transform.position.x) < 0.5)
+                {
+                    Facing = FaceDirection.DOWN;
+                }
+
+                /* if quest is not given */
+                if (GameManager.QuestGiven[NPC_number] == false && quest != null)
+                {
+                    Debug.Log("Giving Quest...");
+                    /* give new quest */
+                    if (this.gameObject.GetComponent<Dialogue>().ChangeDialogue("queststart"))
                     {
                         player.GetComponent<CharacterStatus>().setBlocked(true);
                         this.gameObject.GetComponent<Dialogue>().TurnOnDialogue();
                         dialogue_occurence = true;
-                        player.GetComponent<CharacterStatus>().deleteQuest(qst.getHostNPCNumber());
+                        quest.setProgress(true);
+                        player.GetComponent<CharacterStatus>().addQuest(quest);
+                        GameManager.QuestGiven[NPC_number] = true;
                     }
-                    Debug.Log("Cleared Quest");
+                    Debug.Log("Got Quest!");
                 }
-            }
-
-            if (type == NPCType.SHOPPER)
-            {
-                // Shpping Menu Pop Up //
-            }
-            else if (type == NPCType.TRAINER)
-            {
-                if (battleEnd == false)
+                /* Dialogue in quest progressing */
+                else if (GameManager.QuestGiven[NPC_number] == true && pl.GetComponent<CharacterStatus>().getQuest(NPC_number) != null)
                 {
-                    // Battle Phase Should be Occur //
+                    if (pl.GetComponent<CharacterStatus>().getQuest(NPC_number).getProgress() == true)
+                    {
+                        if (this.gameObject.GetComponent<Dialogue>().ChangeDialogue("questprogress"))
+                        {
+                            player.GetComponent<CharacterStatus>().setBlocked(true);
+                            this.gameObject.GetComponent<Dialogue>().TurnOnDialogue();
+                            dialogue_occurence = true;
+                        }
+                    }
                 }
-            }
-            else if (type == NPCType.DOCTOR)
-            {
-                for (int i = 0; i < 6; i++)
-                {
-                    Student temp;
-                    if ((temp = pl.GetComponent<CharacterStatus>().getStudent(i)) != null)
-                        ; // restore the student's current health
-                }
-            }
-            else if (type == NPCType.TALKER)
-            {
-            }
-            else if (type == NPCType.WARP)
-            {
-                GameManager.ChangeMap(ChangeSceneTo);
-                GameManager.WarpCharacter(WarpPositionX, WarpPositionY);
-                dialogue_occurence = true;
-            }
-            else
-            {
-                Debug.LogError("Invalid NPC Type");
-            }
 
+                /* check if the NPC is target NPC */
+                else
+                {
+                    Debug.Log("Checking the NPC is target or not");
+                    Quest qst;
+                    if ((qst = pl.GetComponent<CharacterStatus>().isTarget(NPC_number)) != null)
+                    {
+                        Debug.Log("I am quest Target ! ");
+                        if (this.gameObject.GetComponent<Dialogue>().ChangeDialogue("questend_" + qst.getHostNPCNumber().ToString() ))
+                        {
+                            player.GetComponent<CharacterStatus>().setBlocked(true);
+                            this.gameObject.GetComponent<Dialogue>().TurnOnDialogue();
+                            dialogue_occurence = true;
+                            player.GetComponent<CharacterStatus>().deleteQuest(qst.getHostNPCNumber());
+                        }
+                        Debug.Log("Cleared Quest");
+                    }
+                }
+            }
+        }
+
+        if (type != NPCType.WARP)
+        {
             /* Default Dialogue */
             if (dialogue_occurence == false)
             {
@@ -171,8 +149,41 @@ public class NPCStatus : MonoBehaviour {
                 }
             }
         }
+
+        /* Trigger Each Type's Special Things */
+        if (type == NPCType.SHOPPER)
+        {
+            // Shpping Menu Pop Up //
+        }
+        else if (type == NPCType.TRAINER)
+        {
+            if (battleEnd == false)
+            {
+                // Battle Phase Should be Occur //
+            }
+        }
+        else if (type == NPCType.DOCTOR)
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                Student temp;
+                if ((temp = pl.GetComponent<CharacterStatus>().getStudent(i)) != null)
+                    ; // restore the student's current health
+            }
+        }
+        else if (type == NPCType.TALKER)
+        {
+        }
+        else if (type == NPCType.WARP)
+        {
+            GameManager.ChangeMap(ChangeSceneTo);
+            GameManager.WarpCharacter(WarpPositionX, WarpPositionY);
+            dialogue_occurence = true;
+        }
+        else
+        {
+            Debug.LogError("Invalid NPC Type");
+        }
     }
-
-
 }
 

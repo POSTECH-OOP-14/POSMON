@@ -100,7 +100,7 @@ public class CharacterStatus : MonoBehaviour
     /**** methods related to Quest ****/
     public bool addQuest(Quest q)
     {
-        if (quest_list[q.getHostNPCNumber()] != null)
+        if (quest_list[q.getHostNPCNumber()] == null)
         {
             quest_list[q.getHostNPCNumber()] = q;
             return true;
@@ -255,7 +255,7 @@ public class CharacterStatus : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log("Collision Occur");
+        Debug.Log("[Player] Collision Occur");
 
         /* Round position to board grid */
         {
