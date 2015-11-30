@@ -74,18 +74,18 @@ public class BattleButtonManage : MonoBehaviour
             {
                 
             }
-            if (GUI.Button(SecondPos, Mine.skillList[1].skillName))
+            if (GUI.Button(SecondPos, Mine.skillList[1].retSkillName()))
             {
                 int damage = a.BattleDamageCalculate(Mine.skillList[1], Mine, Enemy);
                 alived = Enemy.getDamage(damage);
             }
-            if (GUI.Button(ThirdPos, Mine.skillList[2].skillName))
+            if (GUI.Button(ThirdPos, Mine.skillList[2].retSkillName()))
             {
                 int damage = a.BattleDamageCalculate(Mine.skillList[2], Mine, Enemy);
                 alived = Enemy.getDamage(damage);
             }
 
-            if (GUI.Button(ForthPos, Mine.skillList[3].skillName))
+            if (GUI.Button(ForthPos, Mine.skillList[3].retSkillName()))
             {
                 int damage = a.BattleDamageCalculate(Mine.skillList[3], Mine, Enemy);
                 alived = Enemy.getDamage(damage);

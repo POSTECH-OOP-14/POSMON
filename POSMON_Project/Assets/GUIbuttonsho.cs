@@ -36,6 +36,24 @@ public class GUIbuttonsho : MonoBehaviour
         it = new Item(item_no.CURE2);
         myList.Add(it);
         index++;
+        it = new Item(item_no.CURE6);
+        myList.Add(it);
+        index++;
+        it = new Item(item_no.CURE11);
+        myList.Add(it);
+        index++;
+        it = new Item(item_no.CURE8);
+        myList.Add(it);
+        index++;
+        it = new Item(item_no.CAPTURE1);
+        myList.Add(it);
+        index++;
+        it = new Item(item_no.CAPTURE4);
+        myList.Add(it);
+        index++;
+        it = new Item(item_no.CAPTURE2);
+        myList.Add(it);
+        index++;
     }
 
     // Use this for initialization
@@ -63,8 +81,22 @@ public class GUIbuttonsho : MonoBehaviour
     {
         if (ShopActivated)
         {
+            GUI.skin.button.fontSize = 13;
+            /*
+            GUIStyle style = new GUIStyle(GUI.skin.box);
+            Texture2D texture = new Texture2D(cam.pixelWidth / 3, cam.pixelHeight - 20);
+            for (int x = 0; x < cam.pixelWidth / 3; x++)
+            {
+                for (int y = 0; y < cam.pixelHeight - 20; y++)
+                {
+                    texture.SetPixel(x + 45 + cam.pixelWidth / 4, y + 10, Color.yellow);
+                }
+            }
+            texture.Apply();
+            style.normal.background = texture;
+            */
             GUIStyle myStyle = new GUIStyle(GUI.skin.box);
-            myStyle.fontSize = 15;
+            myStyle.fontSize = 13;
             myStyle.font = (Font)Resources.Load("NANUMBARUNGOTHICBOLD", typeof(Font));
             myStyle.alignment = TextAnchor.UpperLeft;
             myStyle.normal.textColor = Color.white;
@@ -81,9 +113,15 @@ public class GUIbuttonsho : MonoBehaviour
                     // player inventory와 소지하고 있는 돈 업데이트
                     if (GameManager.pl_stored.GetComponent<CharacterStatus>().getMoney() >= myList[selected].getPrice())
                     {
-                        GetComponent<AudioSource>().PlayOneShot(SuccessSound);
-                        GameManager.pl_stored.GetComponent<CharacterStatus>().addItemToInventory(new Item((item_no)myList[selected].getIndex()));
-                        GameManager.pl_stored.GetComponent<CharacterStatus>().addMoney(-1 * myList[selected].getPrice());
+                        if (GameManager.pl_stored.GetComponent<CharacterStatus>().addItemToInventory(new Item((item_no)myList[selected].getIndex())))
+                        {
+                            GetComponent<AudioSource>().PlayOneShot(SuccessSound);
+                            GameManager.pl_stored.GetComponent<CharacterStatus>().addMoney(-1 * myList[selected].getPrice());
+                        }
+                        else
+                        {
+                            GetComponent<AudioSource>().PlayOneShot(WarningSound);
+                        }
                     }
                     else
                     {
@@ -98,7 +136,7 @@ public class GUIbuttonsho : MonoBehaviour
 
             for (int i = 0; i < index; i++)
             {
-                if (GUI.Button(new Rect(15, 10 + cam.pixelWidth / 30 * i, cam.pixelWidth / 8, cam.pixelHeight / 20), myList[i].getName()))
+                if (GUI.Button(new Rect(15, 10 + cam.pixelWidth / 30 * i, cam.pixelWidth / 6, cam.pixelHeight / 20), myList[i].getName()))
                 {
                     text = "아이템 설명";
                     text2 = "\n";

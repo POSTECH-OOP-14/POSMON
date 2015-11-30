@@ -25,15 +25,15 @@ public class BattleScene {
         float damage = 0;       //return total damage that defenser have to take
         float AttributeCal = 1; //Calculate damage Changed by AttributeCal
 
-        if(usedSkill.type == attacker.type) //if Attacker type and used Skill type is same, get bonus damage 
+        if(usedSkill.retType() == attacker.type) //if Attacker type and used Skill type is same, get bonus damage 
         {AttributeCal *= 1.5f;}
         
         int RandomRate  = Random.Range(217,255)*100/255;    //make random damage;
         
-        if(usedSkill.AtkType == 0)       {
-            AttackRate = (usedSkill.damage)*(attacker.retStudentAttack())/(defenser.retStudentDefense());
+        if(usedSkill.retAtkType() == 0)       {
+            AttackRate = (usedSkill.retDamage())*(attacker.retStudentAttack())/(defenser.retStudentDefense());
         }else        {
-            AttackRate = (usedSkill.damage)*(attacker.retStudentSpecialAttack())/(defenser.retStudentSpecialDefense());
+            AttackRate = (usedSkill.retDamage())*(attacker.retStudentSpecialAttack())/(defenser.retStudentSpecialDefense());
         }
 
         damage =(((   

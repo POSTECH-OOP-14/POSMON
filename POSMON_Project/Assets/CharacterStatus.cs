@@ -32,7 +32,7 @@ public class CharacterStatus : MonoBehaviour
 
     /* inventory information */
     private Item[] inventory = new Item[256];
-    private int money = 1000;
+    private int money = 10000;
 
     /**** methods related to inventory ****/
     public void setInventory(Item item, int index)
@@ -310,9 +310,9 @@ public class CharacterStatus : MonoBehaviour
     private string[] toolbar_str = { "Character", "Student", "Item" };
     private int toolbarint = 0;
     private Vector2 scroll = Vector2.zero;
-    private string[] stu_toolbar;
+    private string[] stu_toolbar = new string[4];
     private int stu_toolbarint = 0;
-    private string[] item_grid;
+    private string[] item_grid = new string[256];
     private int item_gridint =0;
     private int k = 0;
     void OnGUI()
@@ -382,9 +382,10 @@ public class CharacterStatus : MonoBehaviour
                             stu_toolbarint = GUI.Toolbar(new Rect(Screen.width / 20, (Screen.height / 20) + 30, 25, 10), stu_toolbarint, stu_toolbar);
                             for (int j = 0; student_list[j] != null; j++)
                             {
+                                /* Use Item */
                                 if (stu_toolbarint == j)
                                 {
-                                    inventory[i].useItem(inventory[i], student_list[j]);
+                                    //inventory[i].useItem(inventory[i], student_list[j]);
                                 }
                             }
                         }
