@@ -233,6 +233,9 @@ public class CharacterStatus : MonoBehaviour
         {
             walk_remaining = 0;
             moving_status = status.IDLE;
+            gameObject.transform.position = new Vector3(Mathf.Round(gameObject.transform.position.x),
+                                            Mathf.Round(gameObject.transform.position.y),
+                                            0f);
             SetMovement();
         }
     }

@@ -8,6 +8,16 @@ public class GameManager : MonoBehaviour {
     static public int PrevSceneNumber = 1;
     static public bool[] QuestGiven = new bool[100];
 
+    /* to store battle result, use GameManager variables */
+    public enum BattleResult
+    {
+        NOTHING,
+        WIN,
+        LOSE
+    };
+
+    static public BattleResult battle_result = BattleResult.NOTHING; 
+
 
     public GameObject player;
 
@@ -17,7 +27,7 @@ public class GameManager : MonoBehaviour {
         /* Only one time it would be done */
         if (!pl_stored)
         {
-            pl_stored = Instantiate(player, new Vector3(0f, 0f, 0f), Quaternion.identity) as GameObject;
+            pl_stored = Instantiate(player, new Vector3(-3.22f, -5.88f, 0f), Quaternion.identity) as GameObject;
             pl_stored.SetActive(false);
             DontDestroyOnLoad(pl_stored);
             for (int i = 0; i < 100; i++)
