@@ -3,7 +3,6 @@ using System.Collections;
 
 public class CharacterStatus : MonoBehaviour
 {
-    public Camera cam;
     enum status
     {
         IDLE,
@@ -33,7 +32,7 @@ public class CharacterStatus : MonoBehaviour
 
     /* inventory information */
     private Item[] inventory = new Item[256];
-    private int money = 0;
+    private int money = 1000;
 
     /**** methods related to inventory ****/
     public void setInventory(Item item, int index)
@@ -44,7 +43,7 @@ public class CharacterStatus : MonoBehaviour
             inventory[index] = item;
     }
 
-    public bool setInventory(Item item)
+    public bool addItemToInventory(Item item)
     {
         for (int i = 0; i < 256; i++)
         {
@@ -71,6 +70,11 @@ public class CharacterStatus : MonoBehaviour
     public void setMoney(int _money)
     {
         money = _money;
+    }
+
+    public void addMoney(int addition)
+    {
+        money += addition;
     }
     /*****************************************/
 
@@ -306,7 +310,7 @@ public class CharacterStatus : MonoBehaviour
     private string[] toolbar_str = { "Character", "Student", "Item" };
     private int toolbarint = 0;
     private Vector2 scroll = Vector2.zero;
-    private string[]  stu_toolbar;
+    private string[] stu_toolbar;
     private int stu_toolbarint = 0;
     private string[] item_grid;
     private int item_gridint =0;
@@ -315,11 +319,25 @@ public class CharacterStatus : MonoBehaviour
     {
         if (show)
         {
-
+            GUIStyle myStyle = new GUIStyle(GUI.skin.box);
+            myStyle.fontSize = 25;
+            myStyle.font = (Font)Resources.Load("NANUMBARUNGOTHICBOLD", typeof(Font));
+            myStyle.alignment = TextAnchor.UpperLeft;
+            myStyle.normal.textColor = Color.white;
+            
+            /* Status Menu Init */
             GUI.Box(new Rect(Screen.width / 8, Screen.height / 8, (Screen.width * 6) / 8, (Screen.height * 6) / 7), "Info");
             toolbarint = GUI.Toolbar(new Rect(Screen.width / 6, Screen.height / 5, (Screen.width * 3) / 10, (Screen.height * 3) / 40), toolbarint, toolbar_str);
             scroll = GUI.BeginScrollView(new Rect(Screen.width / 5, Screen.height / 3, (Screen.width * 3) / 5, (Screen.height * 3) / 5), scroll, new Rect(0, 0, Screen.width, Screen.height));
-            if (toolbarint == 1 && student_list[0] != null)
+
+            /* case Student */
+            if (toolbarint == 0)
+            {
+                GUI.Box(new Rect(Screen.width / 20, (Screen.height / 20) + 30, (Screen.width * 9) / 10, Screen.height / 2),
+                    "소지금 : " + money.ToString() + "\n"
+                    , myStyle);
+            }
+            else if (toolbarint == 1 && student_list[0] != null)
             {
                 for (int i = 0; student_list[i] != null; i++)
                 {
@@ -343,6 +361,7 @@ public class CharacterStatus : MonoBehaviour
                     }
                 }
             }
+            /* case Item */
             else if (toolbarint == 2 && inventory[0] != null)
             {
                 for (k = 0; inventory[k] != null; k++)

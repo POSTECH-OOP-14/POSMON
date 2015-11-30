@@ -27,6 +27,7 @@ public class Quest
     {
         complete = true;
         progressing = false;
+        GameManager.pl_stored.GetComponent<CharacterStatus>().addMoney(reward);
     }
 
     public bool isCompleted()

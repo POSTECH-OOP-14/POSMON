@@ -2,6 +2,8 @@
 using System.Collections;
 
 public class Dialogue : MonoBehaviour {
+    public AudioClip TypingSound;
+
     private bool bshow = false;
     private string dialoge1 = null;
     private string dialoge2 = null;
@@ -40,16 +42,20 @@ public class Dialogue : MonoBehaviour {
                 dialoge1 = sr.ReadLine();
                 i++;
                 dialoge2 = sr.ReadLine();
+                GetComponent<AudioSource>().Stop();
+                GetComponent<AudioSource>().PlayOneShot(TypingSound, 1);
             }
             else
             {
                 bshow = false;
+                GetComponent<AudioSource>().Stop();
                 GameManager.pl_stored.GetComponent<CharacterStatus>().setBlocked(false);
                 TriggerNPCEvent();
             }
         }
         else if (Input.GetKeyDown(KeyCode.X))
         {
+            GetComponent<AudioSource>().Stop();
             bshow = false;
         }
 
@@ -60,9 +66,14 @@ public class Dialogue : MonoBehaviour {
         /* Trigger Shop Interface */
         if (gameObject.GetComponent<NPCStatus>().type == NPCStatus.NPCType.SHOPPER)
         {
+            gameObject.GetComponent<GUIbuttonsho>().setShopActivation(true);
         }
         /* Trigger Battle Interface */
         else if (gameObject.GetComponent<NPCStatus>().type == NPCStatus.NPCType.TRAINER)
+        {
+        }
+        /* Trigger Healing Students */
+        else if (gameObject.GetComponent<NPCStatus>().type == NPCStatus.NPCType.DOCTOR)
         {
         }
     }
@@ -105,5 +116,7 @@ public class Dialogue : MonoBehaviour {
     public void TurnOnDialogue()
     {
         bshow = true;
+        GetComponent<AudioSource>().Stop();
+        GetComponent<AudioSource>().PlayOneShot(TypingSound, 1);
     }
 }

@@ -50,19 +50,13 @@ public class NPCStatus : MonoBehaviour {
 	
 	}
 
-    /* Shop Menu Pop-Up */
-    public void openShop()
-    {
-        // this.gameObject.GetComponent<GUIbuttonsho>().menuToggle = true;
-    }
-
     /* when got collision + Activate Input(Z) from Player, it would be executed */
     public void interaction(GameObject player)
     {
         bool dialogue_occurence = false;
         GameObject pl = GameManager.pl_stored;
 
-        if (type != NPCType.WARP)
+        if (type != NPCType.WARP && type != NPCType.DOCTOR && type != NPCType.SHOPPER)
         {
             if (gameObject.GetComponent<Dialogue>().getDialogueOnOff() == false)
             {
