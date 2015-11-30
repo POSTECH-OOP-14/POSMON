@@ -4,8 +4,8 @@ using System.Collections;
 public class StudentInfo: MonoBehaviour 
 {
     //use for debug mode;
-         public Student[] myDebugStuList = new Student[3];
-         public Student[] enemyDebugStuList = new Student[2];
+         public Student[] myDebugStuList = new Student[6];
+         public Student[] enemyDebugStuList = new Student[6];
     StudentTextureList textList= new StudentTextureList();
 
         void Awake()
