@@ -33,6 +33,7 @@ public class CharacterStatus : MonoBehaviour
 
     /* inventory information */
     private Item[] inventory = new Item[256];
+    private int money = 0;
 
     /**** methods related to inventory ****/
     public void setInventory(Item item, int index)
@@ -60,6 +61,16 @@ public class CharacterStatus : MonoBehaviour
     public Item getInventory(int i)
     {
         return inventory[i];
+    }
+
+    public int getMoney()
+    {
+        return money;
+    }
+
+    public void setMoney(int _money)
+    {
+        money = _money;
     }
     /*****************************************/
 

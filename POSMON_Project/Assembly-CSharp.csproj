@@ -52,6 +52,7 @@
      <Compile Include="Assets\ChangeCharacter.cs" />
      <Compile Include="Assets\CharacterStatus.cs" />
      <Compile Include="Assets\Dialogue.cs" />
+     <Compile Include="Assets\Fading.cs" />
      <Compile Include="Assets\GUIbuttonsho.cs" />
      <Compile Include="Assets\GameManager.cs" />
      <Compile Include="Assets\Item.cs" />
