@@ -546,5 +546,12 @@ public class Student
     {
         return skillNumberList;
     }
+
+    public string retStudentName()
+    {
+        string a = "";
+        a = this.department +" " +this.index+ "번 학생";
+        return a;
+    }
 }
 

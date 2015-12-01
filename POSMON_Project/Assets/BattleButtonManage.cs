@@ -116,13 +116,11 @@ public class BattleButtonManage : MonoBehaviour
             int MyStudentAlived = 0; //save the info wether player student is dead.
             int OppoStudentAlived = 0; // save the info wether opponent student is dead.
             int alived = 0; //check wther student get faint.
-
-            int MyMoveSpeed = 0;//get speed, use for check whos first. 
-            int EnemyMoveSpeed = 0;
+            int toChangeP = 0;
             //get what people selected to do. 0 is attack, 1 is item, 2 is change, 3 is run.
             int myMove = 0;
             int enemyMove = 0;
-
+            
             Rect FirstPos = new Rect(cam.pixelWidth * 5 / 7 - 10, cam.pixelHeight * 5 / 7 - 10, cam.pixelWidth / 7, cam.pixelHeight / 7);
             Rect SecondPos = new Rect(cam.pixelWidth * 6 / 7 - 10, cam.pixelHeight * 5 / 7 - 10, cam.pixelWidth / 7, cam.pixelHeight / 7);
             Rect FifthPos = new Rect(cam.pixelWidth * 6 / 7 - 10, cam.pixelHeight * 4 / 7 - 10, cam.pixelWidth / 7, cam.pixelHeight / 7);
@@ -273,13 +271,14 @@ public class BattleButtonManage : MonoBehaviour
                         while (!aaa)
                         {
                             GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "그 학생은 이미 싸우고 있다!"+ "\n(z나 enter를 입력)");
-                            aba = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
+                            aaa = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
                             yield return null;
                         } 
                         i = 0;
                     }
                     else
                     {
+                        toChangeP = i-1;
                         myMove = 2;
                         Battle = BattleButtonState.NextState;
                     }
@@ -305,8 +304,28 @@ public class BattleButtonManage : MonoBehaviour
                 if (whoFirst == 0)  //player go first
                 {
                     if (myMove == 2)    //if i change character.
-                    {
-                        //write how to change character.
+                    {                   //write how to change character.
+                        if (toChangeP != -1)
+                        {
+                            aba = false;
+                            while (!aba)
+                            {
+                                GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "교수님은" + MineStudentList[toChangeP].retStudentName() + "을 내보냈다!");
+                                aba = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
+                                yield return null;
+                            }
+                            CurrentMine = MineStudentList[toChangeP];
+                        }
+                        else
+                        {
+                            aba = false;
+                            while (!aba)
+                            {
+                                GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "유효하지 않은 상태입니다.");
+                                aba = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
+                                yield return null;
+                            }
+                        }
                     }
                     else if (myMove == 1)
                     {
@@ -428,7 +447,6 @@ public class BattleButtonManage : MonoBehaviour
                     if (battleStartMove != 0)
                     {
                         aba = false;
-
                         while (!aba)
                         {
                             GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "상대는 움직일 수 없었다" + "\n(z나 enter를 입력)");
@@ -440,6 +458,7 @@ public class BattleButtonManage : MonoBehaviour
                     else if (true)
                     {
                         alived = CurrentMine.getDamage(myToOppoDamage);
+                        aba = false;
                         while (!aba)
                         {
                             GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "상대는 " + myToOppoDamage.ToString() + "만큼의 피해를 주었다." + "\n(z나 enter를 입력)");
@@ -478,7 +497,27 @@ public class BattleButtonManage : MonoBehaviour
                     {
                         if (myMove == 2)    //if i change character.
                         {
-                            //write how to change character.
+                            if (toChangeP != -1)
+                            {
+                                aba = false;
+                                while (!aba)
+                                {
+                                    GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "교수님은" + MineStudentList[toChangeP].retStudentName() + "을 내보냈다!");
+                                    aba = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
+                                    yield return null;
+                                }
+                                CurrentMine = MineStudentList[toChangeP];
+                            }
+                            else
+                            {
+                                aba = false;
+                                while (!aba)
+                                {
+                                    GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "유효하지 않은 상태입니다.");
+                                    aba = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
+                                    yield return null;
+                                }
+                            }
                         }
                         else if (myMove == 1)
                         {
@@ -502,7 +541,7 @@ public class BattleButtonManage : MonoBehaviour
                             aba = false;
                             while (!aba)
                             {
-                                GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentMine.retStuIndex().ToString() + "학생은 " + damage.ToString() + "만큼의 데미지를 주었다." + "\n(z나 enter를 입력)");
+                                GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentMine.retStudentName() + "은 " + damage.ToString() + "만큼의 데미지를 주었다." + "\n(z나 enter를 입력)");
                                 aba = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
                                 yield return null;
                             }
@@ -512,7 +551,7 @@ public class BattleButtonManage : MonoBehaviour
                                 aba = false;
                                 while (!aba)
                                 {
-                                    GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentEnemy.retStuIndex().ToString() + "학생은 " + damage.ToString() + "쓰러졌다" + "\n(z나 enter를 입력)");
+                                    GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentEnemy.retStudentName()+"은 " + damage.ToString() + "쓰러졌다" + "\n(z나 enter를 입력)");
                                     aba = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
                                     yield return null;
                                 }
@@ -539,13 +578,9 @@ public class BattleButtonManage : MonoBehaviour
                                     Battle = BattleButtonState.DefaultState;
                                 }
                             }
-                        }
-     
+                        }     
                     }
                 }
-
-
-                
             }
             yield return null;
         }
