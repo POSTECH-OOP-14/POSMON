@@ -3,6 +3,9 @@ using System.Collections;
 
 public class CharacterStatus : MonoBehaviour
 {
+    private string text = "아이템 설명";
+    private string text2;
+
     enum status
     {
         IDLE,
@@ -312,8 +315,8 @@ public class CharacterStatus : MonoBehaviour
     private Vector2 scroll = Vector2.zero;
     private string[] stu_toolbar = new string[4];
     private int stu_toolbarint = 0;
-    private string[] item_grid = new string[256];
-    private int item_gridint =0;
+    private int item_gridint = 0;
+    private string[] item_grid;
     private int k = 0;
     void OnGUI()
     {
@@ -324,11 +327,16 @@ public class CharacterStatus : MonoBehaviour
             myStyle.font = (Font)Resources.Load("NANUMBARUNGOTHICBOLD", typeof(Font));
             myStyle.alignment = TextAnchor.UpperLeft;
             myStyle.normal.textColor = Color.white;
+            GUIStyle itemStyle = new GUIStyle(GUI.skin.box);
+            itemStyle.fontSize = 15;
+            itemStyle.font = (Font)Resources.Load("NANUMBARUNGOTHICBOLD", typeof(Font));
+            itemStyle.alignment = TextAnchor.UpperLeft;
+            itemStyle.normal.textColor = Color.white;
             
             /* Status Menu Init */
             GUI.Box(new Rect(Screen.width / 8, Screen.height / 8, (Screen.width * 6) / 8, (Screen.height * 6) / 7), "Info");
             toolbarint = GUI.Toolbar(new Rect(Screen.width / 6, Screen.height / 5, (Screen.width * 3) / 10, (Screen.height * 3) / 40), toolbarint, toolbar_str);
-            scroll = GUI.BeginScrollView(new Rect(Screen.width / 5, Screen.height / 3, (Screen.width * 3) / 5, (Screen.height * 3) / 5), scroll, new Rect(0, 0, Screen.width, Screen.height));
+            scroll = GUI.BeginScrollView(new Rect(Screen.width / 5, (Screen.height/3)-10, (Screen.width * 3) / 5, (Screen.height * 3) / 5), scroll, new Rect(0, 0, Screen.width, Screen.height));
 
             /* case Student */
             if (toolbarint == 0)
@@ -364,16 +372,20 @@ public class CharacterStatus : MonoBehaviour
             /* case Item */
             else if (toolbarint == 2 && inventory[0] != null)
             {
+                
                 for (k = 0; inventory[k] != null; k++)
-                {
-                    item_grid[k] = inventory[k].getName();
+                {}
+                    item_grid = new string[k];
+
+                for(int i =0;i<k;i++){
+                    item_grid[i] = inventory[i].getName();
                 }
-                item_gridint = GUI.SelectionGrid(new Rect(Screen.width / 20, (Screen.height / 20), 25, 10), item_gridint, item_grid, (k + 1) / 4);
+                item_gridint = GUI.SelectionGrid(new Rect(0, 0, Screen.width/2, 25*(((k+1)/2))), item_gridint, item_grid,2);
                 for (int i = 0; inventory[i] != null; i++)
                 {
                     if (item_gridint == i)
                     {
-                        if (GUI.Button(new Rect(Screen.width / 20, (Screen.height / 20) + 30, 25, 10), "Use"))
+                        if (GUI.Button(new Rect(0, 25*(((k+1)/2))+10, 50, 25), "Use"))
                         {
                             for (int j = 0; student_list[j] != null; j++)
                             {
@@ -389,10 +401,21 @@ public class CharacterStatus : MonoBehaviour
                                 }
                             }
                         }
-                        GUI.Box(new Rect((Screen.width / 20) + 30, (Screen.height / 20) + 30, (Screen.width * 9) / 10, Screen.height / 2),
-                            "Type " + inventory[i].getType().ToString() + "\n" +
-                            "Status " + inventory[i].getStatus().ToString() + "\n" +
-                            "Amount " + inventory[i].getAmount().ToString() + "\n");
+                     text = "아이템 설명";
+                     text2 = "\n";
+        
+                    text = text + "\n\n 아이템 이름 : " + inventory[item_gridint].getName();
+                    text = text + "\n\n 아이템 종류 : ";
+                    if (inventory[item_gridint].getType() == type.skill)
+                        text = text + "기술 머신";
+                    else if (inventory[item_gridint].getType() == type.cure)
+                        text = text + "치료 아이템";
+                    else if (inventory[item_gridint].getType() == type.capture)
+                        text = text + "포획 아이템";
+                    text = text + "\n\n 설명 : " + inventory[item_gridint].getInfo();
+                    text = text + "\n\n 개수 : " + inventory[item_gridint].getAmount().ToString();
+                    GUI.Box(new Rect(0 + 60, 25*(((k+1)/2))+10, Screen.width - 60, Screen.height -(25*(((k+1)/2))+10)),   
+                        text, itemStyle);
                     }
                 }
             }
