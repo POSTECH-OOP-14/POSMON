@@ -93,7 +93,7 @@ public class Dialogue : MonoBehaviour {
                 if (stu != null)
                     stu.setHP(stu.getMAXHP());
             }
-
+            GetComponent<AudioSource>().PlayOneShot(CureSound);
         }
     }
 
