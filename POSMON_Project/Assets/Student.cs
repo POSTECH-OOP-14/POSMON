@@ -44,7 +44,7 @@ public class Student
                     st = status.none;
                     level = 1;
                     exp = 0;
-                    MAXHP = stat[6]*5;
+                    MAXHP = stat[5]*5;
                     HP = MAXHP;
                     skillNum = 2;
                     break;
@@ -57,7 +57,7 @@ public class Student
                     st = status.none;
                     level = 1;
                     exp = 0;
-                    MAXHP = stat[6] * 5;
+                    MAXHP = stat[5] * 5;
                     HP = MAXHP;
                     skillNum = 2;
                     break;
@@ -70,7 +70,7 @@ public class Student
                     st = status.none;
                     level = 1;
                     exp = 0;
-                    MAXHP = stat[6] * 5;
+                    MAXHP = stat[5] * 5;
                     HP = MAXHP;
                     skillNum = 2;
                     break;
@@ -83,7 +83,7 @@ public class Student
                     st = status.none;
                     level = 1;
                     exp = 0;
-                    MAXHP = stat[6] * 5;
+                    MAXHP = stat[5] * 5;
                     HP = MAXHP;
                     skillNum = 2;
                     break;
@@ -96,7 +96,7 @@ public class Student
                     st = status.none;
                     level = 1;
                     exp = 0;
-                    MAXHP = stat[6] * 5;
+                    MAXHP = stat[5] * 5;
                     HP = MAXHP;
                     skillNum = 2;
                     break;
@@ -109,7 +109,7 @@ public class Student
                     st = status.none;
                     level = 1;
                     exp = 0;
-                    MAXHP = stat[6] * 5;
+                    MAXHP = stat[5] * 5;
                     HP = MAXHP;
                     skillNum = 2;
                     break;
@@ -122,7 +122,7 @@ public class Student
                     st = status.none;
                     level = 1;
                     exp = 0;
-                    MAXHP = stat[6] * 5;
+                    MAXHP = stat[5] * 5;
                     HP = MAXHP;
                     skillNum = 2;
                     break;
@@ -135,7 +135,7 @@ public class Student
                     st = status.none;
                     level = 1;
                     exp = 0;
-                    MAXHP = stat[6] * 5;
+                    MAXHP = stat[5] * 5;
                     HP = MAXHP;
                     skillNum = 2;
                     break;
@@ -148,7 +148,7 @@ public class Student
                     st = status.none;
                     level = 1;
                     exp = 0;
-                    MAXHP = stat[6] * 5;
+                    MAXHP = stat[5] * 5;
                     HP = MAXHP;
                     skillNum = 2;
                     break;
@@ -161,7 +161,7 @@ public class Student
                     st = status.none;
                     level = 1;
                     exp = 0;
-                    MAXHP = stat[6] * 5;
+                    MAXHP = stat[5] * 5;
                     HP = MAXHP;
                     skillNum = 2;
                     break;
@@ -174,7 +174,7 @@ public class Student
                     st = status.none;
                     level = 1;
                     exp = 0;
-                    MAXHP = stat[6] * 5;
+                    MAXHP = stat[5] * 5;
                     HP = MAXHP;
                     skillNum = 2;
                     break;
@@ -187,7 +187,7 @@ public class Student
                     st = status.none;
                     level = 1;
                     exp = 0;
-                    MAXHP = stat[6] * 5;
+                    MAXHP = stat[5] * 5;
                     HP = MAXHP;
                     skillNum = 2;
                     break;
@@ -200,7 +200,7 @@ public class Student
                     st = status.none;
                     level = 1;
                     exp = 0;
-                    MAXHP = stat[6] * 5;
+                    MAXHP = stat[5] * 5;
                     HP = MAXHP;
                     skillNum = 2;
                     break;
@@ -213,7 +213,7 @@ public class Student
                     st = status.none;
                     level = 1;
                     exp = 0;
-                    MAXHP = stat[6] * 5;
+                    MAXHP = stat[5] * 5;
                     HP = MAXHP;
                     skillNum = 2;
                     break;
@@ -226,7 +226,7 @@ public class Student
                     st = status.none;
                     level = 1;
                     exp = 0;
-                    MAXHP = stat[6] * 5;
+                    MAXHP = stat[5] * 5;
                     HP = MAXHP;
                     skillNum = 2;
                     break;
@@ -239,7 +239,7 @@ public class Student
                     st = status.none;
                     level = 1;
                     exp = 0;
-                    MAXHP = stat[6] * 5;
+                    MAXHP = stat[5] * 5;
                     HP = MAXHP;
                     skillNum = 2;
                     break;
@@ -252,7 +252,7 @@ public class Student
                     st = status.none;
                     level = 1;
                     exp = 0;
-                    MAXHP = stat[6] * 5;
+                    MAXHP = stat[5] * 5;
                     HP = MAXHP;
                     skillNum = 2;
                     break;
@@ -265,7 +265,7 @@ public class Student
                     st = status.none;
                     level = 1;
                     exp = 0;
-                    MAXHP = stat[6] * 5;
+                    MAXHP = stat[5] * 5;
                     HP = MAXHP;
                     skillNum = 2;
                     break;
@@ -278,7 +278,7 @@ public class Student
                     st = status.none;
                     level = 1;
                     exp = 0;
-                    MAXHP = stat[6] * 5;
+                    MAXHP = stat[5] * 5;
                     HP = MAXHP;
                     skillNum = 2;
                     break;
@@ -291,7 +291,7 @@ public class Student
                     st = status.none;
                     level = 1;
                     exp = 0;
-                    MAXHP = stat[6] * 5;
+                    MAXHP = stat[5] * 5;
                     HP = MAXHP;
                     skillNum = 2;
                     break;
@@ -304,7 +304,7 @@ public class Student
                     st = status.none;
                     level = 1;
                     exp = 0;
-                    MAXHP = stat[6] * 5;
+                    MAXHP = stat[5] * 5;
                     HP = MAXHP;
                     skillNum = 2;
                     break;
@@ -317,7 +317,7 @@ public class Student
                     st = status.none;
                     level = 1;
                     exp = 0;
-                    MAXHP = stat[6] * 5;
+                    MAXHP = stat[5] * 5;
                     HP = MAXHP;
                     skillNum = 2;
                     break;

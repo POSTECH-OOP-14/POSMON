@@ -355,8 +355,19 @@ public class Item
         return st;
     }
 
+    public void setAmount(double n)
+    {
+        amount = n;
+    }
+
+    public void addAmount()
+    {
+        amount++;
+    }
+
     public bool useItem( Student s)
     {
+        amount--;
         if (this.getType() == type.skill)
         {
             return s.addSkill(this);
