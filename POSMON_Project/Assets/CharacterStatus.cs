@@ -168,6 +168,7 @@ public class CharacterStatus : MonoBehaviour
         walk_remaining = 0;
         moving_status = status.IDLE;
         direction = face_direction.DOWN;
+        student_list[0] = new Student(stu_no.BIO1);
 	}
 
     public int getStudentCount()
