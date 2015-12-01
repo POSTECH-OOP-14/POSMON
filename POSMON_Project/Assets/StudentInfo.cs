@@ -1,60 +1,43 @@
 ﻿﻿using UnityEngine;
 using System.Collections;
 
-public class StudentInfo
+public class StudentInfo: MonoBehaviour 
 {
+    //use for debug mode;
+        public Student[] myDebugStuList = new Student[6];
+        public Student[] enemyDebugStuList = new Student[6];
+        StudentTextureList textList= new StudentTextureList();
 
-    int StudentMaxHealth;
-    int StudentCurHealth;
-    int StudentLevel;
-    int StudentAttack;
-    int StudentSpecialAttack;
-    int StudentDefense;
-    int StudentSpecialDefense;
-    int StudentSpeed;
-    public SkillInfo[] skillList = new SkillInfo[4];
-    public int type;
-    
+        void Awake()
+         {
+             myDebugStuList[0] = new Student(stu_no.MATH1);
+             myDebugStuList[1] = new Student(stu_no.MATH2);
+             myDebugStuList[2] = new Student(stu_no.PHYS1);
 
-    // Use this for initialization
-    void Start()
-    {
-    }
+             enemyDebugStuList[0] = new Student(stu_no.MATH1);
+             enemyDebugStuList[1] = new Student(stu_no.MATH2);
+         }     
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-    public StudentInfo()
-    {
-        StudentMaxHealth = 100;
-        StudentCurHealth = 100;
-        StudentLevel = 10;
-        StudentAttack = 50;
-        StudentSpecialAttack = 50;
-        StudentDefense = 50;
-        StudentSpecialDefense = 50;
-        StudentSpeed = 50;
-        StudentAttack = 50;
-        type = 3;
-    }
-    public int retStudentCurHealth() { return StudentCurHealth; }
-    public int retStudentLevel() { return StudentLevel; }
-    public int retStudentAttack() { return StudentAttack; }
-    public int retStudentSpecialAttack() { return StudentSpecialAttack; }
-    public int retStudentDefense() { return StudentDefense; }
-    public int retStudentSpecialDefense() { return StudentSpecialDefense; }
-    public int retStudentSpeed() { return StudentSpeed; }
-    public int getDamage(int damage) 
-    {
-        StudentCurHealth -= damage;
-        if (StudentCurHealth <= 0)
+        void Start()
         {
-            StudentCurHealth = 0;
-            return 1;
+          
         }
-        else
-            return 0;
-    }
+
+         public Student retStuData(int i, int j)
+         {
+
+             for (int z = 0; z < 3; z++)
+             {
+                 if (myDebugStuList[z] == null)
+                     Debug.Log("my debug list " + z + "is null");
+                 if (enemyDebugStuList[z] == null)
+                     Debug.Log("enemy debug list " + z + "is null");
+             }
+    
+             if (i == 0)
+                 return myDebugStuList[j];
+             else
+                 return enemyDebugStuList[j];
+
+         }
 }

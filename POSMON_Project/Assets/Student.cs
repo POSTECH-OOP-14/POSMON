@@ -47,6 +47,7 @@ public class Student
                     MAXHP = stat[6]*5;
                     HP = MAXHP;
                     skillNum = 2;
+                    index = (int)n;
                     break;
                 }
             case stu_no.MATH2:
@@ -60,6 +61,7 @@ public class Student
                     MAXHP = stat[6] * 5;
                     HP = MAXHP;
                     skillNum = 2;
+                    index = (int)n;
                     break;
                 }
             case stu_no.PHYS1:
@@ -73,6 +75,7 @@ public class Student
                     MAXHP = stat[6] * 5;
                     HP = MAXHP;
                     skillNum = 2;
+                    index = (int)n;
                     break;
                 }
             case stu_no.PHYS2:
@@ -86,6 +89,7 @@ public class Student
                     MAXHP = stat[6] * 5;
                     HP = MAXHP;
                     skillNum = 2;
+                    index = (int)n;
                     break;
                 }
             case stu_no.CHEM1:
@@ -99,6 +103,7 @@ public class Student
                     MAXHP = stat[6] * 5;
                     HP = MAXHP;
                     skillNum = 2;
+                    index = (int)n;
                     break;
                 }
             case stu_no.CHEM2:
@@ -112,6 +117,7 @@ public class Student
                     MAXHP = stat[6] * 5;
                     HP = MAXHP;
                     skillNum = 2;
+                    index = (int)n;
                     break;
                 }
             case stu_no.CME1:
@@ -125,6 +131,7 @@ public class Student
                     MAXHP = stat[6] * 5;
                     HP = MAXHP;
                     skillNum = 2;
+                    index = (int)n;
                     break;
                 }
             case stu_no.CME2:
@@ -138,6 +145,7 @@ public class Student
                     MAXHP = stat[6] * 5;
                     HP = MAXHP;
                     skillNum = 2;
+                    index = (int)n;
                     break;
                 }
             case stu_no.BIO1:
@@ -151,6 +159,7 @@ public class Student
                     MAXHP = stat[6] * 5;
                     HP = MAXHP;
                     skillNum = 2;
+                    index = (int)n;
                     break;
                 }
             case stu_no.BIO2:
@@ -164,6 +173,7 @@ public class Student
                     MAXHP = stat[6] * 5;
                     HP = MAXHP;
                     skillNum = 2;
+                    index = (int)n;
                     break;
                 }
             case stu_no.MSE1:
@@ -177,6 +187,7 @@ public class Student
                     MAXHP = stat[6] * 5;
                     HP = MAXHP;
                     skillNum = 2;
+                    index = (int)n;
                     break;
                 }
             case stu_no.MSE2:
@@ -190,6 +201,7 @@ public class Student
                     MAXHP = stat[6] * 5;
                     HP = MAXHP;
                     skillNum = 2;
+                    index = (int)n;
                     break;
                 }
             case stu_no.ME1:
@@ -203,6 +215,7 @@ public class Student
                     MAXHP = stat[6] * 5;
                     HP = MAXHP;
                     skillNum = 2;
+                    index = (int)n;
                     break;
                 }
             case stu_no.ME2:
@@ -216,6 +229,7 @@ public class Student
                     MAXHP = stat[6] * 5;
                     HP = MAXHP;
                     skillNum = 2;
+                    index = (int)n;
                     break;
                 }
             case stu_no.CSE1:
@@ -229,6 +243,7 @@ public class Student
                     MAXHP = stat[6] * 5;
                     HP = MAXHP;
                     skillNum = 2;
+                    index = (int)n;
                     break;
                 }
             case stu_no.CSE2:
@@ -242,6 +257,7 @@ public class Student
                     MAXHP = stat[6] * 5;
                     HP = MAXHP;
                     skillNum = 2;
+                    index = (int)n;
                     break;
                 }
             case stu_no.CITE1:
@@ -255,6 +271,7 @@ public class Student
                     MAXHP = stat[6] * 5;
                     HP = MAXHP;
                     skillNum = 2;
+                    index = (int)n;
                     break;
                 }
             case stu_no.CITE2:
@@ -268,6 +285,7 @@ public class Student
                     MAXHP = stat[6] * 5;
                     HP = MAXHP;
                     skillNum = 2;
+                    index = (int)n;
                     break;
                 }
             case stu_no.IME1:
@@ -281,6 +299,7 @@ public class Student
                     MAXHP = stat[6] * 5;
                     HP = MAXHP;
                     skillNum = 2;
+                    index = (int)n;
                     break;
                 }
             case stu_no.IME2:
@@ -294,6 +313,7 @@ public class Student
                     MAXHP = stat[6] * 5;
                     HP = MAXHP;
                     skillNum = 2;
+                    index = (int)n;
                     break;
                 }
             case stu_no.EE1:
@@ -307,6 +327,7 @@ public class Student
                     MAXHP = stat[6] * 5;
                     HP = MAXHP;
                     skillNum = 2;
+                    index = (int)n;
                     break;
                 }
             case stu_no.EE2:
@@ -320,6 +341,7 @@ public class Student
                     MAXHP = stat[6] * 5;
                     HP = MAXHP;
                     skillNum = 2;
+                    index = (int)n;
                     break;
                 }
         }
@@ -453,6 +475,11 @@ public class Student
         return this.index / 10;
     }
 
+    public stu_no getStuIndex()
+    {
+        int i = this.index;
+        return (stu_no)index;
+    }
     //return stat of student
     //0 is atk, 1 is special atk, 2 is def, 3 is special def, 4 is speed, 5 is hp
     //6 is level
