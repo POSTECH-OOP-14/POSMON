@@ -30,23 +30,37 @@ public class NPCStatus : MonoBehaviour {
 
     /* Data for Battle */
     public Student[] student_list = new Student[6];
+    private bool battleEnd = false;
+
+    public int[] students_level = new int[6];
+    public stu_no[] students_type = new stu_no[6];
 
     /* Data for Warp */
     public int ChangeSceneTo;
     public float WarpPositionX;
-    public float WarpPositionY;
-
-    /* Battle Data */
-    private bool battleEnd = false;
+    public float WarpPositionY;    
 
 	// Use this for initialization
 	void Start () {
+        /* Make Quest if Target exists */
         if (QuestTargetNPCNumber != 0 && type == NPCType.TALKER)
             quest = new Quest(NPC_number, QuestTargetNPCNumber, QuestReward);
+
+        /* Make Student List for Trainer */
+        for (int i = 0; i < 6; i++)
+        {
+            if (students_level[i] != 0)
+            {
+                student_list[i] = new Student(students_type[i]);
+                for (int j = students_level[i]; j > 1; j--)
+                    student_list[i].levelUP();
+            }
+        }
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
 	
 	}
 
@@ -94,6 +108,36 @@ public class NPCStatus : MonoBehaviour {
                     }
                     Debug.Log("Got Quest!");
                 }
+                /* check if the NPC is target NPC */
+                else if (pl.GetComponent<CharacterStatus>().isTarget(NPC_number) != null)
+                {
+                    Debug.Log("Checking the NPC is target or not");
+                    Quest qst = pl.GetComponent<CharacterStatus>().isTarget(NPC_number);
+                    if (type == NPCType.TRAINER)
+                    {
+                        if (this.gameObject.GetComponent<Dialogue>().ChangeDialogue("questend_" + qst.getHostNPCNumber().ToString() ))
+                        {
+                            player.GetComponent<CharacterStatus>().setBlocked(true);
+                            this.gameObject.GetComponent<Dialogue>().TurnOnDialogue();
+                            dialogue_occurence = true;
+                        }
+                        Debug.Log("Cleared Quest");
+                    }
+
+                    if (qst != null)
+                    {
+                        Debug.Log("I am quest Target ! ");
+                        if (this.gameObject.GetComponent<Dialogue>().ChangeDialogue("questend_" + qst.getHostNPCNumber().ToString() ))
+                        {
+                            player.GetComponent<CharacterStatus>().setBlocked(true);
+                            this.gameObject.GetComponent<Dialogue>().TurnOnDialogue();
+                            dialogue_occurence = true;
+                            qst.QuestClear();
+                            player.GetComponent<CharacterStatus>().deleteQuest(qst.getHostNPCNumber());
+                        }
+                        Debug.Log("Cleared Quest");
+                    }
+                }
                 /* Dialogue in quest progressing */
                 else if (GameManager.QuestGiven[NPC_number] == true && pl.GetComponent<CharacterStatus>().getQuest(NPC_number) != null)
                 {
@@ -105,25 +149,6 @@ public class NPCStatus : MonoBehaviour {
                             this.gameObject.GetComponent<Dialogue>().TurnOnDialogue();
                             dialogue_occurence = true;
                         }
-                    }
-                }
-
-                /* check if the NPC is target NPC */
-                else
-                {
-                    Debug.Log("Checking the NPC is target or not");
-                    Quest qst;
-                    if ((qst = pl.GetComponent<CharacterStatus>().isTarget(NPC_number)) != null)
-                    {
-                        Debug.Log("I am quest Target ! ");
-                        if (this.gameObject.GetComponent<Dialogue>().ChangeDialogue("questend_" + qst.getHostNPCNumber().ToString() ))
-                        {
-                            player.GetComponent<CharacterStatus>().setBlocked(true);
-                            this.gameObject.GetComponent<Dialogue>().TurnOnDialogue();
-                            dialogue_occurence = true;
-                            player.GetComponent<CharacterStatus>().deleteQuest(qst.getHostNPCNumber());
-                        }
-                        Debug.Log("Cleared Quest");
                     }
                 }
             }
@@ -144,39 +169,12 @@ public class NPCStatus : MonoBehaviour {
             }
         }
 
-        /* Trigger Each Type's Special Things */
-        if (type == NPCType.SHOPPER)
-        {
-            // Shpping Menu Pop Up //
-        }
-        else if (type == NPCType.TRAINER)
-        {
-            if (battleEnd == false)
-            {
-                // Battle Phase Should be Occur //
-            }
-        }
-        else if (type == NPCType.DOCTOR)
-        {
-            for (int i = 0; i < 6; i++)
-            {
-                Student temp;
-                if ((temp = pl.GetComponent<CharacterStatus>().getStudent(i)) != null)
-                    ; // restore the student's current health
-            }
-        }
-        else if (type == NPCType.TALKER)
-        {
-        }
-        else if (type == NPCType.WARP)
+        /* Trigger WARP */
+        if (type == NPCType.WARP)
         {
             GameManager.ChangeMap(ChangeSceneTo);
             GameManager.WarpCharacter(WarpPositionX, WarpPositionY);
             dialogue_occurence = true;
-        }
-        else
-        {
-            Debug.LogError("Invalid NPC Type");
         }
     }
 }

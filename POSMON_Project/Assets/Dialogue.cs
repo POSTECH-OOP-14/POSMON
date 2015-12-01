@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Dialogue : MonoBehaviour {
     public AudioClip TypingSound;
+    public AudioClip CureSound;
 
     private bool bshow = false;
     private string dialoge1 = null;
@@ -50,6 +51,7 @@ public class Dialogue : MonoBehaviour {
                 bshow = false;
                 GetComponent<AudioSource>().Stop();
                 GameManager.pl_stored.GetComponent<CharacterStatus>().setBlocked(false);
+                /* when Dialogue ends, trigger NPC's event */
                 TriggerNPCEvent();
             }
         }
@@ -71,10 +73,27 @@ public class Dialogue : MonoBehaviour {
         /* Trigger Battle Interface */
         else if (gameObject.GetComponent<NPCStatus>().type == NPCStatus.NPCType.TRAINER)
         {
+            Quest qst = GameManager.pl_stored.GetComponent<CharacterStatus>().getQuest(gameObject.GetComponent<NPCStatus>().NPC_number);
+            /* if quest exist */
+            if (qst != null)
+            {
+                /* if the NPC is not yet defeated, battle */
+                if (qst.getDefeated() == false)
+                {
+                    // trigger battle
+                }
+            }
         }
         /* Trigger Healing Students */
         else if (gameObject.GetComponent<NPCStatus>().type == NPCStatus.NPCType.DOCTOR)
         {
+            for (int i = 0; i < 6; i++)
+            {
+                Student stu = GameManager.pl_stored.GetComponent<CharacterStatus>().getStudent(i);
+                if (stu != null)
+                    stu.setHP(stu.getMAXHP());
+            }
+
         }
     }
 

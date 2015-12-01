@@ -38,7 +38,7 @@ public class Student
         {
             case stu_no.MATH1:
                 {
-                    skill = new SkillInfo[] {list.retSkillInfo(19),list.retSkillInfo(1)};
+                    skill = new SkillInfo[] { list.retSkillInfo(18), list.retSkillInfo(0), null, null };
                     department = "수학과";
                     stat = new double[] { 30, 5, 10, 15, 25, 15 };
                     st = status.none;
@@ -51,7 +51,7 @@ public class Student
                 }
             case stu_no.MATH2:
                 {
-                    skill = new SkillInfo[] { list.retSkillInfo(20), list.retSkillInfo(4) };
+                    skill = new SkillInfo[] { list.retSkillInfo(19), list.retSkillInfo(3), null, null };
                     department = "수학과";
                     stat = new double[] { 35, 10, 25, 5, 15, 10 };
                     st = status.none;
@@ -64,7 +64,7 @@ public class Student
                 }
             case stu_no.PHYS1:
                 {
-                    skill = new SkillInfo[] { list.retSkillInfo(1), list.retSkillInfo(12) };
+                    skill = new SkillInfo[] { list.retSkillInfo(0), list.retSkillInfo(11), null, null };
                     department = "물리학과";
                     stat = new double[] { 15, 15, 5, 35, 5, 25 };
                     st = status.none;
@@ -77,7 +77,7 @@ public class Student
                 }
             case stu_no.PHYS2:
                 {
-                    skill = new SkillInfo[] { list.retSkillInfo(2), list.retSkillInfo(17) };
+                    skill = new SkillInfo[] { list.retSkillInfo(1), list.retSkillInfo(16), null, null };
                     department = "물리학과";
                     stat = new double[] { 10,30,25,5,5,25 };
                     st = status.none;
@@ -90,7 +90,7 @@ public class Student
                 }
             case stu_no.CHEM1:
                 {
-                    skill = new SkillInfo[] { list.retSkillInfo(3), list.retSkillInfo(13) };
+                    skill = new SkillInfo[] { list.retSkillInfo(2), list.retSkillInfo(12), null, null };
                     department = "화학과";
                     stat = new double[] { 10,30,25,5,5,25 };
                     st = status.none;
@@ -103,7 +103,7 @@ public class Student
                 }
             case stu_no.CHEM2:
                 {
-                    skill = new SkillInfo[] { list.retSkillInfo(4), list.retSkillInfo(9) };
+                    skill = new SkillInfo[] { list.retSkillInfo(3), list.retSkillInfo(8), null, null };
                     department = "화학과";
                     stat = new double[] { 15,25,30,10,10,10 };
                     st = status.none;
@@ -116,7 +116,7 @@ public class Student
                 }
             case stu_no.CME1:
                 {
-                    skill = new SkillInfo[] { list.retSkillInfo(5), list.retSkillInfo(21) };
+                    skill = new SkillInfo[] { list.retSkillInfo(4), list.retSkillInfo(20), null, null };
                     department = "화학공학과";
                     stat = new double[] { 10,10,15,20,20,25 };
                     st = status.none;
@@ -129,7 +129,7 @@ public class Student
                 }
             case stu_no.CME2:
                 {
-                    skill = new SkillInfo[] { list.retSkillInfo(6), list.retSkillInfo(22) };
+                    skill = new SkillInfo[] { list.retSkillInfo(5), list.retSkillInfo(21), null, null };
                     department = "화학공학과";
                     stat = new double[] { 5,15,20,15,20,25 };
                     st = status.none;
@@ -142,7 +142,7 @@ public class Student
                 }
             case stu_no.BIO1:
                 {
-                    skill = new SkillInfo[] { list.retSkillInfo(7), list.retSkillInfo(14) };
+                    skill = new SkillInfo[] { list.retSkillInfo(6), list.retSkillInfo(13), null, null };
                     department = "생명공학과";
                     stat = new double[] { 15,10,20,15,10,30 };
                     st = status.none;
@@ -155,7 +155,7 @@ public class Student
                 }
             case stu_no.BIO2:
                 {
-                    skill = new SkillInfo[] { list.retSkillInfo(8), list.retSkillInfo(18) };
+                    skill = new SkillInfo[] { list.retSkillInfo(7), list.retSkillInfo(17), null, null };
                     department = "생명공학과";
                     stat = new double[] { 10,15,15,20,5,35 };
                     st = status.none;
@@ -168,7 +168,7 @@ public class Student
                 }
             case stu_no.MSE1:
                 {
-                    skill = new SkillInfo[] { list.retSkillInfo(9), list.retSkillInfo(2) };
+                    skill = new SkillInfo[] { list.retSkillInfo(8), list.retSkillInfo(1), null, null };
                     department = "신소재공학과";
                     stat = new double[] { 10,25,10,25,15,15 };
                     st = status.none;
@@ -181,7 +181,7 @@ public class Student
                 }
             case stu_no.MSE2:
                 {
-                    skill = new SkillInfo[] { list.retSkillInfo(10), list.retSkillInfo(16) };
+                    skill = new SkillInfo[] { list.retSkillInfo(9), list.retSkillInfo(15), null, null };
                     department = "신소재공학과";
                     stat = new double[] { 10,20,15,20,20,15 };
                     st = status.none;
@@ -194,7 +194,7 @@ public class Student
                 }
             case stu_no.ME1:
                 {
-                    skill = new SkillInfo[] { list.retSkillInfo(11), list.retSkillInfo(17) };
+                    skill = new SkillInfo[] { list.retSkillInfo(10), list.retSkillInfo(16), null, null };
                     department = "기계공학과";
                     stat = new double[] { 5,30,10,30,10,15 };
                     st = status.none;
@@ -207,7 +207,7 @@ public class Student
                 }
             case stu_no.ME2:
                 {
-                    skill = new SkillInfo[] { list.retSkillInfo(12), list.retSkillInfo(4) };
+                    skill = new SkillInfo[] { list.retSkillInfo(11), list.retSkillInfo(3), null, null };
                     department = "기계공학과";
                     stat = new double[] { 10,30,5,30,5,20 };
                     st = status.none;
@@ -220,7 +220,7 @@ public class Student
                 }
             case stu_no.CSE1:
                 {
-                    skill = new SkillInfo[] { list.retSkillInfo(13), list.retSkillInfo(15) };
+                    skill = new SkillInfo[] { list.retSkillInfo(12), list.retSkillInfo(14), null, null };
                     department = "컴퓨터공학과";
                     stat = new double[] { 15,20,15,15,20,15 };
                     st = status.none;
@@ -233,7 +233,7 @@ public class Student
                 }
             case stu_no.CSE2:
                 {
-                    skill = new SkillInfo[] { list.retSkillInfo(14), list.retSkillInfo(20) };
+                    skill = new SkillInfo[] { list.retSkillInfo(13), list.retSkillInfo(19), null, null };
                     department = "컴퓨터공학과";
                     stat = new double[] { 20,15,15,20,15,15 };
                     st = status.none;
@@ -246,7 +246,7 @@ public class Student
                 }
             case stu_no.CITE1:
                 {
-                    skill = new SkillInfo[] { list.retSkillInfo(15), list.retSkillInfo(3) };
+                    skill = new SkillInfo[] { list.retSkillInfo(14), list.retSkillInfo(2), null, null };
                     department = "창의IT융합공학과";
                     stat = new double[] { 5,5,40,40,5,5 };
                     st = status.none;
@@ -259,7 +259,7 @@ public class Student
                 }
             case stu_no.CITE2:
                 {
-                    skill = new SkillInfo[] { list.retSkillInfo(16), list.retSkillInfo(6) };
+                    skill = new SkillInfo[] { list.retSkillInfo(15), list.retSkillInfo(5), null, null };
                     department = "창의IT융합공학과";
                     stat = new double[] { 10,5,35,35,10,5 };
                     st = status.none;
@@ -272,7 +272,7 @@ public class Student
                 }
             case stu_no.IME1:
                 {
-                    skill = new SkillInfo[] { list.retSkillInfo(17), list.retSkillInfo(7) };
+                    skill = new SkillInfo[] { list.retSkillInfo(16), list.retSkillInfo(6), null, null };
                     department = "산업경영공학과";
                     stat = new double[] { 15,15,5,25,20,20 };
                     st = status.none;
@@ -285,7 +285,7 @@ public class Student
                 }
             case stu_no.IME2:
                 {
-                    skill = new SkillInfo[] { list.retSkillInfo(18), list.retSkillInfo(22) };
+                    skill = new SkillInfo[] { list.retSkillInfo(17), list.retSkillInfo(21), null, null };
                     department = "산업경영공학과";
                     stat = new double[] { 10,15,10,20,25,20 };
                     st = status.none;
@@ -298,7 +298,7 @@ public class Student
                 }
             case stu_no.EE1:
                 {
-                    skill = new SkillInfo[] { list.retSkillInfo(21), list.retSkillInfo(3) };
+                    skill = new SkillInfo[] { list.retSkillInfo(20), list.retSkillInfo(2), null, null };
                     department = "전기전자공학과";
                     stat = new double[] { 10,25,5,20,20,20 };
                     st = status.none;
@@ -311,7 +311,7 @@ public class Student
                 }
             case stu_no.EE2:
                 {
-                    skill = new SkillInfo[] { list.retSkillInfo(22), list.retSkillInfo(13) };
+                    skill = new SkillInfo[] { list.retSkillInfo(21), list.retSkillInfo(12), null, null };
                     department = "전기전자공학과";
                     stat = new double[] { 10,20,10,20,15,25 };
                     st = status.none;
