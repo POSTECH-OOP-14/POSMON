@@ -56,7 +56,7 @@ public class NPCStatus : MonoBehaviour {
         bool dialogue_occurence = false;
         GameObject pl = GameManager.pl_stored;
 
-        if (type != NPCType.WARP && type != NPCType.DOCTOR && type != NPCType.SHOPPER)
+        if (type != NPCType.WARP && type != NPCType.DOCTOR && type != NPCType.SHOPPER && NPC_number < 100 && NPC_number > 0)
         {
             if (gameObject.GetComponent<Dialogue>().getDialogueOnOff() == false)
             {

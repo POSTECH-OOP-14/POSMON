@@ -5,7 +5,7 @@ public class GameManager : MonoBehaviour {
 
     /* For the purpose of Global Variables */
     static public GameObject pl_stored = null;
-    static public int PrevSceneNumber = 1;
+    static public int PrevSceneNumber = 8;
     static public bool[] QuestGiven = new bool[100];
 
     /* to store battle result, use GameManager variables */
