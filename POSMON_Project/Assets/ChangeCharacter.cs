@@ -18,7 +18,7 @@ public class ChangeCharacter : MonoBehaviour {
     Rect OurStudentImage;
     // Use this for initialization
 	void Start () {
-        textureList = GameObject.Find("MainCamera").GetComponent<StudentTextureList>();
+        textureList = GameObject.Find("Main Camera").GetComponent<StudentTextureList>();
         mineStu = GameObject.Find("battleBackground");
         myStudent = GameObject.Find("battleBackground").GetComponent<BattleButtonManage>().CurrentMine;
         enemyStudent = GameObject.Find("battleBackground").GetComponent<BattleButtonManage>().CurrentEnemy;

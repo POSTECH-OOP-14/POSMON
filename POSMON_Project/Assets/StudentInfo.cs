@@ -6,7 +6,6 @@ public class StudentInfo: MonoBehaviour
     //use for debug mode;
         public Student[] myDebugStuList = new Student[6];
         public Student[] enemyDebugStuList = new Student[6];
-        StudentTextureList textList= new StudentTextureList();
 
         void Awake()
          {
@@ -16,6 +15,14 @@ public class StudentInfo: MonoBehaviour
 
              enemyDebugStuList[0] = new Student(stu_no.MATH1);
              enemyDebugStuList[1] = new Student(stu_no.MATH2);
+             for (int z = 0; z < 3; z++)
+             {
+                 if (myDebugStuList[z] == null)
+                     Debug.Log("my debug list " + z + "is null");
+                 if (enemyDebugStuList[z] == null)
+                     Debug.Log("enemy debug list " + z + "is null");
+             }
+    
          }     
 
         void Start()
@@ -26,13 +33,6 @@ public class StudentInfo: MonoBehaviour
          public Student retStuData(int i, int j)
          {
 
-             for (int z = 0; z < 3; z++)
-             {
-                 if (myDebugStuList[z] == null)
-                     Debug.Log("my debug list " + z + "is null");
-                 if (enemyDebugStuList[z] == null)
-                     Debug.Log("enemy debug list " + z + "is null");
-             }
     
              if (i == 0)
                  return myDebugStuList[j];
