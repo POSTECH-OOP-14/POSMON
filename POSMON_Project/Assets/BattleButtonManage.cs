@@ -8,14 +8,15 @@ public class BattleButtonManage : MonoBehaviour
     public Camera cam;
 
     //save the battle state.
-    enum BattleButtonState  
+    public enum BattleButtonState  
     {
         DefaultState,
         AttackState,
         ExchangeState,
         ItemState,
         RunState,
-        NextState
+        NextState,
+        OneOutState
     };
 
     //save temporay stat. 
@@ -25,7 +26,7 @@ public class BattleButtonManage : MonoBehaviour
     public int[] battleTempStat =new int[12]; 
 
     // battle starts with default state
-    private BattleButtonState Battle = BattleButtonState.DefaultState;
+    public BattleButtonState Battle = BattleButtonState.DefaultState;
     //save information about battle end. 0 is run, 1 is defeated by npc, 2 is win
     int HowBattleEnd = 0;
     public bool WhenMouseDown = false;
@@ -70,6 +71,8 @@ public class BattleButtonManage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (CurrentMine.getHP() == 0)
+            Battle = BattleButtonState.OneOutState;
         if (Input.GetKey(KeyCode.X))
         {
             if (Battle == BattleButtonState.AttackState)
@@ -206,7 +209,7 @@ public class BattleButtonManage : MonoBehaviour
                 Rect StuPos6 = new Rect(cam.pixelWidth * 1 / 3, cam.pixelHeight * 6 / 9, cam.pixelWidth / 3, cam.pixelHeight / 9);
                 int[] availableStu = new int[7] { 0, 0, 0, 0, 0, 0, 0 }; //get info whether player can change student to it
                 int retStu = 0;
-                GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "select student to change" + "\n" + "select ");
+                GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "교체할 학생을 고르십시오." + "\n" + "X로 돌아가기 가능");
 
                 //학생 리스트에 들어있는 학생들이 존재하는지, 기절했는지 알아보는 반복문이다.
                 for (int j = 0; j < 6; j++)
@@ -221,51 +224,51 @@ public class BattleButtonManage : MonoBehaviour
                 //아래서 부터는 존재하는 학생마다 학생의 이름, 학생의 체력 정보, 학생의 레벨, 학생의 상태를 출력한다.
                 if (availableStu[0] != 1)
                 {
-                    if (GUI.Button(StuPos1, MineStudentList[0].retStuIndex().ToString() + "HP : " + MineStudentList[0].getHP() + "/" + MineStudentList[0].getMAXHP() + " " + MineStudentList[0].retStuStatus().ToString()))
+                    if (GUI.Button(StuPos1, MineStudentList[0].retStudentName()+ "HP : " + MineStudentList[0].getHP() + "/" + MineStudentList[0].getMAXHP() + " " + MineStudentList[0].retStuStatus().ToString()))
                         i = 1;
                 }
                 if (availableStu[1] != 1)
                 {
-                    if (GUI.Button(StuPos2, MineStudentList[1].retStuIndex().ToString() + "HP : " + MineStudentList[1].getHP() + "/" + MineStudentList[1].getMAXHP() + " " + MineStudentList[1].retStuStatus().ToString()))
+                    if (GUI.Button(StuPos2, MineStudentList[1].retStudentName() + "HP : " + MineStudentList[1].getHP() + "/" + MineStudentList[1].getMAXHP() + " " + MineStudentList[1].retStuStatus().ToString()))
                         i = 2;
                 }
                 if (availableStu[2] != 1)
                 {
-                    if (GUI.Button(StuPos3, MineStudentList[2].retStuIndex().ToString() + "HP : " + MineStudentList[2].getHP() + "/" + MineStudentList[2].getMAXHP() + " " + MineStudentList[2].retStuStatus()))
+                    if (GUI.Button(StuPos3, MineStudentList[2].retStudentName() + "HP : " + MineStudentList[2].getHP() + "/" + MineStudentList[2].getMAXHP() + " " + MineStudentList[2].retStuStatus()))
                         i = 3;
                 }
                 if (availableStu[3] != 1)
                 {
-                    if (GUI.Button(StuPos4, MineStudentList[3].retStuIndex().ToString() + "HP : " + MineStudentList[3].getHP() + "/" + MineStudentList[3].getMAXHP() + " " + MineStudentList[3].retStuStatus().ToString()))
+                    if (GUI.Button(StuPos4, MineStudentList[3].retStudentName() + "HP : " + MineStudentList[3].getHP() + "/" + MineStudentList[3].getMAXHP() + " " + MineStudentList[3].retStuStatus().ToString()))
                         i = 4;
                 }
                 if (availableStu[4] != 1)
                 {
-                    if (GUI.Button(StuPos5, MineStudentList[4].retStuIndex().ToString() + "HP : " + MineStudentList[4].getHP() + "/" + MineStudentList[4].getMAXHP() + " " + MineStudentList[4].retStuStatus().ToString()))
+                    if (GUI.Button(StuPos5, MineStudentList[4].retStudentName() + "HP : " + MineStudentList[4].getHP() + "/" + MineStudentList[4].getMAXHP() + " " + MineStudentList[4].retStuStatus().ToString()))
                         i = 5;
                 }
                 if (availableStu[5] != 1)
                 {
-                    if (GUI.Button(StuPos6, MineStudentList[5].retStuIndex().ToString() + "HP : " + MineStudentList[5].getHP() + "/" + MineStudentList[5].getMAXHP() + " " + MineStudentList[5].retStuStatus().ToString()
+                    if (GUI.Button(StuPos6, MineStudentList[5].retStudentName() + "HP : " + MineStudentList[5].getHP() + "/" + MineStudentList[5].getMAXHP() + " " + MineStudentList[5].retStuStatus().ToString()
                                    ))
                         i = 6;
                 }
                 if (i != 0)
                 {
                     //선택한 학생이 이미 나가 있다면
-                    if (MineStudentList[i] == CurrentMine)
+                    if (MineStudentList[i-1] == CurrentMine)
                     {
                         bool aaa = false;
                         while (!aaa)
                         {
                             GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "그 학생은 이미 싸우고 있다!\n(z나 enter를 입력)");
-                            aaa = Input.GetKey(KeyCode.Z) || Input.GetMouseButton(0);
+                            aaa = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
                             yield return null;
                         }
                         i = 0;
                     }
                     //선택한 버튼이 기절한 학생이라면
-                    else if (MineStudentList[i].retStuStatus() == status.faint)
+                    else if (MineStudentList[i-1].retStuStatus() == status.faint)
                     {
                         bool aaa = false;
                         while (!aaa)
@@ -284,29 +287,123 @@ public class BattleButtonManage : MonoBehaviour
                     }
                 }
             }
-            //if player give input, the battle proceed.
+            else if (Battle == BattleButtonState.OneOutState) 
+            {
+                Rect StuPos1 = new Rect(cam.pixelWidth * 1 / 3, cam.pixelHeight / 9, cam.pixelWidth / 3, cam.pixelHeight / 9);
+                Rect StuPos2 = new Rect(cam.pixelWidth * 1 / 3, cam.pixelHeight * 2 / 9, cam.pixelWidth / 3, cam.pixelHeight / 9);
+                Rect StuPos3 = new Rect(cam.pixelWidth * 1 / 3, cam.pixelHeight * 3 / 9, cam.pixelWidth / 3, cam.pixelHeight / 9);
+                Rect StuPos4 = new Rect(cam.pixelWidth * 1 / 3, cam.pixelHeight * 4 / 9, cam.pixelWidth / 3, cam.pixelHeight / 9);
+                Rect StuPos5 = new Rect(cam.pixelWidth * 1 / 3, cam.pixelHeight * 5 / 9, cam.pixelWidth / 3, cam.pixelHeight / 9);
+                Rect StuPos6 = new Rect(cam.pixelWidth * 1 / 3, cam.pixelHeight * 6 / 9, cam.pixelWidth / 3, cam.pixelHeight / 9);
+                int[] availableStu = new int[7] { 0, 0, 0, 0, 0, 0, 0 }; //get info whether player can change student to it
+                GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "새로 내보낼 학생을 고르자" + "");
+
+                //학생 리스트에 들어있는 학생들이 존재하는지, 기절했는지 알아보는 반복문이다.
+                for (int j = 0; j < 6; j++)
+                {
+                    if (MineStudentList[j] == null)
+                        availableStu[j] = 1;
+                    else if (MineStudentList[j].retStuStatus() == status.faint)
+                        availableStu[j] = 2;
+                    availableStu[6] += availableStu[j];
+                }
+                int i = 0;
+                //아래서 부터는 존재하는 학생마다 학생의 이름, 학생의 체력 정보, 학생의 레벨, 학생의 상태를 출력한다.
+                if (availableStu[0] != 1)               {
+                    if (GUI.Button(StuPos1, MineStudentList[0].retStuIndex().ToString() + "HP : " + MineStudentList[0].getHP() + "/" + MineStudentList[0].getMAXHP() + " " + MineStudentList[0].retStuStatus().ToString()))
+                        i = 1;
+                }                if (availableStu[1] != 1)                {
+                    if (GUI.Button(StuPos2, MineStudentList[1].retStuIndex().ToString() + "HP : " + MineStudentList[1].getHP() + "/" + MineStudentList[1].getMAXHP() + " " + MineStudentList[1].retStuStatus().ToString()))
+                        i = 2;
+                }                if (availableStu[2] != 1)                {
+                    if (GUI.Button(StuPos3, MineStudentList[2].retStuIndex().ToString() + "HP : " + MineStudentList[2].getHP() + "/" + MineStudentList[2].getMAXHP() + " " + MineStudentList[2].retStuStatus()))
+                        i = 3;
+                }                if (availableStu[3] != 1)                {
+                    if (GUI.Button(StuPos4, MineStudentList[3].retStuIndex().ToString() + "HP : " + MineStudentList[3].getHP() + "/" + MineStudentList[3].getMAXHP() + " " + MineStudentList[3].retStuStatus().ToString()))
+                        i = 4;
+                }                if (availableStu[4] != 1)                {
+                    if (GUI.Button(StuPos5, MineStudentList[4].retStuIndex().ToString() + "HP : " + MineStudentList[4].getHP() + "/" + MineStudentList[4].getMAXHP() + " " + MineStudentList[4].retStuStatus().ToString()))
+                        i = 5;
+                }                if (availableStu[5] != 1)                {
+                    if (GUI.Button(StuPos6, MineStudentList[5].retStuIndex().ToString() + "HP : " + MineStudentList[5].getHP() + "/" + MineStudentList[5].getMAXHP() + " " + MineStudentList[5].retStuStatus().ToString()
+                                   ))
+                        i = 6;
+                }
+                if (i != 0)
+                {
+                    //선택한 학생이 이미 나가 있다면
+                    if (MineStudentList[i-1] == CurrentMine)
+                    {
+                        bool aaa = false;
+                        while (!aaa)
+                        {
+                            GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "그 학생은 이미 싸우고 있다!\n(z나 enter를 입력)");
+                            aaa = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
+                            yield return null;
+                        }
+                        i = 0;
+                    }
+                    //선택한 버튼이 기절한 학생이라면
+                    else if (MineStudentList[i-1].retStuStatus() == status.faint)
+                    {
+                        bool aaa = false;
+                        while (!aaa)
+                        {
+                            GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "그 학생은 이미 지쳐 있다!" + "\n(z나 enter를 입력)");
+                            aaa = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
+                            yield return null;
+                        }
+                        i = 0;
+                    }
+                    else
+                    {
+                
+                        toChangeP = i - 1;
+                        myMove = 0;
+                        CurrentMine = MineStudentList[toChangeP];
+                
+                        aba = false;
+                        while (!aba)
+                        {
+                            GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentMine.retStuIndex().ToString() + "을 내보냈다!\n" + "(z나 enter를 입력)");
+                            aba = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
+                            yield return null;
+                        }
+                
+                        Battle = BattleButtonState.DefaultState;
+                    }
+                }
+            }
+           //if player give input, the battle proceed.
             else if (Battle == BattleButtonState.NextState)
             {
                 //npc select its move.
-                //
                 //calculate who is first to move.
                 // enemy attacks
-                //int b = (int)Random.value;  //random으로 0에서 3의 값을 구한다.
-                int b = 0;
+                int b = Mathf.FloorToInt(Random.Range(0f,2f));  //random으로 0에서 3의 값을 구한다.
                 myToOppoDamage = a.BattleDamageCalculate(SkillData.retSkillInfo(CurrentEnemy.retSkillList()[b]), CurrentEnemy, CurrentMine, battleTempStat);
 
 
                 // 명령을 내리고 나서 배틀을 시작하기 전에 상태이상이나 특수효과로 공격하는지 마는지 확인한다.
                 int battleStartMove = a.checkBattleTurnStartEvent(CurrentMine);
                 //누가 우선 시작할지 결정한다.
-                int whoFirst = a.CalFirstGo(CurrentMine.retStuStat(4), CurrentEnemy.retStuStat(4), battleTempStat);
-
+                int whoFirst = 0;
+                if (myMove != 0)
+                {
+                    whoFirst = 0;
+                }
+                else
+                {
+                    whoFirst = a.CalFirstGo(CurrentMine.retStuStat(4), CurrentEnemy.retStuStat(4), battleTempStat);
+                }
                 if (whoFirst == 0)  //player go first
                 {
                     if (myMove == 2)    //if i change character.
-                    {                   //write how to change character.
+                    {                          //write how to change character.
                         if (toChangeP != -1)
                         {
+                            CurrentMine = MineStudentList[toChangeP];
+                            Debug.Log("이것을 출력하고 싶다!");
                             aba = false;
                             while (!aba)
                             {
@@ -314,7 +411,6 @@ public class BattleButtonManage : MonoBehaviour
                                 aba = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
                                 yield return null;
                             }
-                            CurrentMine = MineStudentList[toChangeP];
                         }
                         else
                         {
@@ -340,19 +436,19 @@ public class BattleButtonManage : MonoBehaviour
                             GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentMine.retStuIndex().ToString() + "번 학생은 움직일 수 없다." + "\n" + "(z나 enter를 입력)");
                             aba = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
                             yield return null;
-                        } 
+                        }
                     }
                     else if (myMove == 0) // 내 행동이 공격일 때
                     {
                         alived = CurrentEnemy.getDamage(damage);
-                        
+                        Debug.Log("아군이 먼저 공격을 시작했다.");
                         aba = false;
                         while (!aba)
                         {
                             GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentMine.retStuIndex().ToString() + "학생은 " + damage.ToString() + "만큼의 데미지를 주었다.\n" + "(z나 enter를 입력)");
                             aba = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
                             yield return null;
-                        } 
+                        }
 
                         if (alived == 1) //if enemy student fainted.
                         {
@@ -362,7 +458,7 @@ public class BattleButtonManage : MonoBehaviour
                                 GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentEnemy.retStuIndex().ToString() + "학생은 " + damage.ToString() + "쓰러졌다" + "\n(z나 enter를 입력)");
                                 aba = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
                                 yield return null;
-                            } 
+                            }
 
                             CurrentMine.setExp(CurrentEnemy.getExp()); //give exp;
 
@@ -372,7 +468,7 @@ public class BattleButtonManage : MonoBehaviour
                                 GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentEnemy.retStuIndex().ToString() + "학생은 " + CurrentEnemy.getExp().ToString() + "만큼의 경험치를 얻었다." + "\n(z나 enter를 입력)");
                                 aba = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
                                 yield return null;
-                            } 
+                            }
 
                             int i = outOfStudent(EnemyStudentList); //전투가 종료되었는지 확인한다.
                             if (i == 0) //전투가 종료되었을 때 
@@ -402,7 +498,7 @@ public class BattleButtonManage : MonoBehaviour
                             }
                             //여기서 상태이상으로 행동이 종료되었을 때 메세지를 출력하면 된다.,
                         }
-                        else if (true)
+                        else
                         {
                             alived = CurrentMine.getDamage(myToOppoDamage);
                             while (!aba)
@@ -412,6 +508,7 @@ public class BattleButtonManage : MonoBehaviour
                                 yield return null;
                             }
                         }
+
                         if (alived == 1)    // if our student dead.
                         {
 
@@ -419,7 +516,7 @@ public class BattleButtonManage : MonoBehaviour
                             aba = false;
                             while (!aba)
                             {
-                                GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentMine.retStuIndex().ToString() + "번 학생은 쓰러졌다."+ "\n(z나 enter를 입력)");
+                                GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentMine.retStuIndex().ToString() + "번 학생은 쓰러졌다." + "\n(z나 enter를 입력)");
                                 aba = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
                                 yield return null;
                             }
@@ -440,9 +537,11 @@ public class BattleButtonManage : MonoBehaviour
                         }
                         Battle = BattleButtonState.DefaultState;
                     }
-                } else  // oppponent go first
+                }
+                else  // oppponent go first
                 {
                     //enemy attacks.
+                    Debug.Log("상대가 먼저 공격을 시작했다.");
                     battleStartMove = a.checkBattleTurnStartEvent(CurrentEnemy);
                     if (battleStartMove != 0)
                     {
@@ -489,7 +588,7 @@ public class BattleButtonManage : MonoBehaviour
                         else
                         {
                             // 학생이 반드시 학생을 교체하게 만들어야 한다.
-                            Battle = BattleButtonState.ExchangeState;
+                            Battle = BattleButtonState.OneOutState;
                         }
                     }
                     Battle = BattleButtonState.DefaultState;
@@ -497,6 +596,8 @@ public class BattleButtonManage : MonoBehaviour
                     {
                         if (myMove == 2)    //if i change character.
                         {
+
+                            CurrentMine = MineStudentList[toChangeP];
                             if (toChangeP != -1)
                             {
                                 aba = false;
@@ -506,7 +607,6 @@ public class BattleButtonManage : MonoBehaviour
                                     aba = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
                                     yield return null;
                                 }
-                                CurrentMine = MineStudentList[toChangeP];
                             }
                             else
                             {
@@ -551,7 +651,7 @@ public class BattleButtonManage : MonoBehaviour
                                 aba = false;
                                 while (!aba)
                                 {
-                                    GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentEnemy.retStudentName()+"은 " + damage.ToString() + "쓰러졌다" + "\n(z나 enter를 입력)");
+                                    GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentEnemy.retStudentName() + "은 " + damage.ToString() + "쓰러졌다" + "\n(z나 enter를 입력)");
                                     aba = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
                                     yield return null;
                                 }
@@ -578,7 +678,7 @@ public class BattleButtonManage : MonoBehaviour
                                     Battle = BattleButtonState.DefaultState;
                                 }
                             }
-                        }     
+                        }
                     }
                 }
             }
