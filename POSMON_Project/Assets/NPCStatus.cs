@@ -92,39 +92,33 @@ public class NPCStatus : MonoBehaviour {
                     Facing = FaceDirection.DOWN;
                 }
 
-                /* if quest is not given */
-                if (GameManager.QuestGiven[NPC_number] == false && quest != null)
-                {
-                    Debug.Log("Giving Quest...");
-                    /* give new quest */
-                    if (this.gameObject.GetComponent<Dialogue>().ChangeDialogue("queststart"))
-                    {
-                        player.GetComponent<CharacterStatus>().setBlocked(true);
-                        this.gameObject.GetComponent<Dialogue>().TurnOnDialogue();
-                        dialogue_occurence = true;
-                        quest.setProgress(true);
-                        player.GetComponent<CharacterStatus>().addQuest(quest);
-                        GameManager.QuestGiven[NPC_number] = true;
-                    }
-                    Debug.Log("Got Quest!");
-                }
                 /* check if the NPC is target NPC */
-                else if (pl.GetComponent<CharacterStatus>().isTarget(NPC_number) != null)
+                if (pl.GetComponent<CharacterStatus>().isTarget(NPC_number) != null)
                 {
                     Debug.Log("Checking the NPC is target or not");
                     Quest qst = pl.GetComponent<CharacterStatus>().isTarget(NPC_number);
+                    /* when target is trainer */
                     if (type == NPCType.TRAINER)
                     {
-                        if (this.gameObject.GetComponent<Dialogue>().ChangeDialogue("questend_" + qst.getHostNPCNumber().ToString() ))
+                        /* when incompleted, keep battle */
+                        if (qst.isCompleted() == false && this.gameObject.GetComponent<Dialogue>().ChangeDialogue("questend_" + qst.getHostNPCNumber().ToString()))
                         {
                             player.GetComponent<CharacterStatus>().setBlocked(true);
                             this.gameObject.GetComponent<Dialogue>().TurnOnDialogue();
                             dialogue_occurence = true;
                         }
-                        Debug.Log("Cleared Quest");
+                        /* when completed, end and delete quest */
+                        else if (qst.isCompleted() == true && this.gameObject.GetComponent<Dialogue>().ChangeDialogue("questdefeat" + qst.getHostNPCNumber().ToString()))
+                        {
+                            player.GetComponent<CharacterStatus>().setBlocked(true);
+                            this.gameObject.GetComponent<Dialogue>().TurnOnDialogue();
+                            dialogue_occurence = true;
+                            qst.QuestClear();
+                            player.GetComponent<CharacterStatus>().deleteQuest(qst.getHostNPCNumber());
+                        }
                     }
-
-                    if (qst != null)
+                    /* when target is talker */
+                    else if (qst != null)
                     {
                         Debug.Log("I am quest Target ! ");
                         if (this.gameObject.GetComponent<Dialogue>().ChangeDialogue("questend_" + qst.getHostNPCNumber().ToString() ))
@@ -150,6 +144,22 @@ public class NPCStatus : MonoBehaviour {
                             dialogue_occurence = true;
                         }
                     }
+                }
+                /* if quest is not given */
+                else if (GameManager.QuestGiven[NPC_number] == false && quest != null)
+                {
+                    Debug.Log("Giving Quest...");
+                    /* give new quest */
+                    if (this.gameObject.GetComponent<Dialogue>().ChangeDialogue("queststart"))
+                    {
+                        player.GetComponent<CharacterStatus>().setBlocked(true);
+                        this.gameObject.GetComponent<Dialogue>().TurnOnDialogue();
+                        dialogue_occurence = true;
+                        quest.setProgress(true);
+                        player.GetComponent<CharacterStatus>().addQuest(quest);
+                        GameManager.QuestGiven[NPC_number] = true;
+                    }
+                    Debug.Log("Got Quest!");
                 }
             }
         }

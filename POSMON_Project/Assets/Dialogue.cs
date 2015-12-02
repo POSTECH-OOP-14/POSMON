@@ -70,8 +70,8 @@ public class Dialogue : MonoBehaviour {
         {
             gameObject.GetComponent<GUIbuttonsho>().setShopActivation(true);
         }
-        /* Trigger Battle Interface */
-        else if (gameObject.GetComponent<NPCStatus>().type == NPCStatus.NPCType.TRAINER)
+        /* Trigger Quest Battle Interface */
+        else if (gameObject.GetComponent<NPCStatus>().type == NPCStatus.NPCType.TRAINER && gameObject.GetComponent<NPCStatus>().NPC_number < 100)
         {
             Quest qst = GameManager.pl_stored.GetComponent<CharacterStatus>().getQuest(gameObject.GetComponent<NPCStatus>().NPC_number);
             /* if quest exist */
