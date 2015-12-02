@@ -65,12 +65,18 @@ public class CharacterStatus : MonoBehaviour
 
     public bool addItemToInventory(Item item)
     {
+        bool add = false;
         for (int i = 0; i < 256; i++)
         {
-            if (inventory[i] == null)
+            if (inventory[i] == null && !add)
             {
                 inventory[i] = item;
-                if (item.getAmount() <= 0) item.addAmount();
+                if (item.getitem_Amount() <= 0) item.additem_Amount();
+                return true;
+            }
+            else if( inventory[i].getName() == item.getName()){
+                inventory[i].additem_Amount();
+                add = true;
                 return true;
             }
         }
@@ -411,7 +417,7 @@ public class CharacterStatus : MonoBehaviour
             {
                 for (k = 0; inventory[k] != null; k++)
                 {
-                    if (inventory[k].getAmount() <= 0)
+                    if (inventory[k].getitem_Amount() <= 0)
                         removeItemToInventory(inventory[k]);
 
                     if (inventory[k] == null) break;
@@ -424,8 +430,8 @@ public class CharacterStatus : MonoBehaviour
 
                 for (int i = 0; i < k; i++)
                 {
-                    
-                    if (inventory[i].getAmount() > 0)
+
+                    if (inventory[i].getitem_Amount() > 0)
                     {
                         item_grid[i] = inventory[i].getName();
                         
@@ -443,7 +449,8 @@ public class CharacterStatus : MonoBehaviour
                         if (GUI.Button(new Rect(0, 25 * (((k + 1) / 2)) + 10, 50, 25), "Use"))
                         {
                             /* Use Item */
-                            use_item = true;
+                            if(inventory[i].getType() != type.capture)
+                                use_item = true;
 
                         }
                         text = "아이템 설명";
@@ -458,7 +465,9 @@ public class CharacterStatus : MonoBehaviour
                         else if (inventory[item_gridint].getType() == type.capture)
                             text = text + "포획 아이템";
                         text = text + "\n\n 설명 : " + inventory[item_gridint].getInfo();
-                        text = text + "\n\n 개수 : " + inventory[item_gridint].getAmount().ToString();
+                        text = text + "\n\n 개수 : " + inventory[item_gridint].getitem_Amount().ToString();
+                        if(inventory[item_gridint].getAmount() >0)
+                        text = text + "\n\n 회복량 : " + inventory[item_gridint].getAmount().ToString();
                         
                         GUI.Box(new Rect(60, 25 * (((k + 1) / 2)) + 10, Screen.width - 60, Screen.height - (25 * (((k + 1) / 2)) + 10)),
                             text, itemStyle);
