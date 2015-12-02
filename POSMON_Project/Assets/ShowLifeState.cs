@@ -20,7 +20,7 @@ public class ShowLifeState : MonoBehaviour
     {
         _a = GameObject.Find("battleBackground").GetComponent<BattleButtonManage>();
         _guiTt = gameObject.GetComponent<GUIText>();
-        _block = new Rect(gameObject.transform.position.x * Screen.width - Screen.width / 8 - 20, (1 - gameObject.transform.position.y) * Screen.height + 24, Screen.width / 8, Screen.height / 16);
+        _block = new Rect(gameObject.transform.position.x * Screen.width, (1 - gameObject.transform.position.y) * Screen.height + 24, Screen.width / 8, Screen.height / 16);
         __lifeBar = new Rect(gameObject.transform.position.x * Screen.width, (1 - gameObject.transform.position.y) * Screen.height, Screen.width / 8, Screen.height / 18);
     }
     // Update is called once per frame
@@ -30,14 +30,12 @@ public class ShowLifeState : MonoBehaviour
         _tempLvl = _a.CurrentEnemy.getLevel();
         _tempMaxHp = _a.CurrentEnemy.getMAXHP();
         _guiTt.text = _a.CurrentEnemy.retStudentName() + "Lv " + _tempLvl.ToString() + " " + _tempCurHp + "/" + _tempMaxHp;
-        __lifeBar = new Rect(gameObject.transform.position.x * Screen.width - Screen.width / 8 - 20,
+        __lifeBar = new Rect(gameObject.transform.position.x * Screen.width ,
                 (1 - gameObject.transform.position.y) * Screen.height + 25, Screen.width / 8 * (float)_tempCurHp / (float)_tempMaxHp, Screen.height / 18);
     }
 
-    void OnGUI()
-    {
-        if (_a.Battle != BattleButtonManage.BattleButtonState.OneOutState)
-        {
+    void OnGUI(){
+         if (!(_a.Battle == BattleButtonManage.BattleButtonState.OneOutState || _a.Battle == BattleButtonManage.BattleButtonState.ExchangeState))        {
             Graphics.DrawTexture(_block, _background);
             Graphics.DrawTexture(__lifeBar, _lifebar);
         }
