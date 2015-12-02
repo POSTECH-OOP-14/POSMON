@@ -358,9 +358,9 @@ public class Item
         return item_amount;
     }
 
-    public void additem_Amount()
+    public void additem_Amount(int amount)
     {
-        item_amount++;
+        item_amount += amount;
     }
 
 
@@ -381,7 +381,6 @@ public class Item
 
     public bool useItem( Student s)
     {
-        item_amount--;
         if (this.getType() == type.skill)
         {
             return s.addSkill(this);

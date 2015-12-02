@@ -6,6 +6,9 @@ public class CharacterStatus : MonoBehaviour
     private string text = "아이템 설명";
     private string text2;
 
+    public AudioClip WarningSound;
+    public AudioClip SuccessSound;
+
     enum status
     {
         IDLE,
@@ -72,12 +75,12 @@ public class CharacterStatus : MonoBehaviour
             {
                 inventory[i] = item;
                 if (item.getitem_Amount() <= 0)
-                    item.additem_Amount();
+                    item.additem_Amount(1);
                 return true;
             }
             else if (inventory[i].getName() == item.getName())
             {
-                inventory[i].additem_Amount();
+                inventory[i].additem_Amount(1);
                 add = true;
                 return true;
             }
@@ -355,7 +358,13 @@ public class CharacterStatus : MonoBehaviour
         stu_toolbarint = GUI.SelectionGrid(new Rect(10, 40, (Screen.width / 4), 60), stu_toolbarint, stu_toolbar, 2);
         if (GUI.Button(new Rect(10, 110, (Screen.width / 8), 25), "Use"))
         {
-            inventory[item_gridint].useItem(student_list[stu_toolbarint]);
+            if (inventory[item_gridint].useItem(student_list[stu_toolbarint]) == true)
+            {
+                GetComponent<AudioSource>().PlayOneShot(SuccessSound);
+                inventory[item_gridint].additem_Amount(-1);
+            }
+            else
+                GetComponent<AudioSource>().PlayOneShot(WarningSound);
             use_item = false;
         }
         if (GUI.Button(new Rect((Screen.width / 8)+10, 110, (Screen.width / 8), 25), "Cancel"))
@@ -450,7 +459,7 @@ public class CharacterStatus : MonoBehaviour
                     {
                         if (GUI.Button(new Rect(0, 25 * (((k + 1) / 2)) + 10, 50, 25), "Use"))
                         {
-                            /* Use Item */
+                            /* Use Item, cannot use capture item in character status context */
                             if (inventory[i].getType() != type.capture)
                                 use_item = true;
                         }
