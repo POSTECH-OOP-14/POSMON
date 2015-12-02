@@ -359,7 +359,11 @@ public class Student
     {
         if (HP == getMAXHP())
             return false;
-        HP += amount;
+        /* heal */
+        if (amount > 0 && amount < 1)
+            HP += getMAXHP() * amount;
+        else
+            HP += amount;
         if (HP > getMAXHP())
             HP = getMAXHP();
         if (amount == (double)status.all)

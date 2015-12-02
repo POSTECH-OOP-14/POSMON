@@ -79,6 +79,4 @@ public class walk_wait : MonoBehaviour {
 
         }
     }
-
-
 }

@@ -53,7 +53,7 @@ public class CharacterStatus : MonoBehaviour
         {
             if (inventory[i] == item)
             {
-                for (int j = i; j < 256; j++)
+                for (int j = i; j < 255; j++)
                 {
                     inventory[j] = inventory[j + 1];
                     remove = true;
@@ -332,7 +332,7 @@ public class CharacterStatus : MonoBehaviour
     private string[] toolbar_str = { "Character", "Student", "Item" };
     private int toolbarint = 0;
     private Vector2 scroll = Vector2.zero;
-    private string[] stu_toolbar = new string[4];
+    private string[] stu_toolbar = new string[6];
     private int stu_toolbarint = 0;
     private int item_gridint = 0;
     private string[] item_grid;
@@ -458,7 +458,7 @@ public class CharacterStatus : MonoBehaviour
                         else if (inventory[item_gridint].getType() == type.capture)
                             text = text + "포획 아이템";
                         text = text + "\n\n 설명 : " + inventory[item_gridint].getInfo();
-                        text = text + "\n\n 개수 : " + inventory[item_gridint].getAmount().ToString();
+                        text = text + "\n\n 회복량 : " + inventory[item_gridint].getAmount().ToString();
                         
                         GUI.Box(new Rect(60, 25 * (((k + 1) / 2)) + 10, Screen.width - 60, Screen.height - (25 * (((k + 1) / 2)) + 10)),
                             text, itemStyle);
