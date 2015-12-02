@@ -61,11 +61,14 @@
      <Compile Include="Assets\MoveToMain.cs" />
      <Compile Include="Assets\NPCStatus.cs" />
      <Compile Include="Assets\Quest.cs" />
+     <Compile Include="Assets\ShowLifeState.cs" />
      <Compile Include="Assets\SkillInfo.cs" />
      <Compile Include="Assets\SkillList.cs" />
      <Compile Include="Assets\Student.cs" />
      <Compile Include="Assets\StudentInfo.cs" />
+     <Compile Include="Assets\StudentTextureList.cs" />
      <Compile Include="Assets\new_gui_menu.cs" />
+     <Compile Include="Assets\showLifeScr.cs" />
      <Compile Include="Assets\walk_wait.cs" />
  <Reference Include="UnityEngine.Advertisements">
  <HintPath>D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
