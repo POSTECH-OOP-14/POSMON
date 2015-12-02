@@ -521,7 +521,7 @@ public class Student
         if (HP < 0)
         {
             HP = 0;
-
+            this.giveAStatus(status.faint);
             return 1;
         }
 

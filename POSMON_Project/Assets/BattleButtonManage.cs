@@ -478,7 +478,7 @@ public class BattleButtonManage : MonoBehaviour
                             }
                             else
                             {
-                                CurrentEnemy = EnemyStudentList[i];
+                                CurrentEnemy = EnemyStudentList[i-1];
                                 Battle = BattleButtonState.DefaultState;
                             }
                         }
@@ -501,6 +501,7 @@ public class BattleButtonManage : MonoBehaviour
                         else
                         {
                             alived = CurrentMine.getDamage(myToOppoDamage);
+                            aba = false;
                             while (!aba)
                             {
                                 GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "상대는 " + myToOppoDamage.ToString() + "만큼의 피해를 주었다." + "\n(z나 enter를 입력)");
@@ -572,7 +573,7 @@ public class BattleButtonManage : MonoBehaviour
                         aba = false;
                         while (!aba)
                         {
-                            GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentMine.retStuIndex().ToString() + "번 학생은 쓰러졌다." + "\n(z나 enter를 입력)");
+                            GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentMine.retStudentName() + "은 쓰러졌다." + "\n(z나 enter를 입력)");
                             aba = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
                             yield return null;
                         }
@@ -591,9 +592,9 @@ public class BattleButtonManage : MonoBehaviour
                             Battle = BattleButtonState.OneOutState;
                         }
                     }
-                    Battle = BattleButtonState.DefaultState;
                     if (Battle == BattleButtonState.NextState)
                     {
+                        battleStartMove = a.checkBattleTurnStartEvent(CurrentMine);
                         if (myMove == 2)    //if i change character.
                         {
 
