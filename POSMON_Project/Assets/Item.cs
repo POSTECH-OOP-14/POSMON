@@ -25,6 +25,8 @@ public class Item
     private double possibility;//포획 아이템 성공률
     private string info;//아이템 설명
     private SkillInfo skillinfo;//기술머신의 스킬
+    private int item_amount = 1;//아이템 개수
+
 
     public Item(item_no n)
     {
@@ -350,6 +352,18 @@ public class Item
     {
         return amount;
     }
+
+    public int getitem_Amount()
+    {
+        return item_amount;
+    }
+
+    public void additem_Amount()
+    {
+        item_amount++;
+    }
+
+
     public status getStatus()
     {
         return st;
@@ -367,7 +381,7 @@ public class Item
 
     public bool useItem( Student s)
     {
-        amount--;
+        item_amount--;
         if (this.getType() == type.skill)
         {
             return s.addSkill(this);
