@@ -43,7 +43,7 @@ public class NPCStatus : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         /* Make Quest if Target exists */
-        if (QuestTargetNPCNumber != 0 && type == NPCType.TALKER)
+        if (QuestTargetNPCNumber != 0 && (type == NPCType.TALKER || type == NPCType.TRAINER))
             quest = new Quest(NPC_number, QuestTargetNPCNumber, QuestReward);
 
         /* Make Student List for Trainer */
