@@ -35,9 +35,9 @@ public class BattleButtonManage : MonoBehaviour
     Rect ThirdPos;
     Rect ForthPos;
 
-    //이 코드가 startScene으로 시작해야만 사용 가능함.
-    CharacterStatus MyProfInfo = GameManager.pl_stored.GetComponent<CharacterStatus>();
-    
+    /* MyProInfo */
+    CharacterStatus MyProfInfo;
+
     //set the infomation of student who will came out to battle.
     public Student CurrentMine;
     public Student CurrentEnemy;
@@ -56,6 +56,9 @@ public class BattleButtonManage : MonoBehaviour
     // Use this for initialization. get information from 
     void Start()
     {
+        //이 코드가 startScene으로 시작해야만 사용 가능함.
+        MyProfInfo = GameManager.pl_stored.GetComponent<CharacterStatus>();
+
         //init battleTempStat
         for (int i = 0; i < 12; i++)
             battleTempStat[i] = 0;
