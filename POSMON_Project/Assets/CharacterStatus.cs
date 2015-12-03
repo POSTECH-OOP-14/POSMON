@@ -6,6 +6,7 @@ public class CharacterStatus : MonoBehaviour
     private string text = "아이템 설명";
     private string text2;
 
+
     public AudioClip WarningSound;
     public AudioClip SuccessSound;
 
@@ -349,7 +350,7 @@ public class CharacterStatus : MonoBehaviour
     private string[] item_grid;
     private int k = 0;
     private bool use_item = false;
-    void UseItem(int windowID)
+    public void UseItem(int windowID)
     {
         for (int j = 0; student_list[j] != null; j++)
         {
@@ -494,6 +495,11 @@ public class CharacterStatus : MonoBehaviour
             }
         }
     }
-        
+
+    //made by siho. get info of item from CharacterStatus
+    public Item[] returnInven()
+    {
+        return this.inventory;
+    }
 
 }

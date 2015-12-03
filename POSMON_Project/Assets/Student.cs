@@ -20,7 +20,7 @@ public class Student
 {
     private SkillList list= new SkillList();
     private SkillInfo[] skill = new SkillInfo[4];//스킬배열
-    private int[] skillNumberList = new int[4]; //tempory skill list
+    //private int[] skillNumberList = new int[4]; //tempory skill list
     private string department;//학과
     private double[] stat = new double[6];//능력치배열
     private int index;//포스몬의 번호
@@ -546,10 +546,10 @@ public class Student
     {
         return this.department;
     }
-
-    public int[] retSkillList()
+    
+    public SkillInfo[] retSkillList()
     {
-        return skillNumberList;
+        return this.skill;
     }
 
     public string retStudentName()
