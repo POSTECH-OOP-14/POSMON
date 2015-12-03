@@ -29,11 +29,18 @@ public class NPCStatus : MonoBehaviour {
     public int QuestReward;
 
     /* Data for Battle */
-    public Student[] student_list = new Student[6];
+    private Student[] student_list = new Student[6];
     private bool battleEnd = false;
 
     public int[] students_level = new int[6];
     public stu_no[] students_type = new stu_no[6];
+
+    public Student getStudent(int index)
+    {
+        return student_list[index];
+    }
+
+    /* *************** */
 
     /* Data for Warp */
     public int ChangeSceneTo;
@@ -108,7 +115,7 @@ public class NPCStatus : MonoBehaviour {
                             dialogue_occurence = true;
                         }
                         /* when completed, end and delete quest */
-                        else if (qst.isCompleted() == true && this.gameObject.GetComponent<Dialogue>().ChangeDialogue("questdefeat" + qst.getHostNPCNumber().ToString()))
+                        else if (qst.isCompleted() == true && this.gameObject.GetComponent<Dialogue>().ChangeDialogue("questdefeat"))
                         {
                             player.GetComponent<CharacterStatus>().setBlocked(true);
                             this.gameObject.GetComponent<Dialogue>().TurnOnDialogue();
@@ -155,8 +162,9 @@ public class NPCStatus : MonoBehaviour {
                         player.GetComponent<CharacterStatus>().setBlocked(true);
                         this.gameObject.GetComponent<Dialogue>().TurnOnDialogue();
                         dialogue_occurence = true;
-                        quest.setProgress(true);
                         player.GetComponent<CharacterStatus>().addQuest(quest);
+                        quest.setProgress(true);
+                        Debug.Log("NPC's local quest progress: ".ToString() + quest.getProgress().ToString() + "/" + "Character :".ToString() + GameManager.pl_stored.GetComponent<CharacterStatus>().getQuest(NPC_number).getProgress().ToString());
                         GameManager.QuestGiven[NPC_number] = true;
                     }
                     Debug.Log("Got Quest!");

@@ -146,28 +146,47 @@ public class BattleButtonManage : MonoBehaviour
             }
             else if (Battle == BattleButtonState.RunState)
             {
-                if (1 == 0) //empty, fighting with NPC
+                if (GameManager.getBattleHostNum() != 0 && HowBattleEnd == 0) // NPC와 싸우고 있는 경우, 불가능하다.
                 {
-                    GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "지금은 도망칠 수 없다.");
+                    for (int i = 0; i < 150; i++)
+                    {
+                        GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "지금은 도망칠 수 없다.");
+                        yield return new WaitForEndOfFrame();
+                    }
                     Battle = BattleButtonState.DefaultState;
                 }
                 else if(HowBattleEnd == 0) //전투에서 도망쳤을 때
                 {
-                    GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "성공적으로 도망쳤다.");
-                    Application.LoadLevel(1);
+                    for (int i = 0; i < 150; i++)
+                    {
+                        GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "성공적으로 도망쳤다.");
+                        yield return new WaitForEndOfFrame();
+                    }
+                    GameManager.pl_stored.SetActive(true);
+                    Application.LoadLevel(GameManager.PrevSceneNumber);
                 }
                 else if (HowBattleEnd == 1) //전투에서 패배를 했을 때
                 {
-                    GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "학생들이 모두 지쳐서 더는 싸울 수 없다...");
-                    Application.LoadLevel(1);
+                    for (int i = 0; i < 150; i++)
+                    {
+                        GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "학생들이 모두 지쳐서 더는 싸울 수 없다...");
+                        yield return new WaitForEndOfFrame();
+                    }
+                    GameManager.pl_stored.SetActive(true);
+                    Application.LoadLevel(GameManager.PrevSceneNumber);
                 }
 
                 else if (HowBattleEnd == 2) // 전투에서 승리했을 때
                 {
-                    GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "전투에서 승리했다!");
-                    Application.LoadLevel(1);
+                    for (int i = 0; i < 150; i++)
+                    {
+                        GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "전투에서 승리했다!");
+                        yield return new WaitForEndOfFrame();
+                    }
+                    GameManager.pl_stored.SetActive(true);
+                    GameManager.pl_stored.GetComponent<CharacterStatus>().getQuest(GameManager.getBattleHostNum()).markCompleted();
+                    Application.LoadLevel(GameManager.PrevSceneNumber);
                 }
-
             }
             else if (Battle == BattleButtonState.AttackState)
             {

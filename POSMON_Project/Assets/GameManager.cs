@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour {
     static public int PrevSceneNumber = 8;
     static public bool[] QuestGiven = new bool[100];
 
-    /* to store battle result, use GameManager variables */
+    /* [BATTLE] to store battle result, use GameManager variables */
     public enum BattleResult
     {
         NOTHING,
@@ -16,7 +16,50 @@ public class GameManager : MonoBehaviour {
         LOSE
     };
 
-    static public BattleResult battle_result = BattleResult.NOTHING; 
+    static private int BattleHostNumber = 0;
+    static private Student[] BattlePlayerStudents = new Student[6];
+    static private Student[] BattleTrainerStudents = new Student[6];
+
+    public static void resetBattleStudents()
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            BattlePlayerStudents[i] = null;
+            BattleTrainerStudents[i] = null;
+        }
+    }
+
+    public static Student getBattlePlayerStudent(int i)
+    {
+        return BattlePlayerStudents[i];
+    }
+
+    public static Student getBattleTrainerStudent(int i)
+    {
+        return BattleTrainerStudents[i];
+    }
+
+    public static void setBattlePlayerStudent(int i, Student stu)
+    {
+        BattlePlayerStudents[i] = stu;
+    }
+
+    public static void setBattleTrainerStudent(int i, Student stu)
+    {
+        BattleTrainerStudents[i] = stu;
+    }
+
+    public static int getBattleHostNum()
+    {
+        return BattleHostNumber;
+    }
+
+    public static void setBattleHostNum(int npc_number)
+    {
+        BattleHostNumber = npc_number;
+    }
+
+    /* ----------------------------------------------------------- */
 
 
     public GameObject player;
@@ -43,6 +86,11 @@ public class GameManager : MonoBehaviour {
     /* Start Game, for mainScene's GameLoader only */
     public void StartGame()
     {
+        /* frame limit. if computer's frame soar abut 120fps, collision broke */
+#if UNITY_EDITOR
+        QualitySettings.vSyncCount = 0;  // VSync must be disabled
+        Application.targetFrameRate = 45;
+#endif
         pl_stored.SetActive(true);
         Application.LoadLevel(GameManager.PrevSceneNumber);
     }

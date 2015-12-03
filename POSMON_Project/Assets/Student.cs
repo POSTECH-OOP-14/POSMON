@@ -18,18 +18,19 @@ public enum stu_no
 
 public class Student
 {
+    private const double HP_Multiplier = 2;
     private SkillList list= new SkillList();
-    private SkillInfo[] skill = new SkillInfo[4];//스킬배열
+    private SkillInfo[] skill = new SkillInfo[4]; //스킬배열
     private int[] skillNumberList = new int[4]; //tempory skill list
-    private string department;//학과
-    private double[] stat = new double[6];//능력치배열
-    private int index;//포스몬의 번호
-    private status st;//상태(정상, 마비, 잠, 독)
+    private string department; //학과
+    private double[] stat = new double[6]; //능력치배열
+    private int index; //포스몬의 번호
+    private status st; //상태(정상, 마비, 잠, 독)
     private int level;
     private int exp;
     private double HP;
     private double MAXHP;
-    private int skillNum;//스킬 개수
+    private int skillNum; //스킬 개수
     private Texture StuImage;
 
     public Student(stu_no n)
@@ -44,7 +45,7 @@ public class Student
                     st = status.none;
                     level = 1;
                     exp = 0;
-                    MAXHP = stat[5]*5;
+                    MAXHP = stat[5] * HP_Multiplier;
                     HP = MAXHP;
                     skillNum = 2;
                     index = (int)n;
@@ -58,7 +59,7 @@ public class Student
                     st = status.none;
                     level = 1;
                     exp = 0;
-                    MAXHP = stat[5] * 5;
+                    MAXHP = stat[5] * HP_Multiplier;
                     HP = MAXHP;
                     skillNum = 2;
                     index = (int)n;
@@ -72,7 +73,7 @@ public class Student
                     st = status.none;
                     level = 1;
                     exp = 0;
-                    MAXHP = stat[5] * 5;
+                    MAXHP = stat[5] * HP_Multiplier;
                     HP = MAXHP;
                     skillNum = 2;
                     index = (int)n;
@@ -86,7 +87,7 @@ public class Student
                     st = status.none;
                     level = 1;
                     exp = 0;
-                    MAXHP = stat[5] * 5;
+                    MAXHP = stat[5] * HP_Multiplier;
                     HP = MAXHP;
                     skillNum = 2;
                     index = (int)n;
@@ -100,7 +101,7 @@ public class Student
                     st = status.none;
                     level = 1;
                     exp = 0;
-                    MAXHP = stat[5] * 5;
+                    MAXHP = stat[5] * HP_Multiplier;
                     HP = MAXHP;
                     skillNum = 2;
                     index = (int)n;
@@ -114,7 +115,7 @@ public class Student
                     st = status.none;
                     level = 1;
                     exp = 0;
-                    MAXHP = stat[5] * 5;
+                    MAXHP = stat[5] * HP_Multiplier;
                     HP = MAXHP;
                     skillNum = 2;
                     index = (int)n;
@@ -128,7 +129,7 @@ public class Student
                     st = status.none;
                     level = 1;
                     exp = 0;
-                    MAXHP = stat[5] * 5;
+                    MAXHP = stat[5] * HP_Multiplier;
                     HP = MAXHP;
                     skillNum = 2;
                     index = (int)n;
@@ -142,7 +143,7 @@ public class Student
                     st = status.none;
                     level = 1;
                     exp = 0;
-                    MAXHP = stat[5] * 5;
+                    MAXHP = stat[5] * HP_Multiplier;
                     HP = MAXHP;
                     skillNum = 2;
                     index = (int)n;
@@ -156,7 +157,7 @@ public class Student
                     st = status.none;
                     level = 1;
                     exp = 0;
-                    MAXHP = stat[5] * 5;
+                    MAXHP = stat[5] * HP_Multiplier;
                     HP = MAXHP;
                     skillNum = 2;
                     index = (int)n;
@@ -170,7 +171,7 @@ public class Student
                     st = status.none;
                     level = 1;
                     exp = 0;
-                    MAXHP = stat[5] * 5;
+                    MAXHP = stat[5] * HP_Multiplier;
                     HP = MAXHP;
                     skillNum = 2;
                     index = (int)n;
@@ -184,7 +185,7 @@ public class Student
                     st = status.none;
                     level = 1;
                     exp = 0;
-                    MAXHP = stat[5] * 5;
+                    MAXHP = stat[5] * HP_Multiplier;
                     HP = MAXHP;
                     skillNum = 2;
                     index = (int)n;
@@ -198,7 +199,7 @@ public class Student
                     st = status.none;
                     level = 1;
                     exp = 0;
-                    MAXHP = stat[5] * 5;
+                    MAXHP = stat[5] * HP_Multiplier;
                     HP = MAXHP;
                     skillNum = 2;
                     index = (int)n;
@@ -212,7 +213,7 @@ public class Student
                     st = status.none;
                     level = 1;
                     exp = 0;
-                    MAXHP = stat[5] * 5;
+                    MAXHP = stat[5] * HP_Multiplier;
                     HP = MAXHP;
                     skillNum = 2;
                     index = (int)n;
@@ -226,7 +227,7 @@ public class Student
                     st = status.none;
                     level = 1;
                     exp = 0;
-                    MAXHP = stat[5] * 5;
+                    MAXHP = stat[5] * HP_Multiplier;
                     HP = MAXHP;
                     skillNum = 2;
                     index = (int)n;
@@ -240,7 +241,7 @@ public class Student
                     st = status.none;
                     level = 1;
                     exp = 0;
-                    MAXHP = stat[5] * 5;
+                    MAXHP = stat[5] * HP_Multiplier;
                     HP = MAXHP;
                     skillNum = 2;
                     index = (int)n;
@@ -254,7 +255,7 @@ public class Student
                     st = status.none;
                     level = 1;
                     exp = 0;
-                    MAXHP = stat[5] * 5;
+                    MAXHP = stat[5] * HP_Multiplier;
                     HP = MAXHP;
                     skillNum = 2;
                     index = (int)n;
@@ -268,7 +269,7 @@ public class Student
                     st = status.none;
                     level = 1;
                     exp = 0;
-                    MAXHP = stat[5] * 5;
+                    MAXHP = stat[5] * HP_Multiplier;
                     HP = MAXHP;
                     skillNum = 2;
                     index = (int)n;
@@ -282,7 +283,7 @@ public class Student
                     st = status.none;
                     level = 1;
                     exp = 0;
-                    MAXHP = stat[5] * 5;
+                    MAXHP = stat[5] * HP_Multiplier;
                     HP = MAXHP;
                     skillNum = 2;
                     index = (int)n;
@@ -296,7 +297,7 @@ public class Student
                     st = status.none;
                     level = 1;
                     exp = 0;
-                    MAXHP = stat[5] * 5;
+                    MAXHP = stat[5] * HP_Multiplier;
                     HP = MAXHP;
                     skillNum = 2;
                     index = (int)n;
@@ -310,7 +311,7 @@ public class Student
                     st = status.none;
                     level = 1;
                     exp = 0;
-                    MAXHP = stat[5] * 5;
+                    MAXHP = stat[5] * HP_Multiplier;
                     HP = MAXHP;
                     skillNum = 2;
                     index = (int)n;
@@ -324,7 +325,7 @@ public class Student
                     st = status.none;
                     level = 1;
                     exp = 0;
-                    MAXHP = stat[5] * 5;
+                    MAXHP = stat[5] * HP_Multiplier;
                     HP = MAXHP;
                     skillNum = 2;
                     index = (int)n;
@@ -338,7 +339,7 @@ public class Student
                     st = status.none;
                     level = 1;
                     exp = 0;
-                    MAXHP = stat[5] * 5;
+                    MAXHP = stat[5] * HP_Multiplier;
                     HP = MAXHP;
                     skillNum = 2;
                     index = (int)n;
@@ -364,7 +365,7 @@ public class Student
         {
             stat[i] = stat[i] * 1.1;
         }
-        MAXHP = stat[6] * 5;
+        MAXHP = stat[6] * HP_Multiplier;
     }
 
     public void setExp(int exp)
@@ -441,9 +442,9 @@ public class Student
         double amount = it.getAmount();
         status st_it = it.getStatus();
 
-        if (amount > 0)//체력을 회복시키는 아이템
+        if (amount > 0) //체력을 회복시키는 아이템
             return setHP(amount);
-        else//포스몬의 상태를 바꾸어주는 아이템
+        else //포스몬의 상태를 바꾸어주는 아이템
             return setStatus(st_it);
     }
 
