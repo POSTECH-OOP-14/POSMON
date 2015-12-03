@@ -94,7 +94,10 @@ public class StoryEffector : MonoBehaviour {
                 i = Random.Range(1, 101);
                 } while (i % 10 != 0 && i % 10 != 1);
 
-                GameManager.pl_stored.GetComponent<CharacterStatus>().setStudent(new Student((stu_no)i));
+                Student stu = new Student((stu_no)i);
+                GameManager.pl_stored.GetComponent<CharacterStatus>().setStudent(stu);
+                stu.levelUP();
+                stu.levelUP();
                 warp.SetActive(true);
                 break;
             }

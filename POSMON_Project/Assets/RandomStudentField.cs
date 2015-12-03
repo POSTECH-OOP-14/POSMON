@@ -32,7 +32,8 @@ public class RandomStudentField : MonoBehaviour {
                 /* check validity */
                 for (int i = 0; i < 6; i++)
                 {
-                    if (GameManager.pl_stored.GetComponent<CharacterStatus>().getStudent(i) != null)
+                    Student player_stu = GameManager.pl_stored.GetComponent<CharacterStatus>().getStudent(i);
+                    if (player_stu != null && player_stu.getHP() >= 1)
                         playerValidity = true;
                 }
 

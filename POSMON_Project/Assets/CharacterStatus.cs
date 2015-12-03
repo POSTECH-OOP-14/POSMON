@@ -198,7 +198,6 @@ public class CharacterStatus : MonoBehaviour
         walk_remaining = 0;
         moving_status = status.IDLE;
         direction = face_direction.DOWN;
-        student_list[0] = new Student(stu_no.BIO1);
 	}
 
     public int getStudentCount()
@@ -410,7 +409,7 @@ public class CharacterStatus : MonoBehaviour
                         GUI.Box(new Rect(0, 40, (Screen.width * 9) / 10, Screen.height / 2),
                             "Level : " + student_list[i].getLevel().ToString() + "\n" +
                             "HP : " + student_list[i].getHP().ToString() + "/" + student_list[i].getMAXHP().ToString() + "\n" +
-                            "Exp : " + student_list[i].getExp().ToString() + "/" + "100" + "\n" +
+                            "Exp : " + student_list[i].getExp().ToString() + "/" + (50 * student_list[i].getLevel()).ToString() + "\n" +
                             "Status : " + student_list[i].retStuStatus().ToString() + "\n" +
                             "Attack : " + student_list[i].retStuStat(0).ToString() + "\n" +
                             "Special Attack : " + student_list[i].retStuStat(1).ToString() + "\n" +

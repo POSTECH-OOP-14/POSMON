@@ -363,10 +363,11 @@ public class Student
     public void levelUP()
     {
         level++;
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < 5; i++)
         {
-            stat[i] = stat[i] * 1.1;
+            stat[i] = stat[i] * 1.5;
         }
+        stat[5] *= 1.1;
         MAXHP = stat[5] * HP_Multiplier;
         HP = MAXHP;
     }
@@ -374,10 +375,10 @@ public class Student
     public void setExp(int exp)
     {
         this.exp += exp;
-        if (this.exp > 100)
+        while (this.exp > 50 * level)
         {
+            this.exp -= 50 * level;
             levelUP();
-            this.exp -= 100;
         }
     }
 
@@ -527,7 +528,7 @@ public class Student
     public int getDamage(int damage)
     {
         HP -= damage;
-        if (HP < 0)
+        if (HP < 0.1f)
         {
             HP = 0;
             this.giveAStatus(status.faint);

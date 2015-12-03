@@ -94,7 +94,8 @@ public class BattleButtonManage : MonoBehaviour
 
     void OnGUI()
     {
-       TestCode.MoveNext();
+       if (TestCode != null)
+           TestCode.MoveNext();
     }
 
     int outOfStudent(Student[] list)
@@ -851,7 +852,9 @@ public class BattleButtonManage : MonoBehaviour
                                     yield return null;
                                 }
 
-                                CurrentMine.setExp(CurrentEnemy.getExp()); //give exp;
+                                /* get experience */
+                                int exp = CurrentEnemy.getLevel() * Random.Range(8, 35);
+                                CurrentMine.setExp(exp);
 
                                 aba = false;
                                 while (!aba)
