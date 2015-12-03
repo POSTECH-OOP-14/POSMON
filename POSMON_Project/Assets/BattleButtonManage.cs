@@ -455,7 +455,7 @@ public class BattleButtonManage : MonoBehaviour
                             aba = false;
                             while (!aba)
                             {
-                                GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentEnemy.retStuIndex().ToString() + "학생은 " + damage.ToString() + "쓰러졌다" + "\n(z나 enter를 입력)");
+                                GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "상대는 " +  "쓰러졌다" + "\n(z나 enter를 입력)");
                                 aba = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
                                 yield return null;
                             }

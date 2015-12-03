@@ -183,19 +183,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40a4a40036103cb45bbd841ec8659e9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  list:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  stu1: {fileID: 2800000, guid: b2b0abf091f20fa46a8718c91727dc4d, type: 3}
-  stu2: {fileID: 2800000, guid: f3c566d6ad4cf6b49948035d5db722cb, type: 3}
-  stu3: {fileID: 2800000, guid: f18def5f453b2ec4f98ac94548af5b04, type: 3}
-  stu4: {fileID: 2800000, guid: c3bdcfcc92e9e6e4abe0c88cf0e84b98, type: 3}
-  stu5: {fileID: 2800000, guid: da3525248849fad4b9b6b4e9a6fcc438, type: 3}
-  stu6: {fileID: 2800000, guid: 8b4ce43c56eb59d41b56fce07f8f419c, type: 3}
+  stu_MATH1: {fileID: 2800000, guid: 682f0ff46d7e8a447aecb22550a4adb9, type: 3}
+  stu_MATH1_1: {fileID: 2800000, guid: af4252b6efa57824d90a6822c303d5c2, type: 3}
+  stu_MATH2: {fileID: 2800000, guid: 7262305632d6afd438530ad9d43ef568, type: 3}
+  stu_MATH2_1: {fileID: 2800000, guid: b6ad495a4653b584ca4f5fdfc5d759ff, type: 3}
+  stu_PHYS1: {fileID: 2800000, guid: 9a5af23102d080f499234894ac38ff35, type: 3}
+  stu_PHYS1_1: {fileID: 2800000, guid: 7ae04370ec931d847be67e9935f54b58, type: 3}
+  stu_PHYS2: {fileID: 2800000, guid: bfd19d31297d6514e8b2b1beeff2e520, type: 3}
+  stu_PHYS2_1: {fileID: 2800000, guid: 4ba319e31220b00488604fd618c58207, type: 3}
+  stu_CSE1: {fileID: 2800000, guid: c80a669d394a7f740818820ad6316d6f, type: 3}
+  stu_CSE1_1: {fileID: 2800000, guid: ec6fce1451583644cad87c3e3a5167fb, type: 3}
+  stu_CSE2: {fileID: 2800000, guid: 5464fe855f6d5564cb8981152c12b54f, type: 3}
+  stu_CSE2_1: {fileID: 2800000, guid: df2ae264130f2fe4f9620916afd41de9, type: 3}
+  stu_IME1: {fileID: 2800000, guid: d799949e846119146a14ceeef3159a94, type: 3}
+  stu_IME1_1: {fileID: 2800000, guid: a9af66d6fe51b9c4c890cf196dddd648, type: 3}
+  stu_IME2: {fileID: 2800000, guid: 7447a9742bfaa3149b2456d782af734a, type: 3}
+  stu_IME2_1: {fileID: 2800000, guid: f282995781a7f43419519670d77976c5, type: 3}
+  stu_CITE1: {fileID: 2800000, guid: 788cacc1c09ed5841ab0a625c08ac338, type: 3}
+  stu_CITE1_1: {fileID: 2800000, guid: ecf91e0d1ea5bee4ca7530f06b89ca17, type: 3}
+  stu_CITE2: {fileID: 2800000, guid: 9f87cadd7a3e8164d88b611917d6040c, type: 3}
+  stu_CITE2_1: {fileID: 2800000, guid: 705b8393004d5be4397ed9a3f36f18e4, type: 3}
+  stu_CHEM1: {fileID: 2800000, guid: 3b6ff05474da47543a3d83456c0c51ec, type: 3}
+  stu_CHEM1_1: {fileID: 2800000, guid: 4e8fabd04e30f85478a3698c14f8de88, type: 3}
+  stu_CHEM2: {fileID: 2800000, guid: 2af68fcdef356ec4a9719de0aa06f4a3, type: 3}
+  stu_CHEM2_1: {fileID: 2800000, guid: 94cc4f60fda1cea439b01bca5b43ab0f, type: 3}
+  stu_CME1: {fileID: 2800000, guid: ffd9d55d744cef548957b405ddb61550, type: 3}
+  stu_CME1_1: {fileID: 2800000, guid: 0bcd27864dd91c94ea1fb7b29cc4b06c, type: 3}
+  stu_CME2: {fileID: 2800000, guid: 5d619a21ecf4aed429b5dfb43d42da40, type: 3}
+  stu_CME2_1: {fileID: 2800000, guid: a37eba864e247504da6506272016591a, type: 3}
+  stu_MSE1: {fileID: 2800000, guid: b20e9e1833980474383e0bc27170bf08, type: 3}
+  stu_MSE1_1: {fileID: 2800000, guid: c4deefab84535f149991e6ab000d9846, type: 3}
+  stu_MSE2: {fileID: 2800000, guid: e7e15bb2afd85c340a51c1698a3c618f, type: 3}
+  stu_MSE2_1: {fileID: 2800000, guid: 34586e818049bb84fae85c2afb3d9801, type: 3}
+  stu_BIO1: {fileID: 2800000, guid: 4bbc26c579bf5ad44a45d9f39007ad4e, type: 3}
+  stu_BIO1_1: {fileID: 2800000, guid: 8005715b5b094404d9a4ad9250d17b0e, type: 3}
+  stu_BIO2: {fileID: 2800000, guid: dfee74fa7932e1347aa50a4736029096, type: 3}
+  stu_BIO2_1: {fileID: 2800000, guid: 65324f5385d40ab4e80f26c5bb166eaa, type: 3}
+  stu_EE1: {fileID: 2800000, guid: 8c22892a3de70a44997df8703fabb496, type: 3}
+  stu_EE1_1: {fileID: 2800000, guid: c4f04c03552f3b54bb3157c7a67a73f7, type: 3}
+  stu_EE2: {fileID: 2800000, guid: bb0074c3f1b41e14e911d168fe218391, type: 3}
+  stu_EE2_1: {fileID: 2800000, guid: c46c3e94c0d366744b235d84d4b96872, type: 3}
+  stu_ME1: {fileID: 2800000, guid: 7a829506c22251042bcd4675992663fe, type: 3}
+  stu_ME1_1: {fileID: 2800000, guid: cf46ef66370586d47b9957f79f81c710, type: 3}
+  stu_ME2: {fileID: 2800000, guid: 50f27058384d2074491c577fb6d1c313, type: 3}
+  stu_ME2_1: {fileID: 2800000, guid: 546b1907426b21f4ea5ae71dd9e3b068, type: 3}
 --- !u!1 &670871295
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,7 +306,7 @@ GameObject:
   - 114: {fileID: 735237620}
   - 131: {fileID: 735237619}
   m_Layer: 0
-  m_Name: showMyLife (1)
+  m_Name: showEnemyLife
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
