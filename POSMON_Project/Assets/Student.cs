@@ -19,13 +19,15 @@ public enum stu_no
 public class Student
 {
     private const double HP_Multiplier = 2;
-    private SkillList list= new SkillList();
+    private SkillList list = new SkillList();
+
     private SkillInfo[] skill = new SkillInfo[4]; //스킬배열
     private int[] skillNumberList = new int[4]; //tempory skill list
     private string department; //학과
     private double[] stat = new double[6]; //능력치배열
     private int index; //포스몬의 번호
     private status st; //상태(정상, 마비, 잠, 독)
+
     private int level;
     private int exp;
     private double HP;
@@ -83,7 +85,7 @@ public class Student
                 {
                     skill = new SkillInfo[] { list.retSkillInfo(1), list.retSkillInfo(16), null, null };
                     department = "물리학과";
-                    stat = new double[] { 10,30,25,5,5,25 };
+                    stat = new double[] { 10, 30, 25, 5, 5, 25 };
                     st = status.none;
                     level = 1;
                     exp = 0;
@@ -97,7 +99,7 @@ public class Student
                 {
                     skill = new SkillInfo[] { list.retSkillInfo(2), list.retSkillInfo(12), null, null };
                     department = "화학과";
-                    stat = new double[] { 10,30,25,5,5,25 };
+                    stat = new double[] { 10, 30, 25, 5, 5, 25 };
                     st = status.none;
                     level = 1;
                     exp = 0;
@@ -111,7 +113,7 @@ public class Student
                 {
                     skill = new SkillInfo[] { list.retSkillInfo(3), list.retSkillInfo(8), null, null };
                     department = "화학과";
-                    stat = new double[] { 15,25,30,10,10,10 };
+                    stat = new double[] { 15, 25, 30, 10, 10, 10 };
                     st = status.none;
                     level = 1;
                     exp = 0;
@@ -125,7 +127,7 @@ public class Student
                 {
                     skill = new SkillInfo[] { list.retSkillInfo(4), list.retSkillInfo(20), null, null };
                     department = "화학공학과";
-                    stat = new double[] { 10,10,15,20,20,25 };
+                    stat = new double[] { 10, 10, 15, 20, 20, 25 };
                     st = status.none;
                     level = 1;
                     exp = 0;
@@ -139,7 +141,7 @@ public class Student
                 {
                     skill = new SkillInfo[] { list.retSkillInfo(5), list.retSkillInfo(21), null, null };
                     department = "화학공학과";
-                    stat = new double[] { 5,15,20,15,20,25 };
+                    stat = new double[] { 5, 15, 20, 15, 20, 25 };
                     st = status.none;
                     level = 1;
                     exp = 0;
@@ -153,7 +155,7 @@ public class Student
                 {
                     skill = new SkillInfo[] { list.retSkillInfo(6), list.retSkillInfo(13), null, null };
                     department = "생명공학과";
-                    stat = new double[] { 15,10,20,15,10,30 };
+                    stat = new double[] { 15, 10, 20, 15, 10, 30 };
                     st = status.none;
                     level = 1;
                     exp = 0;
@@ -167,7 +169,7 @@ public class Student
                 {
                     skill = new SkillInfo[] { list.retSkillInfo(7), list.retSkillInfo(17), null, null };
                     department = "생명공학과";
-                    stat = new double[] { 10,15,15,20,5,35 };
+                    stat = new double[] { 10, 15, 15, 20, 5, 35 };
                     st = status.none;
                     level = 1;
                     exp = 0;
@@ -181,7 +183,7 @@ public class Student
                 {
                     skill = new SkillInfo[] { list.retSkillInfo(8), list.retSkillInfo(1), null, null };
                     department = "신소재공학과";
-                    stat = new double[] { 10,25,10,25,15,15 };
+                    stat = new double[] { 10, 25, 10, 25, 15, 15 };
                     st = status.none;
                     level = 1;
                     exp = 0;
@@ -195,7 +197,7 @@ public class Student
                 {
                     skill = new SkillInfo[] { list.retSkillInfo(9), list.retSkillInfo(15), null, null };
                     department = "신소재공학과";
-                    stat = new double[] { 10,20,15,20,20,15 };
+                    stat = new double[] { 10, 20, 15, 20, 20, 15 };
                     st = status.none;
                     level = 1;
                     exp = 0;
@@ -209,7 +211,7 @@ public class Student
                 {
                     skill = new SkillInfo[] { list.retSkillInfo(10), list.retSkillInfo(16), null, null };
                     department = "기계공학과";
-                    stat = new double[] { 5,30,10,30,10,15 };
+                    stat = new double[] { 5, 30, 10, 30, 10, 15 };
                     st = status.none;
                     level = 1;
                     exp = 0;
@@ -223,7 +225,7 @@ public class Student
                 {
                     skill = new SkillInfo[] { list.retSkillInfo(11), list.retSkillInfo(3), null, null };
                     department = "기계공학과";
-                    stat = new double[] { 10,30,5,30,5,20 };
+                    stat = new double[] { 10, 30, 5, 30, 5, 20 };
                     st = status.none;
                     level = 1;
                     exp = 0;
@@ -237,7 +239,7 @@ public class Student
                 {
                     skill = new SkillInfo[] { list.retSkillInfo(12), list.retSkillInfo(14), null, null };
                     department = "컴퓨터공학과";
-                    stat = new double[] { 15,20,15,15,20,15 };
+                    stat = new double[] { 15, 20, 15, 15, 20, 15 };
                     st = status.none;
                     level = 1;
                     exp = 0;
@@ -251,7 +253,7 @@ public class Student
                 {
                     skill = new SkillInfo[] { list.retSkillInfo(13), list.retSkillInfo(19), null, null };
                     department = "컴퓨터공학과";
-                    stat = new double[] { 20,15,15,20,15,15 };
+                    stat = new double[] { 20, 15, 15, 20, 15, 15 };
                     st = status.none;
                     level = 1;
                     exp = 0;
@@ -265,7 +267,7 @@ public class Student
                 {
                     skill = new SkillInfo[] { list.retSkillInfo(14), list.retSkillInfo(2), null, null };
                     department = "창의IT융합공학과";
-                    stat = new double[] { 5,5,40,40,5,5 };
+                    stat = new double[] { 5, 5, 40, 40, 5, 5 };
                     st = status.none;
                     level = 1;
                     exp = 0;
@@ -279,7 +281,7 @@ public class Student
                 {
                     skill = new SkillInfo[] { list.retSkillInfo(15), list.retSkillInfo(5), null, null };
                     department = "창의IT융합공학과";
-                    stat = new double[] { 10,5,35,35,10,5 };
+                    stat = new double[] { 10, 5, 35, 35, 10, 5 };
                     st = status.none;
                     level = 1;
                     exp = 0;
@@ -293,7 +295,7 @@ public class Student
                 {
                     skill = new SkillInfo[] { list.retSkillInfo(16), list.retSkillInfo(6), null, null };
                     department = "산업경영공학과";
-                    stat = new double[] { 15,15,5,25,20,20 };
+                    stat = new double[] { 15, 15, 5, 25, 20, 20 };
                     st = status.none;
                     level = 1;
                     exp = 0;
@@ -307,7 +309,7 @@ public class Student
                 {
                     skill = new SkillInfo[] { list.retSkillInfo(17), list.retSkillInfo(21), null, null };
                     department = "산업경영공학과";
-                    stat = new double[] { 10,15,10,20,25,20 };
+                    stat = new double[] { 10, 15, 10, 20, 25, 20 };
                     st = status.none;
                     level = 1;
                     exp = 0;
@@ -321,7 +323,7 @@ public class Student
                 {
                     skill = new SkillInfo[] { list.retSkillInfo(20), list.retSkillInfo(2), null, null };
                     department = "전기전자공학과";
-                    stat = new double[] { 10,25,5,20,20,20 };
+                    stat = new double[] { 10, 25, 5, 20, 20, 20 };
                     st = status.none;
                     level = 1;
                     exp = 0;
@@ -335,7 +337,7 @@ public class Student
                 {
                     skill = new SkillInfo[] { list.retSkillInfo(21), list.retSkillInfo(12), null, null };
                     department = "전기전자공학과";
-                    stat = new double[] { 10,20,10,20,15,25 };
+                    stat = new double[] { 10, 20, 10, 20, 15, 25 };
                     st = status.none;
                     level = 1;
                     exp = 0;
@@ -468,7 +470,7 @@ public class Student
     {
 
     }
-    
+
     //song Si Ho 작성
 
     //return the index of student. could be change to return image of stu.
@@ -508,7 +510,7 @@ public class Student
             this.st = state;
         else if (state == status.faint)
             this.st = state;
-        else 
+        else
         {
             //this state, student cannot change its state
             return 1;
@@ -524,10 +526,10 @@ public class Student
     //give damage to student
     public int getDamage(int damage)
     {
-        HP -= damage;
-        if (HP < 0)
+        this.HP -= damage;
+        if (this.HP < 0.5)
         {
-            HP = 0;
+            this.HP = 0;
             this.giveAStatus(status.faint);
             return 1;
         }
@@ -549,15 +551,15 @@ public class Student
         return this.department;
     }
 
-    public int[] retSkillList()
+    public SkillInfo[] retSkillList()
     {
-        return skillNumberList;
+        return this.skill;
     }
 
     public string retStudentName()
     {
         string a = "";
-        a = this.department +" " +this.index+ "번 학생";
+        a = this.department + " " + this.index + "번 학생";
         return a;
     }
 }
