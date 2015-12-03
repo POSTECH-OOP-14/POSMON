@@ -184,7 +184,10 @@ public class BattleButtonManage : MonoBehaviour
                         yield return new WaitForEndOfFrame();
                     }
                     GameManager.pl_stored.SetActive(true);
-                    GameManager.pl_stored.GetComponent<CharacterStatus>().getQuest(GameManager.getBattleHostNum()).markCompleted();
+                    /* update quest info */
+                    if (GameManager.getBattleHostNum() != 0)
+                        GameManager.pl_stored.GetComponent<CharacterStatus>().getQuest(GameManager.getBattleHostNum()).markCompleted();
+
                     Application.LoadLevel(GameManager.PrevSceneNumber);
                 }
             }
@@ -479,12 +482,14 @@ public class BattleButtonManage : MonoBehaviour
                                 yield return null;
                             }
 
-                            CurrentMine.setExp(CurrentEnemy.getExp()); //give exp;
+                            /* get experience */
+                            int exp = CurrentEnemy.getLevel() * Random.Range(8, 35);
+                            CurrentMine.setExp(exp);
 
                             aba = false;
                             while (!aba)
                             {
-                                GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentMine.retStudentName()+"은 " + CurrentEnemy.getExp().ToString() + "만큼의 경험치를 얻었다." + "\n(z나 enter를 입력)");
+                                GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentMine.retStudentName()+"은 " + exp.ToString() + "만큼의 경험치를 얻었다." + "\n(z나 enter를 입력)");
                                 aba = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
                                 yield return null;
                             }

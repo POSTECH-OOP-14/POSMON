@@ -4,6 +4,7 @@ using System.Collections;
 public class Dialogue : MonoBehaviour {
     public AudioClip TypingSound;
     public AudioClip CureSound;
+    public AudioClip BattleFailSound;
 
     private bool bshow = false;
     private string dialoge1 = null;
@@ -77,6 +78,8 @@ public class Dialogue : MonoBehaviour {
             /* if quest exist & has not been completed, trigger battle */
             if (qst != null && qst.isCompleted() == false)
             {
+                bool playerValidity = false;
+                bool trainerValidity = false;
                 /* setting battle info */
                 GameManager.resetBattleStudents();
                 for (int i = 0; i < 6; i++)
@@ -86,10 +89,23 @@ public class Dialogue : MonoBehaviour {
                 }
                 GameManager.setBattleHostNum(qst.getHostNPCNumber());
 
+                for (int i = 0; i < 6; i++)
+                {
+                    if (GameManager.pl_stored.GetComponent<CharacterStatus>().getStudent(i) != null)
+                        playerValidity = true;
+                    if (gameObject.GetComponent<NPCStatus>().getStudent(i) != null)
+                        trainerValidity = true;
+                }
+
                 /* setting application level */
-                GameManager.pl_stored.SetActive(false);
-                GameManager.PrevSceneNumber = Application.loadedLevel;
-                Application.LoadLevel(9);
+                if (playerValidity && trainerValidity)
+                {
+                    GameManager.pl_stored.SetActive(false);
+                    GameManager.PrevSceneNumber = Application.loadedLevel;
+                    Application.LoadLevel(9);
+                }
+                else
+                    GetComponent<AudioSource>().PlayOneShot(BattleFailSound);
             }
         }
         /* Trigger Healing Students */

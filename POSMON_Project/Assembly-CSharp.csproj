@@ -61,6 +61,7 @@
      <Compile Include="Assets\MoveToMain.cs" />
      <Compile Include="Assets\NPCStatus.cs" />
      <Compile Include="Assets\Quest.cs" />
+     <Compile Include="Assets\RandomStudentField.cs" />
      <Compile Include="Assets\ShowLifeState.cs" />
      <Compile Include="Assets\SkillInfo.cs" />
      <Compile Include="Assets\SkillList.cs" />

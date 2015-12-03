@@ -365,7 +365,8 @@ public class Student
         {
             stat[i] = stat[i] * 1.1;
         }
-        MAXHP = stat[6] * HP_Multiplier;
+        MAXHP = stat[5] * HP_Multiplier;
+        HP = MAXHP;
     }
 
     public void setExp(int exp)

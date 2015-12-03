@@ -321,11 +321,7 @@ public class CharacterStatus : MonoBehaviour
          * the object's tag is "NPC" then call NPC's method */
         if (other.gameObject.tag == "NPC")
         {
-            /* When Collision occurred, if keyinput existed.... */
-            if (true)
-            {
-                other.gameObject.GetComponent<NPCStatus>().interaction(this.gameObject);                
-            }
+            other.gameObject.GetComponent<NPCStatus>().interaction(this.gameObject);         
         }
     }
 
