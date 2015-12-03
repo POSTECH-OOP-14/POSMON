@@ -39,7 +39,7 @@ public class CharacterStatus : MonoBehaviour
 
     /* inventory information */
     private Item[] inventory = new Item[256];
-    private int money = 10000;
+    private int money = 2000;
 
     /**** methods related to inventory ****/
     public void setInventory(Item item, int index)

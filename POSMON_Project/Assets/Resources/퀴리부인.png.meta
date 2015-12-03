@@ -1,18 +1,18 @@
 fileFormatVersion: 2
-guid: 08e856cb8848c9d40a0b45151663a050
-timeCreated: 1449155007
+guid: 9c8c5b4f857758947a81d7c4dfc0caf5
+timeCreated: 1449155581
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: "\uC544\uC778\uC288\uD0C0\uC778_0"
-    21300002: "\uC544\uC778\uC288\uD0C0\uC778_1"
-    21300004: "\uC544\uC778\uC288\uD0C0\uC778_2"
-    21300006: "\uC544\uC778\uC288\uD0C0\uC778_3"
-    21300008: "\uC544\uC778\uC288\uD0C0\uC778_4"
-    21300010: "\uC544\uC778\uC288\uD0C0\uC778_5"
-    21300012: "\uC544\uC778\uC288\uD0C0\uC778_6"
-    21300014: "\uC544\uC778\uC288\uD0C0\uC778_7"
-    21300016: "\uC544\uC778\uC288\uD0C0\uC778_8"
+    21300000: "\uD034\uB9AC\uBD80\uC778_0"
+    21300002: "\uD034\uB9AC\uBD80\uC778_1"
+    21300004: "\uD034\uB9AC\uBD80\uC778_2"
+    21300006: "\uD034\uB9AC\uBD80\uC778_3"
+    21300008: "\uD034\uB9AC\uBD80\uC778_4"
+    21300010: "\uD034\uB9AC\uBD80\uC778_5"
+    21300012: "\uD034\uB9AC\uBD80\uC778_6"
+    21300014: "\uD034\uB9AC\uBD80\uC778_7"
+    21300016: "\uD034\uB9AC\uBD80\uC778_8"
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -59,57 +59,57 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: "\uC544\uC778\uC288\uD0C0\uC778_0"
+    - name: "\uD034\uB9AC\uBD80\uC778_0"
       rect:
         serializedVersion: 2
-        x: 4
+        x: 3
         y: 96
-        width: 25
+        width: 26
         height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: "\uC544\uC778\uC288\uD0C0\uC778_1"
+    - name: "\uD034\uB9AC\uBD80\uC778_1"
       rect:
         serializedVersion: 2
         x: 35
         y: 96
-        width: 27
+        width: 26
         height: 32
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: "\uC544\uC778\uC288\uD0C0\uC778_2"
+    - name: "\uD034\uB9AC\uBD80\uC778_2"
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 96
+        width: 26
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: "\uD034\uB9AC\uBD80\uC778_3"
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 64
+        width: 23
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: "\uD034\uB9AC\uBD80\uC778_4"
       rect:
         serializedVersion: 2
         x: 68
-        y: 96
-        width: 25
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: "\uC544\uC778\uC288\uD0C0\uC778_3"
-      rect:
-        serializedVersion: 2
-        x: 6
         y: 64
-        width: 21
+        width: 23
         height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: "\uC544\uC778\uC288\uD0C0\uC778_4"
-      rect:
-        serializedVersion: 2
-        x: 70
-        y: 64
-        width: 21
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: "\uC544\uC778\uC288\uD0C0\uC778_5"
+    - name: "\uD034\uB9AC\uBD80\uC778_5"
       rect:
         serializedVersion: 2
         x: 5
@@ -119,7 +119,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: "\uC544\uC778\uC288\uD0C0\uC778_6"
+    - name: "\uD034\uB9AC\uBD80\uC778_6"
       rect:
         serializedVersion: 2
         x: 69
@@ -129,22 +129,22 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: "\uC544\uC778\uC288\uD0C0\uC778_7"
+    - name: "\uD034\uB9AC\uBD80\uC778_7"
       rect:
         serializedVersion: 2
-        x: 5
+        x: 4
         y: 0
-        width: 23
+        width: 26
         height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: "\uC544\uC778\uC288\uD0C0\uC778_8"
+    - name: "\uD034\uB9AC\uBD80\uC778_8"
       rect:
         serializedVersion: 2
-        x: 69
+        x: 68
         y: 0
-        width: 23
+        width: 26
         height: 31
       alignment: 0
       pivot: {x: 0, y: 0}

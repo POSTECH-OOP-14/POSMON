@@ -1,18 +1,18 @@
 fileFormatVersion: 2
-guid: 08e856cb8848c9d40a0b45151663a050
-timeCreated: 1449155007
+guid: c0dac4093d6321942b08f4d3e53e8e7b
+timeCreated: 1449156335
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: "\uC544\uC778\uC288\uD0C0\uC778_0"
-    21300002: "\uC544\uC778\uC288\uD0C0\uC778_1"
-    21300004: "\uC544\uC778\uC288\uD0C0\uC778_2"
-    21300006: "\uC544\uC778\uC288\uD0C0\uC778_3"
-    21300008: "\uC544\uC778\uC288\uD0C0\uC778_4"
-    21300010: "\uC544\uC778\uC288\uD0C0\uC778_5"
-    21300012: "\uC544\uC778\uC288\uD0C0\uC778_6"
-    21300014: "\uC544\uC778\uC288\uD0C0\uC778_7"
-    21300016: "\uC544\uC778\uC288\uD0C0\uC778_8"
+    21300000: "\uB77C\uC774\uB108\uC2A4 \uD3F4\uB9C1_0"
+    21300002: "\uB77C\uC774\uB108\uC2A4 \uD3F4\uB9C1_1"
+    21300004: "\uB77C\uC774\uB108\uC2A4 \uD3F4\uB9C1_2"
+    21300006: "\uB77C\uC774\uB108\uC2A4 \uD3F4\uB9C1_3"
+    21300008: "\uB77C\uC774\uB108\uC2A4 \uD3F4\uB9C1_4"
+    21300010: "\uB77C\uC774\uB108\uC2A4 \uD3F4\uB9C1_5"
+    21300012: "\uB77C\uC774\uB108\uC2A4 \uD3F4\uB9C1_6"
+    21300014: "\uB77C\uC774\uB108\uC2A4 \uD3F4\uB9C1_7"
+    21300016: "\uB77C\uC774\uB108\uC2A4 \uD3F4\uB9C1_8"
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -59,7 +59,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: "\uC544\uC778\uC288\uD0C0\uC778_0"
+    - name: "\uB77C\uC774\uB108\uC2A4 \uD3F4\uB9C1_0"
       rect:
         serializedVersion: 2
         x: 4
@@ -69,7 +69,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: "\uC544\uC778\uC288\uD0C0\uC778_1"
+    - name: "\uB77C\uC774\uB108\uC2A4 \uD3F4\uB9C1_1"
       rect:
         serializedVersion: 2
         x: 35
@@ -79,7 +79,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: "\uC544\uC778\uC288\uD0C0\uC778_2"
+    - name: "\uB77C\uC774\uB108\uC2A4 \uD3F4\uB9C1_2"
       rect:
         serializedVersion: 2
         x: 68
@@ -89,47 +89,47 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: "\uC544\uC778\uC288\uD0C0\uC778_3"
-      rect:
-        serializedVersion: 2
-        x: 6
-        y: 64
-        width: 21
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: "\uC544\uC778\uC288\uD0C0\uC778_4"
-      rect:
-        serializedVersion: 2
-        x: 70
-        y: 64
-        width: 21
-        height: 31
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: "\uC544\uC778\uC288\uD0C0\uC778_5"
+    - name: "\uB77C\uC774\uB108\uC2A4 \uD3F4\uB9C1_3"
       rect:
         serializedVersion: 2
         x: 5
-        y: 32
-        width: 23
+        y: 64
+        width: 24
         height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: "\uC544\uC778\uC288\uD0C0\uC778_6"
+    - name: "\uB77C\uC774\uB108\uC2A4 \uD3F4\uB9C1_4"
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 64
+        width: 22
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: "\uB77C\uC774\uB108\uC2A4 \uD3F4\uB9C1_5"
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 32
+        width: 24
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: "\uB77C\uC774\uB108\uC2A4 \uD3F4\uB9C1_6"
       rect:
         serializedVersion: 2
         x: 69
         y: 32
-        width: 23
+        width: 22
         height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: "\uC544\uC778\uC288\uD0C0\uC778_7"
+    - name: "\uB77C\uC774\uB108\uC2A4 \uD3F4\uB9C1_7"
       rect:
         serializedVersion: 2
         x: 5
@@ -139,7 +139,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: "\uC544\uC778\uC288\uD0C0\uC778_8"
+    - name: "\uB77C\uC774\uB108\uC2A4 \uD3F4\uB9C1_8"
       rect:
         serializedVersion: 2
         x: 69
