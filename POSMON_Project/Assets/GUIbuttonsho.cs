@@ -16,6 +16,8 @@ public class GUIbuttonsho : MonoBehaviour
     private int selected = 0;
     private string text = "아이템 설명";
     private string text2;
+
+    public int storenumber = 1; //상점번호를 의미한다. NPC에 따라 상점 번호는 바뀔 수 있다. 
     
     private bool ShopActivated = false;
 
@@ -47,10 +49,81 @@ public class GUIbuttonsho : MonoBehaviour
         index++;
     }
 
+    public void makeList2()
+    {
+        myList.Add(new Item(item_no.SKILL2));
+        index++;
+        myList.Add(new Item(item_no.SKILL3));
+        index++;
+        myList.Add(new Item(item_no.SKILL1));
+        index++;
+        myList.Add(new Item(item_no.SKILL5));
+        index++;
+        myList.Add(new Item(item_no.CURE4));
+        index++;
+        myList.Add(new Item(item_no.CURE3));
+        index++;
+        myList.Add(new Item(item_no.CURE2));
+        index++;
+        myList.Add(new Item(item_no.CURE6));
+        index++;
+        myList.Add(new Item(item_no.CURE7));
+        index++;
+        myList.Add(new Item(item_no.CURE9));
+        index++;
+        myList.Add(new Item(item_no.CAPTURE1));
+        index++;
+        myList.Add(new Item(item_no.CAPTURE3));
+        index++;
+        myList.Add(new Item(item_no.CAPTURE6));
+        index++;
+        myList.Add(new Item(item_no.CAPTURE7));
+        index++;
+    }
+
+    public void makeList3()
+    {
+        myList.Add(new Item(item_no.SKILL4));
+        index++;
+        myList.Add(new Item(item_no.SKILL3));
+        index++;
+        myList.Add(new Item(item_no.SKILL2));
+        index++;
+        myList.Add(new Item(item_no.CURE5));
+        index++;
+        myList.Add(new Item(item_no.CURE3));
+        index++;
+        myList.Add(new Item(item_no.CURE10));
+        index++;
+        myList.Add(new Item(item_no.CURE6));
+        index++;
+        myList.Add(new Item(item_no.CURE1));
+        index++;
+        myList.Add(new Item(item_no.CURE8));
+        index++;
+        myList.Add(new Item(item_no.CURE9));
+        index++;
+        myList.Add(new Item(item_no.CURE4));
+        index++;
+        myList.Add(new Item(item_no.CAPTURE5));
+        index++;
+        myList.Add(new Item(item_no.CAPTURE3));
+        index++;
+        myList.Add(new Item(item_no.CAPTURE4));
+        index++;
+        myList.Add(new Item(item_no.CAPTURE2));
+        index++;
+    }
+
     // Use this for initialization
     void Start()
     {
-        makeList();
+        if (storenumber == 1)
+            makeList();
+        else if (storenumber == 2)
+            makeList2();
+        else if (storenumber == 3)
+            makeList3();
     }
 
     // Update is called once per frame
