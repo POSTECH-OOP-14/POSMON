@@ -2,6 +2,8 @@
 using System.Collections;
 
 public class NPCStatus : MonoBehaviour {
+    public AudioClip QuestClearSound;
+
     public enum NPCType
     {
         TALKER,
@@ -121,6 +123,7 @@ public class NPCStatus : MonoBehaviour {
                             this.gameObject.GetComponent<Dialogue>().TurnOnDialogue();
                             dialogue_occurence = true;
                             qst.QuestClear();
+                            GetComponent<AudioSource>().PlayOneShot(QuestClearSound);
                             player.GetComponent<CharacterStatus>().deleteQuest(qst.getHostNPCNumber());
                         }
                     }
@@ -134,6 +137,7 @@ public class NPCStatus : MonoBehaviour {
                             this.gameObject.GetComponent<Dialogue>().TurnOnDialogue();
                             dialogue_occurence = true;
                             qst.QuestClear();
+                            GetComponent<AudioSource>().PlayOneShot(QuestClearSound);
                             player.GetComponent<CharacterStatus>().deleteQuest(qst.getHostNPCNumber());
                         }
                         Debug.Log("Cleared Quest");

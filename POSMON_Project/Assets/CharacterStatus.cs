@@ -6,6 +6,7 @@ public class CharacterStatus : MonoBehaviour
     private string text = "아이템 설명";
     private string text2;
 
+
     public AudioClip WarningSound;
     public AudioClip SuccessSound;
 
@@ -38,7 +39,7 @@ public class CharacterStatus : MonoBehaviour
 
     /* inventory information */
     private Item[] inventory = new Item[256];
-    private int money = 10000;
+    private int money = 2000;
 
     /**** methods related to inventory ****/
     public void setInventory(Item item, int index)
@@ -197,7 +198,6 @@ public class CharacterStatus : MonoBehaviour
         walk_remaining = 0;
         moving_status = status.IDLE;
         direction = face_direction.DOWN;
-        student_list[0] = new Student(stu_no.BIO1);
 	}
 
     public int getStudentCount()
@@ -345,7 +345,7 @@ public class CharacterStatus : MonoBehaviour
     private string[] item_grid;
     private int k = 0;
     private bool use_item = false;
-    void UseItem(int windowID)
+    public void UseItem(int windowID)
     {
         for (int j = 0; student_list[j] != null; j++)
         {
@@ -409,7 +409,7 @@ public class CharacterStatus : MonoBehaviour
                         GUI.Box(new Rect(0, 40, (Screen.width * 9) / 10, Screen.height / 2),
                             "Level : " + student_list[i].getLevel().ToString() + "\n" +
                             "HP : " + student_list[i].getHP().ToString() + "/" + student_list[i].getMAXHP().ToString() + "\n" +
-                            "Exp : " + student_list[i].getExp().ToString() + "/" + "100" + "\n" +
+                            "Exp : " + student_list[i].getExp().ToString() + "/" + (50 * student_list[i].getLevel()).ToString() + "\n" +
                             "Status : " + student_list[i].retStuStatus().ToString() + "\n" +
                             "Attack : " + student_list[i].retStuStat(0).ToString() + "\n" +
                             "Special Attack : " + student_list[i].retStuStat(1).ToString() + "\n" +
@@ -490,6 +490,11 @@ public class CharacterStatus : MonoBehaviour
             }
         }
     }
-        
+
+    //made by siho. get info of item from CharacterStatus
+    public Item[] returnInven()
+    {
+        return this.inventory;
+    }
 
 }

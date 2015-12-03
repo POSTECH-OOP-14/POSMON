@@ -20,12 +20,14 @@ public class Student
 {
     private const double HP_Multiplier = 2;
     private SkillList list= new SkillList();
+
     private SkillInfo[] skill = new SkillInfo[4]; //스킬배열
     private int[] skillNumberList = new int[4]; //tempory skill list
     private string department; //학과
     private double[] stat = new double[6]; //능력치배열
     private int index; //포스몬의 번호
     private status st; //상태(정상, 마비, 잠, 독)
+
     private int level;
     private int exp;
     private double HP;
@@ -361,10 +363,11 @@ public class Student
     public void levelUP()
     {
         level++;
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < 5; i++)
         {
-            stat[i] = stat[i] * 1.1;
+            stat[i] = stat[i] * 1.5;
         }
+        stat[5] *= 1.1;
         MAXHP = stat[5] * HP_Multiplier;
         HP = MAXHP;
     }
@@ -372,10 +375,10 @@ public class Student
     public void setExp(int exp)
     {
         this.exp += exp;
-        if (this.exp > 100)
+        while (this.exp > 50 * level)
         {
+            this.exp -= 50 * level;
             levelUP();
-            this.exp -= 100;
         }
     }
 
@@ -525,7 +528,7 @@ public class Student
     public int getDamage(int damage)
     {
         HP -= damage;
-        if (HP < 0)
+        if (HP < 0.1f)
         {
             HP = 0;
             this.giveAStatus(status.faint);
@@ -548,10 +551,10 @@ public class Student
     {
         return this.department;
     }
-
-    public int[] retSkillList()
+    
+    public SkillInfo[] retSkillList()
     {
-        return skillNumberList;
+        return this.skill;
     }
 
     public string retStudentName()

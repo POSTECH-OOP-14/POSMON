@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81e6a4e03529c4a47a76e728c1481591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  QuestClearSound: {fileID: 8300000, guid: 76782d7d1f9041c45a594ef53b198e33, type: 3}
   NPC_number: 7778
   type: 3
   Facing: 1
@@ -150,6 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TypingSound: {fileID: 8300000, guid: 089a5d2ca08218d44bbae9fa632a1689, type: 3}
   CureSound: {fileID: 8300000, guid: 06ea6b9752e1ad64f92a495dd334f260, type: 3}
+  BattleFailSound: {fileID: 0}
 --- !u!114 &11447214
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -182,9 +184,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -216,6 +216,10 @@ Prefab:
       propertyPath: CureSound
       value: 
       objectReference: {fileID: 8300000, guid: 06ea6b9752e1ad64f92a495dd334f260, type: 3}
+    - target: {fileID: 0}
+      propertyPath: QuestClearSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 76782d7d1f9041c45a594ef53b198e33, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 109944}

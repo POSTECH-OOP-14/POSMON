@@ -52,7 +52,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 8506858cead3ff44fb3e2532d4573a85, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -127,8 +127,8 @@ MonoBehaviour:
   WarningSound: {fileID: 8300000, guid: 8506858cead3ff44fb3e2532d4573a85, type: 3}
   probability_million: 1500
   leveling_limit: 5
-  leveling_probability: .200000003
-  level_multiplier: .5
+  leveling_probability: .100000001
+  level_multiplier: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -163,6 +163,18 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: probability_million
       value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 8506858cead3ff44fb3e2532d4573a85, type: 3}
+    - target: {fileID: 0}
+      propertyPath: level_multiplier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: leveling_probability
+      value: .100000001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

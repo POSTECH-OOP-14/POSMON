@@ -20,12 +20,15 @@ public class BattleScene {
     //If player attack, calculate damage
     public int BattleDamageCalculate(SkillInfo usedSkill, Student attacker, Student defenser, int[] _battleTempStat)
     {
+        int attributeRelation1 = (int)attacker.getStuIndex() / 10;
+        int attributeRelation2 = (int)defenser.getStuIndex() / 10;
+
         double AttackRate = 1;   //find attack is special attack or normal attack
         double damage = 0;       //return total damage that defenser have to take
         float AttributeCal = 1; //Calculate damage Changed by AttributeCal
         float[] battleTempStat = new float[12];
 
-        if(usedSkill.retType() == attacker.retStuDept()) //if Attacker type and used Skill type is same, get bonus damage 
+        if(usedSkill.retType() == attributeRelation1) //if Attacker type and used Skill type is same, get bonus damage 
         {AttributeCal *= 1.5f;}
         
         int RandomRate  = (int)Random.Range(217,255)*100/255;    //make random damage;
@@ -54,7 +57,7 @@ public class BattleScene {
                     *AttackRate/50                          //used skill damage * attacker,defensers ability
                 )+2)
                 *RandomRate/100                             //random damage
-                *AttributeCal*Attribute.attribute[attacker.retStuDept(),defenser.retStuDept()] //attribute;
+                *AttributeCal*Attribute.attribute[attributeRelation1,attributeRelation2] //attribute;
                 );
 
           

@@ -36,7 +36,7 @@ public class Dialogue : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.Space) && bshow == true || bshow == true && Input.GetKey(KeyCode.Z))
+        if (bshow == true && (Input.GetKeyDown(KeyCode.Space) && bshow == true || Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.X)))
         {
             if (sr.Peek() >= 0)
             {
@@ -56,12 +56,6 @@ public class Dialogue : MonoBehaviour {
                 TriggerNPCEvent();
             }
         }
-        else if (Input.GetKeyDown(KeyCode.X))
-        {
-            GetComponent<AudioSource>().Stop();
-            bshow = false;
-        }
-
     }
 
     private void TriggerNPCEvent()
@@ -91,9 +85,11 @@ public class Dialogue : MonoBehaviour {
 
                 for (int i = 0; i < 6; i++)
                 {
-                    if (GameManager.pl_stored.GetComponent<CharacterStatus>().getStudent(i) != null)
+                    Student player_stu = GameManager.pl_stored.GetComponent<CharacterStatus>().getStudent(i);
+                    Student trainer_stu = gameObject.GetComponent<NPCStatus>().getStudent(i);
+                    if (player_stu != null && player_stu.getHP() >= 1)
                         playerValidity = true;
-                    if (gameObject.GetComponent<NPCStatus>().getStudent(i) != null)
+                    if (trainer_stu != null && trainer_stu.getHP() >= 1)
                         trainerValidity = true;
                 }
 

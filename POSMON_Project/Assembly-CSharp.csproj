@@ -66,6 +66,7 @@
      <Compile Include="Assets\SkillInfo.cs" />
      <Compile Include="Assets\SkillList.cs" />
      <Compile Include="Assets\StoryEffector.cs" />
+     <Compile Include="Assets\StoryEnding.cs" />
      <Compile Include="Assets\Student.cs" />
      <Compile Include="Assets\StudentInfo.cs" />
      <Compile Include="Assets\StudentTextureList.cs" />
