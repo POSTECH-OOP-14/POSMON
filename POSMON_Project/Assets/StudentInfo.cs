@@ -9,20 +9,19 @@ public class StudentInfo: MonoBehaviour
 
         void Awake()
          {
-             myDebugStuList[0] = new Student(stu_no.MATH1);
-             myDebugStuList[1] = new Student(stu_no.MATH2);
-             myDebugStuList[2] = new Student(stu_no.PHYS1);
+            for (int i = 0; i < 6; i++)
+            {
+                myDebugStuList[i] = GameManager.getBattlePlayerStudent(i);
+                enemyDebugStuList[i] = GameManager.getBattleTrainerStudent(i);
+            }
 
-             enemyDebugStuList[0] = new Student(stu_no.MATH1);
-             enemyDebugStuList[1] = new Student(stu_no.MATH2);
-             for (int z = 0; z < 3; z++)
-             {
-                 if (myDebugStuList[z] == null)
-                     Debug.Log("my debug list " + z + "is null");
-                 if (enemyDebugStuList[z] == null)
-                     Debug.Log("enemy debug list " + z + "is null");
-             }
-    
+            for (int z = 0; z < 6; z++)
+            {
+                if (myDebugStuList[z] == null)
+                    Debug.Log("my debug list " + z + "is null");
+                if (enemyDebugStuList[z] == null)
+                    Debug.Log("enemy debug list " + z + "is null");
+            }
          }     
 
         void Start()
@@ -31,13 +30,10 @@ public class StudentInfo: MonoBehaviour
         }
 
          public Student retStuData(int i, int j)
-         {
-
-    
+         {    
              if (i == 0)
                  return myDebugStuList[j];
              else
                  return enemyDebugStuList[j];
-
          }
 }

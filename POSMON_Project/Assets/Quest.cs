@@ -8,7 +8,6 @@ public class Quest
     private int reward;
     private bool progressing;
     private bool complete;
-    private bool defeated;
 
     /* informatino for BattleQuest */
     private float warp_position_x;
@@ -22,7 +21,6 @@ public class Quest
         reward = _reward;
         progressing = false;
         complete = false;
-        defeated = false;
     }
 
     public void QuestClear()
@@ -67,13 +65,8 @@ public class Quest
         progressing = progress;
     }
 
-    public void markDefeated()
+    public void markCompleted()
     {
-        defeated = true;
-    }
-
-    public bool getDefeated()
-    {
-        return defeated;
+        complete = true;
     }
 }

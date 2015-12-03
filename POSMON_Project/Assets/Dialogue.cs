@@ -4,6 +4,7 @@ using System.Collections;
 public class Dialogue : MonoBehaviour {
     public AudioClip TypingSound;
     public AudioClip CureSound;
+    public AudioClip BattleFailSound;
 
     private bool bshow = false;
     private string dialoge1 = null;
@@ -73,15 +74,38 @@ public class Dialogue : MonoBehaviour {
         /* Trigger Quest Battle Interface */
         else if (gameObject.GetComponent<NPCStatus>().type == NPCStatus.NPCType.TRAINER && gameObject.GetComponent<NPCStatus>().NPC_number < 100)
         {
-            Quest qst = GameManager.pl_stored.GetComponent<CharacterStatus>().getQuest(gameObject.GetComponent<NPCStatus>().NPC_number);
-            /* if quest exist */
-            if (qst != null)
+            Quest qst = GameManager.pl_stored.GetComponent<CharacterStatus>().isTarget(gameObject.GetComponent<NPCStatus>().NPC_number);
+            /* if quest exist & has not been completed, trigger battle */
+            if (qst != null && qst.isCompleted() == false)
             {
-                /* if the NPC is not yet defeated, battle */
-                if (qst.getDefeated() == false)
+                bool playerValidity = false;
+                bool trainerValidity = false;
+                /* setting battle info */
+                GameManager.resetBattleStudents();
+                for (int i = 0; i < 6; i++)
                 {
-                    // trigger battle
+                    GameManager.setBattlePlayerStudent(i, GameManager.pl_stored.GetComponent<CharacterStatus>().getStudent(i));
+                    GameManager.setBattleTrainerStudent(i, gameObject.GetComponent<NPCStatus>().getStudent(i));
                 }
+                GameManager.setBattleHostNum(qst.getHostNPCNumber());
+
+                for (int i = 0; i < 6; i++)
+                {
+                    if (GameManager.pl_stored.GetComponent<CharacterStatus>().getStudent(i) != null)
+                        playerValidity = true;
+                    if (gameObject.GetComponent<NPCStatus>().getStudent(i) != null)
+                        trainerValidity = true;
+                }
+
+                /* setting application level */
+                if (playerValidity && trainerValidity)
+                {
+                    GameManager.pl_stored.SetActive(false);
+                    GameManager.PrevSceneNumber = Application.loadedLevel;
+                    Application.LoadLevel(9);
+                }
+                else
+                    GetComponent<AudioSource>().PlayOneShot(BattleFailSound);
             }
         }
         /* Trigger Healing Students */

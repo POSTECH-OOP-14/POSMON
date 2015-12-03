@@ -57,7 +57,10 @@ public class ChangeCharacter : MonoBehaviour {
     {
       OpponentStudentImage = new Rect(cam.pixelWidth * 3 / 4, cam.pixelHeight * 1 / 8, cam.pixelWidth / 8, cam.pixelWidth / 8);
       OurStudentImage = new Rect(cam.pixelWidth * 1 / 8, cam.pixelHeight * 2 / 4, cam.pixelWidth / 8, cam.pixelWidth / 8);
-      Graphics.DrawTexture(OpponentStudentImage, opponentTexture);
-      Graphics.DrawTexture(OurStudentImage, myTexture);
+      if (myTexture != null && opponentTexture != null)
+      {
+          Graphics.DrawTexture(OpponentStudentImage, opponentTexture);
+          Graphics.DrawTexture(OurStudentImage, myTexture);
+      }
     }
 }

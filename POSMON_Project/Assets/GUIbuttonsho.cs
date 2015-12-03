@@ -21,38 +21,28 @@ public class GUIbuttonsho : MonoBehaviour
 
     public void makeList()
     {
-        Item it = new Item(item_no.SKILL1);
-        myList.Add(it);
+        myList.Add(new Item(item_no.SKILL1));
         index++;
-        it = new Item(item_no.SKILL3);
-        myList.Add(it);
+
+        myList.Add(new Item(item_no.SKILL3));
         index++;
-        it = new Item(item_no.SKILL4);
-        myList.Add(it);
+        myList.Add(new Item(item_no.SKILL4));
         index++;
-        it = new Item(item_no.CURE1);
-        myList.Add(it);
+        myList.Add(new Item(item_no.CURE1));
         index++;
-        it = new Item(item_no.CURE2);
-        myList.Add(it);
+        myList.Add(new Item(item_no.CURE2));
         index++;
-        it = new Item(item_no.CURE6);
-        myList.Add(it);
+        myList.Add(new Item(item_no.CURE6));
         index++;
-        it = new Item(item_no.CURE11);
-        myList.Add(it);
+        myList.Add(new Item(item_no.CURE11));
         index++;
-        it = new Item(item_no.CURE8);
-        myList.Add(it);
+        myList.Add(new Item(item_no.CURE8));
         index++;
-        it = new Item(item_no.CAPTURE1);
-        myList.Add(it);
+        myList.Add(new Item(item_no.CAPTURE1));
         index++;
-        it = new Item(item_no.CAPTURE4);
-        myList.Add(it);
+        myList.Add(new Item(item_no.CAPTURE4));
         index++;
-        it = new Item(item_no.CAPTURE2);
-        myList.Add(it);
+        myList.Add(new Item(item_no.CAPTURE2));
         index++;
     }
 
