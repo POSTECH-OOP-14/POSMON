@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 
@@ -23,7 +23,6 @@ public class GUIbuttonsho : MonoBehaviour
     {
         myList.Add(new Item(item_no.SKILL1));
         index++;
-
         myList.Add(new Item(item_no.SKILL3));
         index++;
         myList.Add(new Item(item_no.SKILL4));
@@ -37,6 +36,8 @@ public class GUIbuttonsho : MonoBehaviour
         myList.Add(new Item(item_no.CURE11));
         index++;
         myList.Add(new Item(item_no.CURE8));
+        index++;
+        myList.Add(new Item(item_no.CURE4));
         index++;
         myList.Add(new Item(item_no.CAPTURE1));
         index++;
