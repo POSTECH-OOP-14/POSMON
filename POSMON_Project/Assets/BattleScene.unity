@@ -486,6 +486,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 996019517}
   - 82: {fileID: 996019516}
+  - 114: {fileID: 996019518}
   m_Layer: 0
   m_Name: KeyInputSound
   m_TagString: Untagged
@@ -502,8 +503,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 76782d7d1f9041c45a594ef53b198e33, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -575,6 +576,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
+--- !u!114 &996019518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 996019515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df447b66f784d354aa2d8b53ac325a7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1570408140
 GameObject:
   m_ObjectHideFlags: 0
