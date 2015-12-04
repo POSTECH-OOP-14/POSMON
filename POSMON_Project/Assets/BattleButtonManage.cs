@@ -47,6 +47,7 @@ public class BattleButtonManage : MonoBehaviour
     public Student[] EnemyStudentList;
     
     IEnumerator TestCode;
+    IEnumerator aTextTime;
 
     //information about skill
 
@@ -117,36 +118,36 @@ public class BattleButtonManage : MonoBehaviour
 
     IEnumerator WholeBattleCode()
     {
-            bool aba = false;
-            int myToOppoDamage = 0; //save the damage that student give to opponent.
-            int damage = 0;
-            int MyStudentAlived = 0; //save the info wether player student is dead.
-            int OppoStudentAlived = 0; // save the info wether opponent student is dead.
-            int alived = 0; //check wther student get faint.
-            int toChangeP = 0;
-            //get what people selected to do. 0 is attack, 1 is item, 2 is change, 3 is run.
-            int myMove = 0;
-            int enemyMove = 0;
-            
-            Rect FirstPos = new Rect(cam.pixelWidth * 5 / 7 - 10, cam.pixelHeight * 5 / 7 - 10, cam.pixelWidth / 7, cam.pixelHeight / 7);
-            Rect SecondPos = new Rect(cam.pixelWidth * 6 / 7 - 10, cam.pixelHeight * 5 / 7 - 10, cam.pixelWidth / 7, cam.pixelHeight / 7);
-            Rect FifthPos = new Rect(cam.pixelWidth * 6 / 7 - 10, cam.pixelHeight * 4 / 7 - 10, cam.pixelWidth / 7, cam.pixelHeight / 7);
-            
-            Rect ThirdPos = new Rect(cam.pixelWidth * 5 / 7 - 10, cam.pixelHeight * 6 / 7 - 10, cam.pixelWidth / 7, cam.pixelHeight / 7);
-            Rect ForthPos = new Rect(cam.pixelWidth * 6 / 7 - 10, cam.pixelHeight * 6 / 7 - 10, cam.pixelWidth / 7, cam.pixelHeight / 7);
-            while (true)
-            {
+        bool aba = false;
+        int myToOppoDamage = 0; //save the damage that student give to opponent.
+        int damage = 0;
+        int MyStudentAlived = 0; //save the info wether player student is dead.
+        int OppoStudentAlived = 0; // save the info wether opponent student is dead.
+        int alived = 0; //check wther student get faint.
+        int toChangeP = 0;
+        //get what people selected to do. 0 is attack, 1 is item, 2 is change, 3 is run.
+        int myMove = 0;
+        int enemyMove = 0;
+
+        Rect FirstPos = new Rect(cam.pixelWidth * 5 / 7 - 10, cam.pixelHeight * 5 / 7 - 10, cam.pixelWidth / 7, cam.pixelHeight / 7);
+        Rect SecondPos = new Rect(cam.pixelWidth * 6 / 7 - 10, cam.pixelHeight * 5 / 7 - 10, cam.pixelWidth / 7, cam.pixelHeight / 7);
+        Rect FifthPos = new Rect(cam.pixelWidth * 6 / 7 - 10, cam.pixelHeight * 4 / 7 - 10, cam.pixelWidth / 7, cam.pixelHeight / 7);
+
+        Rect ThirdPos = new Rect(cam.pixelWidth * 5 / 7 - 10, cam.pixelHeight * 6 / 7 - 10, cam.pixelWidth / 7, cam.pixelHeight / 7);
+        Rect ForthPos = new Rect(cam.pixelWidth * 6 / 7 - 10, cam.pixelHeight * 6 / 7 - 10, cam.pixelWidth / 7, cam.pixelHeight / 7);
+        while (true)
+        {
             //cam.pixelwidth = 956, cam.pixelheight = 426 
             if (Battle == BattleButtonState.DefaultState)
             {
                 GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "What Should we do?" + "\n" + "");
-                
+
                 if (GUI.Button(FirstPos, "공격")) { Battle = BattleButtonState.AttackState; }
                 if (GUI.Button(SecondPos, "학생 교체")) { Battle = BattleButtonState.ExchangeState; }
                 if (GUI.Button(ThirdPos, "아이템 사용")) { Battle = BattleButtonState.ItemState; }
                 if (GUI.Button(ForthPos, "도망치기")) { Battle = BattleButtonState.RunState; }
-                if (GUI.Button(FifthPos, "교수의 권한으로 승리")) { Battle = BattleButtonState.RunState; HowBattleEnd = 2;}
-                
+                if (GUI.Button(FifthPos, "교수의 권한으로 승리")) { Battle = BattleButtonState.RunState; HowBattleEnd = 2; }
+
             }
             else if (Battle == BattleButtonState.RunState)
             {
@@ -159,7 +160,7 @@ public class BattleButtonManage : MonoBehaviour
                     }
                     Battle = BattleButtonState.DefaultState;
                 }
-                else if(HowBattleEnd == 0) //전투에서 도망쳤을 때
+                else if (HowBattleEnd == 0) //전투에서 도망쳤을 때
                 {
                     for (int i = 0; i < 150; i++)
                     {
@@ -204,14 +205,14 @@ public class BattleButtonManage : MonoBehaviour
                 {
                     if (GUI.Button(FirstPos, CurrentMine.retSkillList()[0].retSkillName()))
                     {
-                        if(CurrentMine.retSkillList()[0] == null)
-                                Debug.Log("CurrentMine = empty");
-                            if(CurrentMine == null)
-                                Debug.Log("CurrentMine = empty");
-                            if(CurrentEnemy == null)
-                                Debug.Log("CurrentMine = empty");
-                        if(battleTempStat == null)
-                                Debug.Log("CurrentMine = empty");
+                        if (CurrentMine.retSkillList()[0] == null)
+                            Debug.Log("CurrentMine = empty");
+                        if (CurrentMine == null)
+                            Debug.Log("CurrentMine = empty");
+                        if (CurrentEnemy == null)
+                            Debug.Log("CurrentMine = empty");
+                        if (battleTempStat == null)
+                            Debug.Log("CurrentMine = empty");
 
                         damage = a.BattleDamageCalculate(CurrentMine.retSkillList()[0], CurrentMine, CurrentEnemy, battleTempStat);
                         Battle = BattleButtonState.NextState;
@@ -250,7 +251,7 @@ public class BattleButtonManage : MonoBehaviour
             {
                 if (true)
                 {
-                    
+
                     string[] toolbar_str = { "Character", "Student", "Item" };
                     string text = "아이템 설명";
                     string text2;
@@ -280,7 +281,7 @@ public class BattleButtonManage : MonoBehaviour
                     GUI.Box(new Rect(Screen.width / 8, Screen.height / 8, (Screen.width * 6) / 8, (Screen.height * 6) / 7), "Info");
                     toolbarint = GUI.Toolbar(new Rect(Screen.width / 6, Screen.height / 5, (Screen.width * 3) / 10, (Screen.height * 3) / 40), toolbarint, toolbar_str);
                     scroll = GUI.BeginScrollView(new Rect(Screen.width / 5, (Screen.height / 3) - 10, (Screen.width * 3) / 5, (Screen.height * 3) / 5), scroll, new Rect(0, 0, Screen.width, Screen.height));
-                    
+
                     /* case Student */
                     if (toolbarint == 0)
                     {
@@ -313,11 +314,11 @@ public class BattleButtonManage : MonoBehaviour
                         }
                     }
                     /* case Item */
-                        
+
                     else if (toolbarint == 2 && inventory[0] != null)
                     {
                         int k;
-                        for ( k = 0; inventory[k] != null; k++)
+                        for (k = 0; inventory[k] != null; k++)
                         {
                             if (inventory[k].getitem_Amount() <= 0)
                                 MyProfInfo.removeItemToInventory(inventory[k]);
@@ -380,7 +381,7 @@ public class BattleButtonManage : MonoBehaviour
                     GUI.EndScrollView();
                     if (use_item)
                     {
-                        GUI.Window(0, new Rect(Screen.width / 2, Screen.height / 2, (Screen.width / 4) + 20, 140),MyProfInfo.UseItem, "아이템을 사용할 학생을\n 선택하십시오.");
+                        GUI.Window(0, new Rect(Screen.width / 2, Screen.height / 2, (Screen.width / 4) + 20, 140), MyProfInfo.UseItem, "아이템을 사용할 학생을\n 선택하십시오.");
 
                     }
                 }
@@ -444,11 +445,14 @@ public class BattleButtonManage : MonoBehaviour
                     //선택한 학생이 이미 나가 있다면
                     if (MineStudentList[i - 1] == CurrentMine)
                     {
+
                         bool aaa = false;
+                        yield return null;
                         while (!aaa)
                         {
-                            GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "그 학생은 이미 싸우고 있다!\n(z나 enter를 입력)");
-                            aaa = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
+                            GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "그 학생은 이미 싸우고 있다!\n버튼을 눌러서 진행");
+                            if (GUI.Button(FirstPos, "다음"))
+                                aaa = true;
                             yield return null;
                         }
                         i = 0;
@@ -456,11 +460,14 @@ public class BattleButtonManage : MonoBehaviour
                     //선택한 버튼이 기절한 학생이라면
                     else if (MineStudentList[i - 1].retStuStatus() == status.faint || MineStudentList[i - 1].getHP() == 0)
                     {
+
                         bool aaa = false;
+                        yield return null;
                         while (!aaa)
                         {
-                            GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "그 학생은 싸우기엔 너무 지쳐있다." + "\n(z나 enter를 입력)");
-                            aaa = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
+                            GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "그 학생은 싸우기엔 너무 지쳐있다." + "\n버튼을 눌러서 진행");
+                            if (GUI.Button(FirstPos, "다음"))
+                                aaa = true;
                             yield return null;
                         }
                         i = 0;
@@ -526,11 +533,14 @@ public class BattleButtonManage : MonoBehaviour
                     //선택한 학생이 이미 나가 있다면
                     if (MineStudentList[i - 1] == CurrentMine)
                     {
+
                         bool aaa = false;
+                        yield return null;
                         while (!aaa)
                         {
-                            GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "그 학생은 이미 싸우고 있다!\n(z나 enter를 입력)");
-                            aaa = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
+                            GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "그 학생은 이미 싸우고 있다!\n버튼을 눌러서 진행");
+                            if (GUI.Button(FirstPos, "다음"))
+                                aaa = true;
                             yield return null;
                         }
                         i = 0;
@@ -539,10 +549,12 @@ public class BattleButtonManage : MonoBehaviour
                     else if (MineStudentList[i - 1].retStuStatus() == status.faint || MineStudentList[i - 1].getHP() == 0)
                     {
                         bool aaa = false;
+                        yield return null;
                         while (!aaa)
                         {
-                            GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "그 학생은 이미 지쳐 있다!" + "\n(z나 enter를 입력)");
-                            aaa = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
+                            GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "그 학생은 이미 지쳐 있다!" + "\n버튼을 눌러서 진행");
+                            if (GUI.Button(FirstPos, "다음"))
+                                aaa = true;
                             yield return null;
                         }
                         i = 0;
@@ -555,10 +567,12 @@ public class BattleButtonManage : MonoBehaviour
                         CurrentMine = MineStudentList[toChangeP];
 
                         aba = false;
+                        yield return null;
                         while (!aba)
                         {
-                            GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentMine.retStudentName() + "을 내보냈다!\n" + "(z나 enter를 입력)");
-                            aba = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
+                            GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentMine.retStudentName() + "을 내보냈다!" + "\n버튼을 눌러서 진행");
+                            if (GUI.Button(FirstPos, "다음"))
+                                aba = true;
                             yield return null;
                         }
 
@@ -596,21 +610,26 @@ public class BattleButtonManage : MonoBehaviour
                         {
                             CurrentMine = MineStudentList[toChangeP];
                             Debug.Log("이것을 출력하고 싶다!");
+
                             aba = false;
+                            yield return null;
                             while (!aba)
                             {
-                                GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "교수님은" + MineStudentList[toChangeP].retStudentName() + "을 내보냈다!");
-                                aba = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
+                                GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "교수님은" + MineStudentList[toChangeP].retStudentName() + "을 내보냈다!\n버튼을 눌러서 진행");
+                                if (GUI.Button(FirstPos, "다음"))
+                                    aba = true;
                                 yield return null;
                             }
                         }
                         else
                         {
                             aba = false;
+                            yield return null;
                             while (!aba)
                             {
-                                GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "유효하지 않은 상태입니다.");
-                                aba = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
+                                GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "유효하지 않은 상태입니다.\n버튼을 눌러서 진행");
+                                if (GUI.Button(FirstPos, "다음"))
+                                    aba = true;
                                 yield return null;
                             }
                         }
@@ -622,11 +641,14 @@ public class BattleButtonManage : MonoBehaviour
                     else if (battleStartMove != 0)
                     {
                         //여기서 상태이상으로 행동이 종료되었을 때 메세지를 출력하면 된다.,
+
                         aba = false;
+                        yield return null;
                         while (!aba)
                         {
-                            GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentMine.retStudentName() + "은 움직일 수 없다." + "\n" + "(z나 enter를 입력)");
-                            aba = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
+                            GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentMine.retStudentName() + "은 움직일 수 없다." + "\n버튼을 눌러서 진행");
+                            if (GUI.Button(FirstPos, "다음"))
+                                aba = true;
                             yield return null;
                         }
                     }
@@ -634,21 +656,26 @@ public class BattleButtonManage : MonoBehaviour
                     {
                         alived = CurrentEnemy.getDamage(damage);
                         Debug.Log("아군이 먼저 공격을 시작했다.");
+
                         aba = false;
+                        yield return null;
                         while (!aba)
                         {
-                            GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentMine.retStudentName() + "은 " + damage.ToString() + "만큼의 데미지를 주었다.\n" + "(z나 enter를 입력)");
-                            aba = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
+                            GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentMine.retStudentName() + "은 " + damage.ToString() + "만큼의 데미지를 주었다.\n버튼을 눌러서 진행");
+                            if (GUI.Button(FirstPos, "다음"))
+                                aba = true;
                             yield return null;
                         }
 
                         if (alived == 1) //if enemy student fainted.
                         {
                             aba = false;
+                            yield return null;
                             while (!aba)
                             {
-                                GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentEnemy.retStuIndex().ToString() + "학생은 " + damage.ToString() + "쓰러졌다" + "\n(z나 enter를 입력)");
-                                aba = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
+                                GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentEnemy.retStuIndex().ToString() + "학생은 " + damage.ToString() + "쓰러졌다.\n버튼을 눌러서 진행");
+                                if (GUI.Button(FirstPos, "다음"))
+                                    aba = true;
                                 yield return null;
                             }
 
@@ -657,10 +684,12 @@ public class BattleButtonManage : MonoBehaviour
                             CurrentMine.setExp(exp);
 
                             aba = false;
+                            yield return null;
                             while (!aba)
                             {
-                                GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentMine.retStudentName()+"은 " + exp.ToString() + "만큼의 경험치를 얻었다." + "\n(z나 enter를 입력)");
-                                aba = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
+                                GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentMine.retStudentName() + "은 " + exp.ToString() + "만큼의 경험치를 얻었다.\n버튼을 눌러서 진행");
+                                if (GUI.Button(FirstPos, "다음"))
+                                    aba = true;
                                 yield return null;
                             }
 
@@ -683,11 +712,12 @@ public class BattleButtonManage : MonoBehaviour
                         if (battleStartMove != 0)
                         {
                             aba = false;
-
+                            yield return null;
                             while (!aba)
                             {
-                                GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "상대는 움직일 수 없었다" + "\n(z나 enter를 입력)");
-                                aba = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
+                                GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "상대는 움직일 수 없었다.\n버튼을 눌러서 진행");
+                                if (GUI.Button(FirstPos, "다음"))
+                                    aba = true;
                                 yield return null;
                             }
                             //여기서 상태이상으로 행동이 종료되었을 때 메세지를 출력하면 된다.,
@@ -695,11 +725,14 @@ public class BattleButtonManage : MonoBehaviour
                         else
                         {
                             alived = CurrentMine.getDamage(myToOppoDamage);
+
                             aba = false;
+                            yield return null;
                             while (!aba)
                             {
-                                GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "상대는 " + myToOppoDamage.ToString() + "만큼의 피해를 주었다." + "\n(z나 enter를 입력)");
-                                aba = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
+                                GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "상대는 " + myToOppoDamage.ToString() + "만큼의 피해를 주었다.\n버튼을 눌러서 진행");
+                                if (GUI.Button(FirstPos, "다음"))
+                                    aba = true;
                                 yield return null;
                             }
                         }
@@ -708,11 +741,14 @@ public class BattleButtonManage : MonoBehaviour
                         {
 
                             CurrentMine.giveAStatus(status.faint);
+
                             aba = false;
+                            yield return null;
                             while (!aba)
                             {
-                                GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentMine.retStudentName() + "은 쓰러졌다." + "\n(z나 enter를 입력)");
-                                aba = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
+                                GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentMine.retStudentName() + "은 쓰러졌다.\n버튼을 눌러서 진행");
+                                if (GUI.Button(FirstPos, "다음"))
+                                    aba = true;
                                 yield return null;
                             }
                             //check battle end;
@@ -741,10 +777,13 @@ public class BattleButtonManage : MonoBehaviour
                     if (battleStartMove != 0)
                     {
                         aba = false;
+
+                        yield return null;
                         while (!aba)
                         {
-                            GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "상대는 움직일 수 없었다" + "\n(z나 enter를 입력)");
-                            aba = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
+                            GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "상대는 움직일 수 없었다.\n버튼을 눌러서 진행");
+                            if (GUI.Button(FirstPos, "다음"))
+                                aba = true;
                             yield return null;
                         }
                         //여기서 상태이상으로 행동이 종료되었을 때 메세지를 출력하면 된다.,
@@ -752,11 +791,14 @@ public class BattleButtonManage : MonoBehaviour
                     else if (true)
                     {
                         alived = CurrentMine.getDamage(myToOppoDamage);
+
                         aba = false;
+                        yield return null;
                         while (!aba)
                         {
-                            GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "상대는 " + myToOppoDamage.ToString() + "만큼의 피해를 주었다." + "\n(z나 enter를 입력)");
-                            aba = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
+                            GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "상대는 " + myToOppoDamage.ToString() + "만큼의 피해를 주었다.\n버튼을 눌러서 진행");
+                            if (GUI.Button(FirstPos, "다음"))
+                                aba = true;
                             yield return null;
                         }
                     }
@@ -765,10 +807,12 @@ public class BattleButtonManage : MonoBehaviour
 
                         CurrentMine.giveAStatus(status.faint);
                         aba = false;
+                        yield return null;
                         while (!aba)
                         {
-                            GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentMine.retStudentName() + "은 쓰러졌다." + "\n(z나 enter를 입력)");
-                            aba = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
+                            GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentMine.retStudentName() + "은 쓰러졌다.\n버튼을 눌러서 진행");
+                            if (GUI.Button(FirstPos, "다음"))
+                                aba = true;
                             yield return null;
                         }
                         //check battle end;
@@ -795,21 +839,25 @@ public class BattleButtonManage : MonoBehaviour
                             CurrentMine = MineStudentList[toChangeP];
                             if (toChangeP != -1)
                             {
-                                aba = false;
+
+                                aba = false; yield return null;
                                 while (!aba)
                                 {
-                                    GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "교수님은" + MineStudentList[toChangeP].retStudentName() + "을 내보냈다!");
-                                    aba = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
+                                    GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "교수님은" + MineStudentList[toChangeP].retStudentName() + "을 내보냈다!\n버튼을 눌러서 진행");
+                                    if (GUI.Button(FirstPos, "다음"))
+                                        aba = true;
                                     yield return null;
                                 }
                             }
                             else
                             {
                                 aba = false;
+                                yield return null;
                                 while (!aba)
                                 {
-                                    GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "유효하지 않은 상태입니다.");
-                                    aba = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
+                                    GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "유효하지 않은 상태입니다.\n버튼을 눌러서 진행");
+                                    if (GUI.Button(FirstPos, "다음"))
+                                        aba = true;
                                     yield return null;
                                 }
                             }
@@ -821,11 +869,14 @@ public class BattleButtonManage : MonoBehaviour
                         else if (battleStartMove != 0)
                         {
                             //여기서 상태이상으로 행동이 종료되었을 때 메세지를 출력하면 된다.,
+
                             aba = false;
+                            yield return null;
                             while (!aba)
                             {
-                                GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentMine.retStuIndex().ToString() + "번 학생은 움직일 수 없다." + "\n(z나 enter를 입력)");
-                                aba = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
+                                GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentMine.retStuIndex().ToString() + "번 학생은 움직일 수 없다.\n버튼을 눌러서 진행");
+                                if (GUI.Button(FirstPos, "다음"))
+                                    aba = true;
                                 yield return null;
                             }
                         }
@@ -833,31 +884,35 @@ public class BattleButtonManage : MonoBehaviour
                         {
                             alived = CurrentEnemy.getDamage(damage);
 
-                            aba = false;
+                            aba = false; yield return null;
                             while (!aba)
                             {
-                                GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentMine.retStudentName() + "은 " + damage.ToString() + "만큼의 데미지를 주었다." + "\n(z나 enter를 입력)");
-                                aba = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
+                                GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentMine.retStudentName() + "은 " + damage.ToString() + "만큼의 데미지를 주었다.\n버튼을 눌러서 진행");
+                                if (GUI.Button(FirstPos, "다음"))
+                                    aba = true;
                                 yield return null;
                             }
 
                             if (alived == 1) //if enemy student fainted.
                             {
                                 aba = false;
+                                yield return null;
                                 while (!aba)
                                 {
-                                    GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentEnemy.retStudentName() + "은 " + damage.ToString() + "쓰러졌다" + "\n(z나 enter를 입력)");
-                                    aba = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
+                                    GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentEnemy.retStudentName() + "은 " + damage.ToString() + "쓰러졌다\n버튼을 눌러서 진행");
+                                    if (GUI.Button(FirstPos, "다음"))
+                                        aba= true;
                                     yield return null;
                                 }
 
                                 CurrentMine.setExp(CurrentEnemy.getExp()); //give exp;
 
-                                aba = false;
+                                aba = false; yield return null;
                                 while (!aba)
                                 {
-                                    GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentEnemy.retStuIndex().ToString() + "학생은 " + CurrentEnemy.getExp().ToString() + "만큼의 경험치를 얻었다." + "\n(z나 enter를 입력)");
-                                    aba = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
+                                    GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentEnemy.retStuIndex().ToString() + "학생은 " + CurrentEnemy.getExp().ToString() + "만큼의 경험치를 얻었다.\n버튼을 눌러서 진행");
+                                    if (GUI.Button(FirstPos, "다음"))
+                                        aba = true;
                                     yield return null;
                                 }
 
@@ -869,7 +924,7 @@ public class BattleButtonManage : MonoBehaviour
                                 }
                                 else
                                 {
-                                    CurrentEnemy = EnemyStudentList[i-1];
+                                    CurrentEnemy = EnemyStudentList[i - 1];
                                     Battle = BattleButtonState.DefaultState;
                                 }
 
@@ -891,15 +946,13 @@ public class BattleButtonManage : MonoBehaviour
 
                                 if (CurrentEnemy.retStuStatus() == status.poison || CurrentMine.retStuStatus() == status.poison)
                                 {
-                                    aba = false;
-                                    while (!aba)
-                                    {
-                                        GUI.Box(new Rect(1, Screen.height - 100, 600, 100), temp);
-                                        aba = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetMouseButton(0);
-                                        yield return null;
-                                    }
+
+                                    GUI.Box(new Rect(1, Screen.height - 100, 600, 100), temp+"\n버튼을 눌러서 진행");
+                                    if (GUI.Button(FirstPos, "다음"))
+                                        aba = true;
+                                    yield return null;
                                 }
-                               Battle = BattleButtonState.DefaultState;
+                                Battle = BattleButtonState.DefaultState;
                             }
                         }
                     }
