@@ -55,6 +55,8 @@
      <Compile Include="Assets\Fading.cs" />
      <Compile Include="Assets\GUIbuttonsbat.cs" />
      <Compile Include="Assets\GUIbuttonsho.cs" />
+     <Compile Include="Assets\GUIbuttonsho2.cs" />
+     <Compile Include="Assets\GUIbuttonsho3.cs" />
      <Compile Include="Assets\GameManager.cs" />
      <Compile Include="Assets\Item.cs" />
      <Compile Include="Assets\MenuForCharacterStatus.cs" />
@@ -70,14 +72,21 @@
      <Compile Include="Assets\Student.cs" />
      <Compile Include="Assets\StudentInfo.cs" />
      <Compile Include="Assets\StudentTextureList.cs" />
+     <Compile Include="Assets\keyInputSound.cs" />
      <Compile Include="Assets\new_gui_menu.cs" />
      <Compile Include="Assets\showLifeScr.cs" />
      <Compile Include="Assets\walk_wait.cs" />
+ <Reference Include="UnityEngine.Advertisements">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Analytics">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Cecil">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/Mono.Cecil.dll</HintPath>
