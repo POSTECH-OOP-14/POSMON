@@ -57,7 +57,7 @@ public class BattleButtonManage : MonoBehaviour
     void Start()
     {
         //이 코드가 startScene으로 시작해야만 사용 가능함.
-        MyProfInfo = GameManager.pl_stored.GetComponent<CharacterStatus>();
+        //MyProfInfo = GameManager.pl_stored.GetComponent<CharacterStatus>();
 
         //init battleTempStat
         for (int i = 0; i < 12; i++)
@@ -103,7 +103,7 @@ public class BattleButtonManage : MonoBehaviour
         {
             if (list[i] != null)
             {
-                if (list[i].retStuStatus() != status.faint || list[i].getHP() > 0.5)
+                if (list[i].retStuStatus() != status.faint && list[i].getHP() > 0.5)
                     return i + 1;
             }
         }
@@ -118,7 +118,8 @@ public class BattleButtonManage : MonoBehaviour
 
     IEnumerator WholeBattleCode()
     {
-        printTextbox("전투가 시작됬다!").MoveNext();
+
+        yield return printTextbox("adsf");
         bool aba = false;
         int myToOppoDamage = 0; //save the damage that student give to opponent.
         int damage = 0;
@@ -251,7 +252,7 @@ public class BattleButtonManage : MonoBehaviour
             }
             else if (Battle == BattleButtonState.ItemState)
             {
-                if (true)
+        /*        if (true)
                 {
 
                     string[] toolbar_str = { "Character", "Student", "Item" };
@@ -284,7 +285,7 @@ public class BattleButtonManage : MonoBehaviour
                     scroll = GUI.BeginScrollView(new Rect(Screen.width / 5, (Screen.height / 3) - 10, (Screen.width * 3) / 5, (Screen.height * 3) / 5), scroll, new Rect(0, 0, Screen.width, Screen.height));
 
                     /* case Student */
-                    if (toolbarint == 0)
+                /*    if (toolbarint == 0)
                     {
                         GUI.Box(new Rect(Screen.width / 20, (Screen.height / 20) + 30, (Screen.width * 9) / 10, Screen.height / 2),
                             "소지금 : " + money.ToString() + "\n"
@@ -314,8 +315,9 @@ public class BattleButtonManage : MonoBehaviour
                             }
                         }
                     }
+                */
                     /* case Item */
-                    else if (toolbarint == 2 && inventory[0] != null)
+                 /*   else if (toolbarint == 2 && inventory[0] != null)
                     {
                         for (k = 0; inventory[k] != null; k++)
                         {
@@ -332,13 +334,7 @@ public class BattleButtonManage : MonoBehaviour
 
                         for (int i = 0; i < k; i++)
                         {
-
-                            if (inventory[i].getitem_Amount() > 0)
-                            {
-                                item_grid[i] = inventory[i].getName();
-
-                            }
-
+                            if (inventory[i].getitem_Amount() > 0)  {   item_grid[i] = inventory[i].getName();  }
                         }
 
 
@@ -351,7 +347,7 @@ public class BattleButtonManage : MonoBehaviour
                                 if (GUI.Button(new Rect(0, 25 * (((k + 1) / 2)) + 10, 50, 25), "Use"))
                                 {
                                     /* Use Item, cannot use capture item in character status context */
-                                    if (inventory[i].getType() != type.capture)
+                  /*                  if (inventory[i].getType() != type.capture)
                                         use_item = true;
                                 }
                                 text = "아이템 설명";
@@ -383,7 +379,7 @@ public class BattleButtonManage : MonoBehaviour
                         GUI.Window(0, new Rect(Screen.width / 2, Screen.height / 2, (Screen.width / 4) + 20, 140), MyProfInfo.UseItem, "아이템을 사용할 학생을\n 선택하십시오.");
 
                     }
-                }
+                }*/
             }
             else if (Battle == BattleButtonState.ExchangeState)
             {
@@ -444,7 +440,7 @@ public class BattleButtonManage : MonoBehaviour
                     //선택한 학생이 이미 나가 있다면
                     if (MineStudentList[i - 1] == CurrentMine)
                     {
-                        printTextbox("그 학생은 이미 싸우고 있다!\n(z나 enter를 입력)").MoveNext();
+                        yield return printTextbox("그 학생은 이미 싸우고 있다!\n(z나 enter를 입력)");
                         i = 0;
                     }
                     //선택한 버튼이 기절한 학생이라면

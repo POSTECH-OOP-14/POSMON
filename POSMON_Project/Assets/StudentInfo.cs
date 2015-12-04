@@ -9,19 +9,29 @@ public class StudentInfo: MonoBehaviour
 
         void Awake()
          {
+            /*
             for (int i = 0; i < 6; i++)
             {
                 myDebugStuList[i] = GameManager.getBattlePlayerStudent(i);
                 enemyDebugStuList[i] = GameManager.getBattleTrainerStudent(i);
             }
-
-            for (int z = 0; z < 6; z++)
+            */
+            for (int i = 0; i < 3; i++)
             {
-                if (myDebugStuList[z] == null)
-                    Debug.Log("my debug list " + z + "is null");
-                if (enemyDebugStuList[z] == null)
-                    Debug.Log("enemy debug list " + z + "is null");
+                myDebugStuList[i] = new Student(stu_no.MATH1);
             }
+            for (int i = 0; i < 3; i++)
+            {
+                enemyDebugStuList[i] = new Student(stu_no.MATH1);
+            }
+
+                for (int z = 0; z < 6; z++)
+                {
+                    if (myDebugStuList[z] == null)
+                        Debug.Log("my debug list " + z + "is null");
+                    if (enemyDebugStuList[z] == null)
+                        Debug.Log("enemy debug list " + z + "is null");
+                }
          }     
 
         void Start()
