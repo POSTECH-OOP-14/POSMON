@@ -27,7 +27,6 @@ public class Student
     private double[] stat = new double[6]; //능력치배열
     private int index; //포스몬의 번호
     private status st; //상태(정상, 마비, 잠, 독)
-
     private int level;
     private int exp;
     private double HP;
@@ -536,7 +535,6 @@ public class Student
             this.giveAStatus(status.faint);
             return 1;
         }
-
         return 0;
     }
     public int getExp()

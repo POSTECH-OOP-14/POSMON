@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\AttributeMatrix.cs" />
+     <Compile Include="Assets\BattleAnimation\AttackAnimationList.cs" />
      <Compile Include="Assets\BattleButtonManage.cs" />
      <Compile Include="Assets\BattleScene.cs" />
      <Compile Include="Assets\CameraFollow.cs" />
