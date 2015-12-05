@@ -70,6 +70,7 @@ public class BattleScene {
     //calculate who will gonna act first at battle,
     //normally this will determine by speed of 
     //intput 0 is someone changed student or use item. its player act first.
+    
     public int CalFirstGo(double mySpeed, double EnemySpeed, int[] battletempStat)
     {
         double mySpeedCal=1.0f;
@@ -98,6 +99,7 @@ public class BattleScene {
                 return 0;
         }
     }
+    
     public Student changeStudent(Student[] a)
     {
         int repeat = 0;
@@ -124,7 +126,7 @@ public class BattleScene {
         }
         return a[i];
     }
-
+    
     public void checkBattleTurnEndEvent(Student stu)
     {
         if (stu.retStuStatus() == status.poison)

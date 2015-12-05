@@ -1102,10 +1102,14 @@ public class BattleButtonManage : MonoBehaviour
                     }
                     if (CurrentEnemy.retStuStatus() == status.poison || CurrentMine.retStuStatus() == status.poison)
                     {
-                        GUI.Box(new Rect(1, Screen.height - 100, 600, 100), temp + "\n버튼을 눌러서 진행");
-                        if (GUI.Button(FirstPos, "다음"))
-                            aba = true;
-                        yield return null;
+                        aba = false;
+                        while (aba == false)
+                        {
+                            GUI.Box(new Rect(1, Screen.height - 100, 600, 100), temp + "버튼을 눌러서 진행");
+                            if (GUI.Button(FirstPos, "다음"))
+                                aba = true;
+                            yield return null;
+                        }
                     }
 
                     if (alienemyPoi == 1) //if enemy student fainted.
