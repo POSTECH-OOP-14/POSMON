@@ -111,7 +111,14 @@ public class Dialogue : MonoBehaviour {
             {
                 Student stu = GameManager.pl_stored.GetComponent<CharacterStatus>().getStudent(i);
                 if (stu != null)
+                {
+                    for(int j = 0; j < 4; j++)
+                    {
+                        if(stu.retSkillList()[j] != null)
+                            stu.retSkillList()[j].restoreNowChance();
+                    }
                     stu.setHP(stu.getMAXHP());
+                }
             }
             GetComponent<AudioSource>().PlayOneShot(CureSound);
         }

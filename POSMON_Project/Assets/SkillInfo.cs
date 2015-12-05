@@ -51,4 +51,8 @@ public class SkillInfo
     public int retMaxChance() { return this.maxChance; }
     public int retNowChance() { return this.nowChance; }
     public void decChance() { this.nowChance--; }
+
+    public void restoreNowChance() { nowChance = maxChance; }
+
+
 }
