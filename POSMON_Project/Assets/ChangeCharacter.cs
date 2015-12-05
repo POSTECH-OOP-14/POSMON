@@ -68,32 +68,38 @@ public class ChangeCharacter : MonoBehaviour {
         
         if (PrevEnemyHp < currEnemyHp) myAtkStart = true;
         
-        if (battlestate.EnemySkill.retAtkType() == 0)
+        if (battlestate.EnemySkill != null && battlestate.EnemySkill.retAtkType() == 0)
         {
             Myframe = animationlist.Atk;
         }
-        else if (battlestate.EnemySkill.retAtkType() == 1)
+        else if (battlestate.EnemySkill != null && battlestate.EnemySkill.retAtkType() == 1)
         {
             Myframe = animationlist.SAtk;
         }
-        if (battlestate.mystuSkill.retAtkType() == 0)
+        if (battlestate.mystuSkill != null && battlestate.mystuSkill.retAtkType() == 0)
         {
             Enemyframe = animationlist.Atk;
         }
-        else if (battlestate.mystuSkill.retAtkType() == 1)
+        else if (battlestate.mystuSkill != null && battlestate.mystuSkill.retAtkType() == 1)
         {
             Enemyframe = animationlist.SAtk;
         }
 
-        myi = (int)(Time.time * framesecond) % Myframe.Length;
+        if (Myframe != null)
+        {
+            myi = (int)(Time.time * framesecond) % Myframe.Length;
+        }
         if (EnemyAtkStart)
         {
             myj = myi;
             EnemyAtkStart = false;
             EnemyAtk = true;
         }
-       
-        enemyi = (int)(Time.time * framesecond) % Enemyframe.Length;
+
+        if (Enemyframe != null)
+        {
+            enemyi = (int)(Time.time * framesecond) % Enemyframe.Length;
+        }
         if (myAtkStart)
         {
             enemyj = enemyi;
@@ -134,7 +140,7 @@ public class ChangeCharacter : MonoBehaviour {
           
       }
 
-        if (battlestate.Battle == BattleButtonManage.BattleButtonState.NextState)
+        if (Myframe != null && battlestate.Battle == BattleButtonManage.BattleButtonState.NextState)
         {
             if (myi - myj == Myframe.Length - 1) myAtk = false;
             if (enemyi - enemyj == Enemyframe.Length - 1) EnemyAtk = false;
