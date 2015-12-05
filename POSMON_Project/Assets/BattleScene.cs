@@ -6,9 +6,7 @@ using System.Collections;
 public class BattleScene {
     int menuState;
     AttributeMatrix Attribute = new AttributeMatrix();
-    
 
-    
 
     //give animation to object
     public void moveAnimation(Vector3 a)
@@ -59,8 +57,7 @@ public class BattleScene {
                 *RandomRate/100                             //random damage
                 *AttributeCal*Attribute.attribute[attributeRelation1,attributeRelation2] //attribute;
                 );
-
-          
+ 
         return (int)damage;
     }
 

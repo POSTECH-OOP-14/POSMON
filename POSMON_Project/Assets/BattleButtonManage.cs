@@ -6,7 +6,7 @@ public class BattleButtonManage : MonoBehaviour
 {
     // get the screen info.
     public Camera cam;
-
+    public int attackstate = 0;
     //save the battle state.
     public enum BattleButtonState  
     {
@@ -18,7 +18,7 @@ public class BattleButtonManage : MonoBehaviour
         NextState,
         OneOutState
     };
-
+    
     //save temporay stat. 
     //my students int(atk), str(spcial atk), mental(def), guard(special def), sense(speed), health
     //opponent students int(atk), str(spcial atk), mental(def), guard(special def), sense(speed), health
@@ -26,6 +26,10 @@ public class BattleButtonManage : MonoBehaviour
     public int[] battleTempStat =new int[12];
     // battle starts with default state
     public BattleButtonState Battle = BattleButtonState.DefaultState;
+    public int whoFirst = 0;
+    public SkillInfo mystuSkill;
+    public SkillInfo EnemySkill;
+    public bool Iattack = false;
     //save information about battle end. 0 is run, 1 is defeated by npc, 2 is win
     int HowBattleEnd = 0;
     public bool WhenMouseDown = false;
@@ -143,11 +147,11 @@ public class BattleButtonManage : MonoBehaviour
             {
                 GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "What Should we do?" + "\n" + "");
 
-                if (GUI.Button(FirstPos, "공격")) { Battle = BattleButtonState.AttackState; }
-                if (GUI.Button(SecondPos, "학생 교체")) { Battle = BattleButtonState.ExchangeState; }
-                if (GUI.Button(ThirdPos, "아이템 사용")) { Battle = BattleButtonState.ItemState; }
-                if (GUI.Button(ForthPos, "도망치기")) { Battle = BattleButtonState.RunState; }
-                if (GUI.Button(FifthPos, "교수의 권한으로 승리")) { Battle = BattleButtonState.RunState; HowBattleEnd = 2; }
+                if (GUI.Button(FirstPos, "공격")) { Iattack = true;  Battle = BattleButtonState.AttackState; }
+                if (GUI.Button(SecondPos, "학생 교체")) { Iattack = false;  Battle = BattleButtonState.ExchangeState; }
+                if (GUI.Button(ThirdPos, "아이템 사용")) { Iattack = false;  Battle = BattleButtonState.ItemState; }
+                if (GUI.Button(ForthPos, "도망치기")) { Iattack = false;  Battle = BattleButtonState.RunState; }
+                if (GUI.Button(FifthPos, "교수의 권한으로 승리")) { Iattack = false; Battle = BattleButtonState.RunState; HowBattleEnd = 2; }
 
             }
             else if (Battle == BattleButtonState.RunState)
@@ -200,7 +204,7 @@ public class BattleButtonManage : MonoBehaviour
             else if (Battle == BattleButtonState.AttackState)
             {
                 GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "어떻게 공격을 할 것인가?" + "\n" + "(x 버튼으로 돌아갈 수 있습니다.)");
-
+                
                 alived = 0;
                 if (CurrentMine.retSkillList()[0] != null)
                 {
@@ -216,6 +220,7 @@ public class BattleButtonManage : MonoBehaviour
                             Debug.Log("CurrentMine = empty");
 
                         damage = a.BattleDamageCalculate(CurrentMine.retSkillList()[0], CurrentMine, CurrentEnemy, battleTempStat);
+                        mystuSkill = CurrentMine.retSkillList()[0];
                         Battle = BattleButtonState.NextState;
                         myMove = 0;
                     }
@@ -225,6 +230,7 @@ public class BattleButtonManage : MonoBehaviour
                     if (GUI.Button(SecondPos, CurrentMine.retSkillList()[1].retSkillName()))
                     {
                         damage = a.BattleDamageCalculate(CurrentMine.retSkillList()[1], CurrentMine, CurrentEnemy, battleTempStat);
+                        mystuSkill = CurrentMine.retSkillList()[1];
                         Battle = BattleButtonState.NextState;
                         myMove = 0;
                     }
@@ -234,6 +240,7 @@ public class BattleButtonManage : MonoBehaviour
                     if (GUI.Button(ThirdPos, CurrentMine.retSkillList()[2].retSkillName()))
                     {
                         damage = a.BattleDamageCalculate(CurrentMine.retSkillList()[2], CurrentMine, CurrentEnemy, battleTempStat);
+                        mystuSkill = CurrentMine.retSkillList()[2];
                         Battle = BattleButtonState.NextState;
                         myMove = 0;
                     }
@@ -242,7 +249,9 @@ public class BattleButtonManage : MonoBehaviour
                 {
                     if (GUI.Button(ForthPos, CurrentMine.retSkillList()[3].retSkillName()))
                     {
+
                         damage = a.BattleDamageCalculate(CurrentMine.retSkillList()[3], CurrentMine, CurrentEnemy, battleTempStat);
+                        mystuSkill = CurrentMine.retSkillList()[3];
                         Battle = BattleButtonState.NextState;
                         myMove = 0;
                     }
@@ -396,7 +405,7 @@ public class BattleButtonManage : MonoBehaviour
                 Rect StuPos5 = new Rect(cam.pixelWidth * 1 / 3, cam.pixelHeight * 5 / 9, cam.pixelWidth / 3, cam.pixelHeight / 9);
                 Rect StuPos6 = new Rect(cam.pixelWidth * 1 / 3, cam.pixelHeight * 6 / 9, cam.pixelWidth / 3, cam.pixelHeight / 9);
                 int[] availableStu = new int[7] { 0, 0, 0, 0, 0, 0, 0 }; //get info whether player can change student to it
-                int retStu = 0;
+                
                 GUI.Box(new Rect(1, Screen.height - 100, 600, 100), "교체할 학생을 고르십시오." + "\n" + "X로 돌아가기 가능");
 
                 //학생 리스트에 들어있는 학생들이 존재하는지, 기절했는지 알아보는 반복문이다.
@@ -589,12 +598,12 @@ public class BattleButtonManage : MonoBehaviour
                 // enemy attacks
                 int b = Mathf.FloorToInt(Random.Range(0f, 2f));  //random으로 0에서 3의 값을 구한다.
                 myToOppoDamage = a.BattleDamageCalculate(CurrentEnemy.retSkillList()[b], CurrentEnemy, CurrentMine, battleTempStat);
-
+                EnemySkill = CurrentEnemy.retSkillList()[b];
 
                 // 명령을 내리고 나서 배틀을 시작하기 전에 상태이상이나 특수효과로 공격하는지 마는지 확인한다.
                 int battleStartMove = a.checkBattleTurnStartEvent(CurrentMine);
                 //누가 우선 시작할지 결정한다.
-                int whoFirst = 0;
+
                 if (myMove != 0)
                 {
                     whoFirst = 0;
