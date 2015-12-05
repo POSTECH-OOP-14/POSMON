@@ -1073,32 +1073,33 @@ public class BattleButtonManage : MonoBehaviour
                                 }
 
                             }
-                            // 전투가 종료되었고 중독으로 인한 데미지를 받을 차례이다.
-                            if (Battle != BattleButtonState.RunState)
-                            {
-                                string temp = "";
-                                if (CurrentMine.retStuStatus() == status.poison)
-                                {
-                                    CurrentMine.getDamage((int)CurrentMine.getMAXHP() / 12);
-                                    temp = temp + CurrentMine.retStudentName() + "은 " + (int)CurrentMine.getMAXHP() / 12 + "만큼의 독 데미지를 받았다.\n";
-                                }
-                                if (CurrentEnemy.retStuStatus() == status.poison)
-                                {
-                                    CurrentEnemy.getDamage((int)CurrentMine.getMAXHP() / 12);
-                                    temp = temp + "상대는 " + (int)CurrentMine.getMAXHP() / 12 + "만큼의 독 데미지를 받았다.\n";
-                                }
-                                if (CurrentEnemy.retStuStatus() == status.poison || CurrentMine.retStuStatus() == status.poison)
-                                {
-                                    GUI.Box(new Rect(1, Screen.height - 100, 600, 100), temp+"\n버튼을 눌러서 진행");
-                                    if (GUI.Button(FirstPos, "다음"))
-                                        aba = true;
-                                    yield return null;
-                                }
-                                if(Battle != BattleButtonState.RunState)
-                                    Battle = BattleButtonState.DefaultState;
-                            }
                         }
                     }
+                }
+
+                // 전투가 종료되었고 중독으로 인한 데미지를 받을 차례이다.
+                if (Battle != BattleButtonState.RunState)
+                {
+                    string temp = "";
+                    if (CurrentMine.retStuStatus() == status.poison)
+                    {
+                        CurrentMine.getDamage((int)CurrentMine.getMAXHP() / 12);
+                        temp = temp + CurrentMine.retStudentName() + "은 " + (int)CurrentMine.getMAXHP() / 12 + "만큼의 독 데미지를 받았다.\n";
+                    }
+                    if (CurrentEnemy.retStuStatus() == status.poison)
+                    {
+                        CurrentEnemy.getDamage((int)CurrentMine.getMAXHP() / 12);
+                        temp = temp + "상대는 " + (int)CurrentMine.getMAXHP() / 12 + "만큼의 독 데미지를 받았다.\n";
+                    }
+                    if (CurrentEnemy.retStuStatus() == status.poison || CurrentMine.retStuStatus() == status.poison)
+                    {
+                        GUI.Box(new Rect(1, Screen.height - 100, 600, 100), temp + "\n버튼을 눌러서 진행");
+                        if (GUI.Button(FirstPos, "다음"))
+                            aba = true;
+                        yield return null;
+                    }
+                    if (Battle != BattleButtonState.RunState)
+                        Battle = BattleButtonState.DefaultState;
                 }
             }
             yield return null;
