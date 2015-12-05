@@ -59,7 +59,6 @@
      <Compile Include="Assets\GUIbuttonsho3.cs" />
      <Compile Include="Assets\GameManager.cs" />
      <Compile Include="Assets\Item.cs" />
-     <Compile Include="Assets\MenuForCharacterStatus.cs" />
      <Compile Include="Assets\MoveToMain.cs" />
      <Compile Include="Assets\NPCStatus.cs" />
      <Compile Include="Assets\Quest.cs" />
