@@ -356,11 +356,11 @@ public class CharacterStatus : MonoBehaviour
         {
             if (inventory[item_gridint].useItem(student_list[stu_toolbarint]) == true)
             {
-                GetComponent<AudioSource>().PlayOneShot(SuccessSound);
+                GetComponent<AudioSource>().PlayOneShot(this.SuccessSound);
                 inventory[item_gridint].additem_Amount(-1);
             }
             else
-                GetComponent<AudioSource>().PlayOneShot(WarningSound);
+                GetComponent<AudioSource>().PlayOneShot(this.WarningSound);
             use_item = false;
         }
         if (GUI.Button(new Rect((Screen.width / 8)+10, 110, (Screen.width / 8), 25), "Cancel"))
@@ -495,6 +495,25 @@ public class CharacterStatus : MonoBehaviour
     public Item[] returnInven()
     {
         return this.inventory;
+    }
+    public void useOneItem(Item item)
+    {
+        for (int i = 0; i < 256; i++)
+        {
+            if (inventory[i] == item)
+            {
+                inventory[i].useitem_Amount();
+                if (inventory[i].getitem_Amount() == 0)
+                {
+                    removeItemToInventory(item);
+                }
+                return;
+            }
+        }
+    }
+    public int retMoney()
+    {
+        return this.money;
     }
 
 }

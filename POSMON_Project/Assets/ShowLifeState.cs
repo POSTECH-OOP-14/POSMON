@@ -29,13 +29,14 @@ public class ShowLifeState : MonoBehaviour
         _tempCurHp = _a.CurrentEnemy.getHP();
         _tempLvl = _a.CurrentEnemy.getLevel();
         _tempMaxHp = _a.CurrentEnemy.getMAXHP();
-        _guiTt.text = _a.CurrentEnemy.retStudentName() + "Lv " + _tempLvl.ToString() + " " + _tempCurHp + "/" + _tempMaxHp;
+        _guiTt.text = _a.CurrentEnemy.retStudentName() + "Lv " + _tempLvl.ToString() + " " + _tempCurHp + "/" + _tempMaxHp +" "+_a.CurrentEnemy.retStuStatus().ToString();
         __lifeBar = new Rect(gameObject.transform.position.x * Screen.width ,
                 (1 - gameObject.transform.position.y) * Screen.height + 25, Screen.width / 8 * (float)_tempCurHp / (float)_tempMaxHp, Screen.height / 18);
     }
 
     void OnGUI(){
-         if (!(_a.Battle == BattleButtonManage.BattleButtonState.OneOutState || _a.Battle == BattleButtonManage.BattleButtonState.ExchangeState))        {
+        if (!(_a.Battle == BattleButtonManage.BattleButtonState.OneOutState || _a.Battle == BattleButtonManage.BattleButtonState.ExchangeState || _a.Battle == BattleButtonManage.BattleButtonState.ItemState))
+        {
             Graphics.DrawTexture(_block, _background);
             Graphics.DrawTexture(__lifeBar, _lifebar);
         }

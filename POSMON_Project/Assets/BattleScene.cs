@@ -18,6 +18,9 @@ public class BattleScene {
     //If player attack, calculate damage
     public int BattleDamageCalculate(SkillInfo usedSkill, Student attacker, Student defenser, int[] _battleTempStat)
     {
+        if (usedSkill.retGiveStatus() != status.none)
+            defenser.giveAStatus(usedSkill.retGiveStatus());
+        usedSkill.decChance();
         int attributeRelation1 = (int)attacker.getStuIndex() / 10;
         int attributeRelation2 = (int)defenser.getStuIndex() / 10;
 

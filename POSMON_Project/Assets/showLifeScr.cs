@@ -26,13 +26,14 @@ public class showLifeScr : MonoBehaviour {
         tempCurHp =a.CurrentMine.getHP();
         tempLvl = a.CurrentMine.getLevel();
         tempMaxHp =a.CurrentMine.getMAXHP();
-        guiTt.text = a.CurrentMine.retStudentName()+"Lv "+tempLvl.ToString()+" "+tempCurHp+"/"+tempMaxHp;
+        guiTt.text = a.CurrentMine.retStudentName()+"Lv "+tempLvl.ToString()+" "+tempCurHp+"/"+tempMaxHp +" "+a.CurrentMine.retStuStatus().ToString();
         _lifeBar = new Rect(gameObject.transform.position.x * Screen.width ,
                 (1 - gameObject.transform.position.y) * Screen.height + 25, Screen.width / 8 * (float)tempCurHp / (float)tempMaxHp, Screen.height / 18);
     }
 
     void OnGUI() {
-        if (!(a.Battle == BattleButtonManage.BattleButtonState.OneOutState || a.Battle == BattleButtonManage.BattleButtonState.ExchangeState))        {
+        if (!(a.Battle == BattleButtonManage.BattleButtonState.OneOutState || a.Battle == BattleButtonManage.BattleButtonState.ExchangeState || a.Battle == BattleButtonManage.BattleButtonState.ItemState))
+        {
             Graphics.DrawTexture(block, background);
             Graphics.DrawTexture(_lifeBar, lifebar);
         }
