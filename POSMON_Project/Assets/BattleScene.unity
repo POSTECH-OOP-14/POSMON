@@ -198,6 +198,7 @@ GameObject:
   - 114: {fileID: 413579826}
   - 114: {fileID: 413579827}
   - 82: {fileID: 413579828}
+  - 114: {fileID: 413579829}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -410,6 +411,33 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &413579829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 413579820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 649522e4874aeb4469e07406ce656f61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SAtk:
+  - {fileID: 2800000, guid: 8302e0173eb60794f97ec6e2bdc66c46, type: 3}
+  - {fileID: 2800000, guid: 6b550cae9ba5f6845b0834efeebb90a2, type: 3}
+  - {fileID: 2800000, guid: f99abf27f023b854581f633bb769313d, type: 3}
+  - {fileID: 2800000, guid: 37c758bbe26d268408266e4cc9cd6d03, type: 3}
+  - {fileID: 2800000, guid: 3107919093a511649a58854100eebb57, type: 3}
+  - {fileID: 2800000, guid: f9f35a187437f704a89f613cab03848c, type: 3}
+  - {fileID: 2800000, guid: 3107919093a511649a58854100eebb57, type: 3}
+  - {fileID: 2800000, guid: 37c758bbe26d268408266e4cc9cd6d03, type: 3}
+  - {fileID: 2800000, guid: f99abf27f023b854581f633bb769313d, type: 3}
+  - {fileID: 2800000, guid: 6b550cae9ba5f6845b0834efeebb90a2, type: 3}
+  - {fileID: 2800000, guid: 8302e0173eb60794f97ec6e2bdc66c46, type: 3}
+  Atk:
+  - {fileID: 2800000, guid: 2415e3b22c8c93d43bd907f03c81475c, type: 3}
+  - {fileID: 2800000, guid: 49993e07baff52042835abc3df5d1457, type: 3}
+  - {fileID: 2800000, guid: d5612d1fc9e6ebb49b42fd70502324bb, type: 3}
 --- !u!1 &670871295
 GameObject:
   m_ObjectHideFlags: 0
@@ -710,9 +738,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -744,8 +770,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 413579824}
+  attackstate: 0
   battleTempStat: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   Battle: 0
+  whoFirst: 0
+  Iattack: 0
   WhenMouseDown: 0
 --- !u!114 &1570408144
 MonoBehaviour:
@@ -761,6 +790,8 @@ MonoBehaviour:
   cam: {fileID: 413579824}
   Bunchi: {fileID: 2800000, guid: 8b4ce43c56eb59d41b56fce07f8f419c, type: 3}
   Assin: {fileID: 2800000, guid: da3525248849fad4b9b6b4e9a6fcc438, type: 3}
+  fire_0: {fileID: 0}
+  fire_1: {fileID: 0}
 --- !u!114 &1570408145
 MonoBehaviour:
   m_ObjectHideFlags: 0
