@@ -85,8 +85,15 @@ public class BattleButtonManage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (CurrentMine.getHP() == 0 && Battle != BattleButtonState.RunState)
+        int find = outOfStudent(MineStudentList); //전투가 종료되었는지 확인한다.
+        if (find == 0)
+        {
+            HowBattleEnd = 1;
+            Battle = BattleButtonState.RunState;
+        }
+        else if (CurrentMine.getHP() < 0.5 && Battle != BattleButtonState.RunState)
             Battle = BattleButtonState.OneOutState;
+
         if (Input.GetKey(KeyCode.X))
         {
             if (Battle == BattleButtonState.AttackState)
@@ -1080,15 +1087,17 @@ public class BattleButtonManage : MonoBehaviour
                 // 전투가 종료되었고 중독으로 인한 데미지를 받을 차례이다.
                 if (Battle != BattleButtonState.RunState)
                 {
+                    int aliminePoi = 0;
+                    int alienemyPoi = 0;
                     string temp = "";
                     if (CurrentMine.retStuStatus() == status.poison)
                     {
-                        CurrentMine.getDamage((int)CurrentMine.getMAXHP() / 12);
+                        aliminePoi = CurrentMine.getDamage((int)CurrentMine.getMAXHP() / 12);
                         temp = temp + CurrentMine.retStudentName() + "은 " + (int)CurrentMine.getMAXHP() / 12 + "만큼의 독 데미지를 받았다.\n";
                     }
                     if (CurrentEnemy.retStuStatus() == status.poison)
                     {
-                        CurrentEnemy.getDamage((int)CurrentMine.getMAXHP() / 12);
+                        alienemyPoi = CurrentEnemy.getDamage((int)CurrentMine.getMAXHP() / 12);
                         temp = temp + "상대는 " + (int)CurrentMine.getMAXHP() / 12 + "만큼의 독 데미지를 받았다.\n";
                     }
                     if (CurrentEnemy.retStuStatus() == status.poison || CurrentMine.retStuStatus() == status.poison)
@@ -1097,6 +1106,45 @@ public class BattleButtonManage : MonoBehaviour
                         if (GUI.Button(FirstPos, "다음"))
                             aba = true;
                         yield return null;
+                    }
+
+                    if (alienemyPoi == 1) //if enemy student fainted.
+                    {
+                        aba = false;
+                        yield return null;
+                        while (!aba)
+                        {
+                            GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentEnemy.retStudentName() + "은 " + damage.ToString() + "쓰러졌다\n버튼을 눌러서 진행");
+                            if (GUI.Button(FirstPos, "다음"))
+                                aba = true;
+                            yield return null;
+                        }
+
+                        /* get experience */
+                        int exp = CurrentEnemy.getLevel() * Random.Range(8, 35);
+                        CurrentMine.setExp(exp);
+
+                        aba = false; yield return null;
+                        while (!aba)
+                        {
+                            GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentEnemy.retStuIndex().ToString() + "학생은 " + CurrentEnemy.getExp().ToString() + "만큼의 경험치를 얻었다.\n버튼을 눌러서 진행");
+                            if (GUI.Button(FirstPos, "다음"))
+                                aba = true;
+                            yield return null;
+                        }
+
+                        int i = outOfStudent(EnemyStudentList); //전투가 종료되었는지 확인한다.
+                        if (i == 0) //전투가 종료되었을 때 
+                        {
+                            HowBattleEnd = 2;
+                            Battle = BattleButtonState.RunState;
+                        }
+                        else
+                        {
+                            CurrentEnemy = EnemyStudentList[i - 1];
+                            Battle = BattleButtonState.DefaultState;
+                        }
+
                     }
                     if (Battle != BattleButtonState.RunState)
                         Battle = BattleButtonState.DefaultState;
