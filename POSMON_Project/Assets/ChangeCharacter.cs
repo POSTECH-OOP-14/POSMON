@@ -147,28 +147,11 @@ public class ChangeCharacter : MonoBehaviour {
         }
         else
         {
+
             myAtk = true;
-            EnemyAtk = true;
+            if(battlestate.Battle == BattleButtonManage.BattleButtonState.AttackState)
+                EnemyAtk = true;
         }
     }
-    /*
-    IEnumerator EffectPlay()
-    {
-        if (EnemyAtkStart)
-        {
-            for (int i = 0; i < (Enemyframe.Length)+500; i++)
-            {
-                Graphics.DrawTexture(OurStudentImage, Enemyframe[i%Enemyframe.Length]);
-                yield return new WaitForEndOfFrame();
-            }
-        }
-        if (myAtkStart)
-        {
-            for (int i = 0; i < Myframe.Length+500; i++)
-            {
-                Graphics.DrawTexture(OpponentStudentImage, Myframe[i % Enemyframe.Length]);
-                yield return new WaitForEndOfFrame();
-            }
-        }
-    }*/
+    
 }
