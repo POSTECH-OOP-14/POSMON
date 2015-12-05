@@ -454,7 +454,9 @@ public class Student
 
     public bool capture(Item it)
     {
-        if (it.getPossibility() / getHP() > 10)
+        int i = Random.Range(0,60);
+        if ((3*this.getMAXHP() - 2 * this.getHP()) / (3 * this.getMAXHP())  //hp가 풀이면 1/3 확률
+             * it.getPossibility() * 60 > i)
             return true;
         else
             return false;

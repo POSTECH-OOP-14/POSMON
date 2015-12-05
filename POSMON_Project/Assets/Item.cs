@@ -357,6 +357,11 @@ public class Item
     {
         return item_amount;
     }
+    public int useitem_Amount()
+    {
+        this.item_amount--;
+        return this.item_amount;
+    }
 
     public void additem_Amount(int amount)
     {

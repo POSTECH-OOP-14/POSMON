@@ -11,6 +11,7 @@ public class StudentInfo: MonoBehaviour
          {
             for (int i = 0; i < 6; i++)
             {
+                
                 myDebugStuList[i] = GameManager.getBattlePlayerStudent(i);
                 enemyDebugStuList[i] = GameManager.getBattleTrainerStudent(i);
             }

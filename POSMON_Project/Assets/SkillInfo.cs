@@ -50,4 +50,5 @@ public class SkillInfo
     public status retGiveStatus() { return this.giveStatus; }
     public int retMaxChance() { return this.maxChance; }
     public int retNowChance() { return this.nowChance; }
+    public void decChance() { this.nowChance--; }
 }
