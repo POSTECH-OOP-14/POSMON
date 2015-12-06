@@ -427,6 +427,11 @@ public class Student
         return false;
     }
 
+    public void resetStatus()
+    {
+        st = status.none;
+    }
+
 
     public bool addSkill(Item it)//skill이 추가되었으면 true, 아니면 false
     {

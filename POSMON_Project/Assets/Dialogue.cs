@@ -118,7 +118,7 @@ public class Dialogue : MonoBehaviour {
                             stu.retSkillList()[j].restoreNowChance();
                     }
                     stu.setHP(stu.getMAXHP());
-                    stu.setStatus(status.all);
+                    stu.resetStatus();
                 }
             }
             GetComponent<AudioSource>().PlayOneShot(CureSound);

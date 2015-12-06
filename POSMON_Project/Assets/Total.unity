@@ -2846,6 +2846,18 @@ Prefab:
       propertyPath: m_Size.y
       value: 31.6067505
       objectReference: {fileID: 0}
+    - target: {fileID: 11406040, guid: c001beddfd2b8074593728c8b609b250, type: 2}
+      propertyPath: leveling_limit
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11406040, guid: c001beddfd2b8074593728c8b609b250, type: 2}
+      propertyPath: leveling_probability
+      value: .200000003
+      objectReference: {fileID: 0}
+    - target: {fileID: 11406040, guid: c001beddfd2b8074593728c8b609b250, type: 2}
+      propertyPath: level_multiplier
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c001beddfd2b8074593728c8b609b250, type: 2}
   m_IsPrefabParent: 0
@@ -3379,7 +3391,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11406040, guid: c001beddfd2b8074593728c8b609b250, type: 2}
       propertyPath: leveling_limit
-      value: 15
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 11406040, guid: c001beddfd2b8074593728c8b609b250, type: 2}
       propertyPath: leveling_probability
@@ -3400,6 +3412,10 @@ Prefab:
     - target: {fileID: 6197196, guid: c001beddfd2b8074593728c8b609b250, type: 2}
       propertyPath: m_Size.y
       value: 34.9538269
+      objectReference: {fileID: 0}
+    - target: {fileID: 11406040, guid: c001beddfd2b8074593728c8b609b250, type: 2}
+      propertyPath: level_multiplier
+      value: .600000024
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c001beddfd2b8074593728c8b609b250, type: 2}
@@ -3671,6 +3687,10 @@ Prefab:
     - target: {fileID: 11406040, guid: c001beddfd2b8074593728c8b609b250, type: 2}
       propertyPath: probability_million
       value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 11406040, guid: c001beddfd2b8074593728c8b609b250, type: 2}
+      propertyPath: level_multiplier
+      value: .5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c001beddfd2b8074593728c8b609b250, type: 2}
@@ -4483,6 +4503,10 @@ Prefab:
     - target: {fileID: 6197196, guid: c001beddfd2b8074593728c8b609b250, type: 2}
       propertyPath: m_Size.x
       value: 10.7373047
+      objectReference: {fileID: 0}
+    - target: {fileID: 11406040, guid: c001beddfd2b8074593728c8b609b250, type: 2}
+      propertyPath: level_multiplier
+      value: .300000012
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c001beddfd2b8074593728c8b609b250, type: 2}
