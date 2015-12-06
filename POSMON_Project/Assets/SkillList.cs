@@ -10,7 +10,7 @@ public class SkillList{
     public SkillInfo[] SkillArray = new SkillInfo[22]{
 
             new SkillInfo(1,"푸코의 진자",30,10,1,new int[12]{0,0,0,0,0,0,0,0,0,0,0,0},status.none,10,10),
-            new SkillInfo(2,"돌 떨구기",45,11,1,new int[12]{0,0,0,0,0,0,0,0,0,0,0,0},status.none,5,5),
+            new SkillInfo(2,"돌 떨구기",65,11,1,new int[12]{0,0,0,0,0,0,0,0,0,0,0,0},status.none,5,5),
             new SkillInfo(3,"붉은 시약 마시기",0,50,0,new int[12]{0,0,0,0,0,0,0,0,0,0,0,0},status.poison,10,10),
             new SkillInfo(4,"푸른 시약 마시기",0,51,0,new int[12]{0,0,0,0,0,0,0,0,0,0,0,0},status.none,10,10),
             new SkillInfo(5,"산성 시약 뿌리기",30,60,1,new int[12]{0,0,0,0,0,0,0,0,0,0,0,0},status.none,10,10),
@@ -23,13 +23,13 @@ public class SkillList{
             new SkillInfo(12,"톱니바퀴 갈갈이",35,101,1,new int[12]{0,0,0,0,0,0,0,0,0,0,0,0},status.none,10,10),
             new SkillInfo(13,"두뇌 해킹",20,20,0,new int[12]{0,0,0,0,0,0,0,0,0,0,0,0},status.none,10,10),
             new SkillInfo(14,"코드 짜기",45,21,0,new int[12]{0,0,0,0,0,0,0,0,0,0,0,0},status.none,10,10),
-            new SkillInfo(15,"내 몸을 검으로",0,40,0,new int[12]{0,0,0,0,0,0,0,0,0,0,0,0},status.none,5,5),
+            new SkillInfo(15,"내 몸을 검으로",70,40,0,new int[12]{0,0,0,0,0,0,0,0,0,0,0,0},status.none,5,5),
             new SkillInfo(16,"아싸의 아싸아싸",40,41,1,new int[12]{0,0,0,0,0,0,0,0,0,0,0,0},status.none,7,7),
-            new SkillInfo(17,"인맥동원",40,30,1,new int[12]{0,0,0,0,0,0,0,0,0,0,0,0},status.none,5,5),
+            new SkillInfo(17,"인맥동원",60,30,1,new int[12]{0,0,0,0,0,0,0,0,0,0,0,0},status.none,5,5),
             new SkillInfo(18,"퉤퉤퉷 말빨",0,31,0,new int[12]{0,0,0,0,0,0,0,0,0,0,0,0},status.sleep,10,10),
             new SkillInfo(19,"람다 펑션",30,0,0,new int[12]{0,0,0,0,0,0,0,0,0,0,0,0},status.none,10,10),
             new SkillInfo(20,"미방을 풀어라",20,1,1,new int[12]{0,0,0,0,0,0,0,0,0,0,0,0},status.sleep,10,10),
-            new SkillInfo(21,"화염방사",50,10,1,new int[12]{0,0,0,0,0,0,0,0,0,0,0,0},status.none,5,5),
+            new SkillInfo(21,"화염방사",70,10,1,new int[12]{0,0,0,0,0,0,0,0,0,0,0,0},status.none,5,5),
             new SkillInfo(22,"전기감전",10,11,1,new int[12]{0,0,0,0,0,0,0,0,0,0,0,0},status.paralysis, 10,10),
 
 };

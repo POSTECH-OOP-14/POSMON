@@ -18,7 +18,7 @@ public enum stu_no
 
 public class Student
 {
-    private const double HP_Multiplier = 2;
+    private const double HP_Multiplier = 1;
     private SkillList list= new SkillList();
 
     private SkillInfo[] skill = new SkillInfo[4]; //스킬배열
@@ -528,8 +528,8 @@ public class Student
     //give damage to student
     public int getDamage(int damage)
     {
-        HP -= damage;
-        if (HP < 0.1f)
+        this.HP = this.HP - damage;
+        if (this.HP < 0.5f)
         {
             HP = 0;
             this.giveAStatus(status.faint);
