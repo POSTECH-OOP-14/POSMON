@@ -87,10 +87,8 @@ public class GameManager : MonoBehaviour {
     public void StartGame()
     {
         /* frame limit. if computer's frame soar abut 120fps, collision broke */
-#if UNITY_EDITOR
         QualitySettings.vSyncCount = 0;  // VSync must be disabled
         Application.targetFrameRate = 45;
-#endif
         pl_stored.SetActive(true);
         Application.LoadLevel(GameManager.PrevSceneNumber);
     }
