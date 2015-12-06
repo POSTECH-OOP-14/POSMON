@@ -248,7 +248,7 @@ public class BattleButtonManage : MonoBehaviour
                 }
                 if (CurrentMine.retSkillList()[2] != null)
                 {
-                    if ((CurrentMine.retSkillList()[2].retNowChance() != 0) && GUI.Button(SecondPos, CurrentMine.retSkillList()[2].retSkillName() + "\n" + CurrentMine.retSkillList()[2].retNowChance() + "/" + CurrentMine.retSkillList()[2].retMaxChance()))
+                    if ((CurrentMine.retSkillList()[2].retNowChance() != 0) && GUI.Button(ThirdPos, CurrentMine.retSkillList()[2].retSkillName() + "\n" + CurrentMine.retSkillList()[2].retNowChance() + "/" + CurrentMine.retSkillList()[2].retMaxChance()))
                     {
                         damage = a.BattleDamageCalculate(CurrentMine.retSkillList()[2], CurrentMine, CurrentEnemy, battleTempStat);
                         mystuSkill = CurrentMine.retSkillList()[2];
@@ -259,7 +259,7 @@ public class BattleButtonManage : MonoBehaviour
                 }
                 if (CurrentMine.retSkillList()[3] != null)
                 {
-                    if ((CurrentMine.retSkillList()[3].retNowChance() != 0) && GUI.Button(SecondPos, CurrentMine.retSkillList()[3].retSkillName() + "\n" + CurrentMine.retSkillList()[3].retNowChance() + "/" + CurrentMine.retSkillList()[3].retMaxChance()))
+                    if ((CurrentMine.retSkillList()[3].retNowChance() != 0) && GUI.Button(ForthPos, CurrentMine.retSkillList()[3].retSkillName() + "\n" + CurrentMine.retSkillList()[3].retNowChance() + "/" + CurrentMine.retSkillList()[3].retMaxChance()))
                     {
 
                         damage = a.BattleDamageCalculate(CurrentMine.retSkillList()[3], CurrentMine, CurrentEnemy, battleTempStat);
@@ -852,7 +852,7 @@ public class BattleButtonManage : MonoBehaviour
                             yield return null;
                             while (!aba)
                             {
-                                GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentMine.retStudentName() + "은 " + exp.ToString() + "만큼의 경험치를 얻었다.\n버튼을 눌러서 진행");
+                                GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentMine.retStudentName() + "은 " + exp + "만큼의 경험치를 얻었다.\n버튼을 눌러서 진행");
                                 if (GUI.Button(FirstPos, "다음"))
                                     aba = true;
                                 yield return null;
@@ -1069,7 +1069,7 @@ public class BattleButtonManage : MonoBehaviour
                                 aba = false; yield return null;
                                 while (!aba)
                                 {
-                                    GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentEnemy.retStuIndex().ToString() + "학생은 " + CurrentEnemy.getExp().ToString() + "만큼의 경험치를 얻었다.\n버튼을 눌러서 진행");
+                                    GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentMine.retStudentName()+"은 " + exp + "만큼의 경험치를 얻었다.\n버튼을 눌러서 진행");
                                     if (GUI.Button(FirstPos, "다음"))
                                         aba = true;
                                     yield return null;
@@ -1139,7 +1139,7 @@ public class BattleButtonManage : MonoBehaviour
                         aba = false; yield return null;
                         while (!aba)
                         {
-                            GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentEnemy.retStuIndex().ToString() + "학생은 " + CurrentEnemy.getExp().ToString() + "만큼의 경험치를 얻었다.\n버튼을 눌러서 진행");
+                            GUI.Box(new Rect(1, Screen.height - 100, 600, 100), CurrentMine.retStudentName() + "은 " + exp + "만큼의 경험치를 얻었다.\n버튼을 눌러서 진행");
                             if (GUI.Button(FirstPos, "다음"))
                                 aba = true;
                             yield return null;
