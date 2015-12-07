@@ -47,6 +47,7 @@ public class ChangeCharacter : MonoBehaviour {
 
         if (myStudent.retSkillList() == null)
             Debug.Log("mySkillList is null");
+
      
 	}
     
