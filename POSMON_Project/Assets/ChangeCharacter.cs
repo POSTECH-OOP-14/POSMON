@@ -54,9 +54,15 @@ public class ChangeCharacter : MonoBehaviour {
     void Update () {
         myStudent = GameObject.Find("battleBackground").GetComponent<BattleButtonManage>().CurrentMine;
         enemyStudent = GameObject.Find("battleBackground").GetComponent<BattleButtonManage>().CurrentEnemy;
-       
+
         myTexture = textureList.retTexture(myStudent.retStuIndex());
         opponentTexture = textureList.retTexture(enemyStudent.retStuIndex());
+    
+        if(myStudent.getLevel() >= 8)
+            myTexture = textureList.retUpgradeTexture(myStudent.retStuIndex());
+        if(enemyStudent.getLevel() >= 8)
+            opponentTexture = textureList.retUpgradeTexture(enemyStudent.retStuIndex());
+    
         if (battlestate.Battle == BattleButtonManage.BattleButtonState.DefaultState)
         {
             prevMyHp = myStudent.getHP();
